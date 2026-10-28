@@ -248,7 +248,7 @@ function createContactShadows(scene, characters) {
     characters.forEach((character, i) => {
       scratch.position.set(
         character.root.position.x,
-        character.person.id === "zuozuo" ? 0.32 : 0.035,
+        character.person.id === "zuozuo" ? character.root.position.y - 0.12 : 0.035,
         character.root.position.z,
       );
       scratch.rotation.set(0, character.root.rotation.y, 0);
@@ -313,6 +313,10 @@ export function optimizeScene(
       }
       seats.update();
       shadows?.update();
+    },
+    setLOD(distance) {
+      lodDistance = Math.max(8, distance);
+      for (const { lod } of entries) lod.levels[1].distance = lodDistance;
     },
     stats() {
       return {

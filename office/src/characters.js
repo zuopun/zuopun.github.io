@@ -13,8 +13,10 @@ import { addCharacterDetails } from "./character-details.js";
 import {
   loadBossFace,
   bossFaceMaterial,
+  bossFaceGeometry,
   getBossFurMaterial,
   addBossFurShell,
+  addColleagueFurShell,
   addBossCrown,
 } from "./boss-details.js";
 const brown = "#835736",
@@ -31,9 +33,14 @@ export function createCharacter(person, face) {
     fixed = new T.Group();
   root.add(body);
   body.add(fixed);
-  const furMat = boss ? getBossFurMaterial() : brown;
+  const furMat = getBossFurMaterial();
+  // Hero silhouette uses smooth geometry; fur shells provide the fine outline.
+  const plushBall = (parent, material, position, scale) => boss
+    ? mesh(parent, new T.SphereGeometry(1, 20, 12), material, position, scale)
+    : ball(parent, material, position, scale);
+  let faceMesh;
   const color = boss ? furMat : person.color;
-  ball(
+  plushBall(
     fixed,
     color,
     [0, 0.8, 0],
@@ -50,32 +57,35 @@ export function createCharacter(person, face) {
     boss ? [0.7, 0.63, 0.48] : [0.43, 0.4, 0.32],
   );
   for (const sign of [-1, 1]) {
-    ball(
+    plushBall(
       head,
       furMat,
       [sign * (boss ? 0.74 : 0.46), boss ? 1.9 : 1.58, 0],
       boss ? [0.29, 0.32, 0.2] : [0.19, 0.21, 0.12],
     );
-    ball(
+    plushBall(
       head,
-      cream,
-      [sign * (boss ? 0.76 : 0.48), boss ? 1.9 : 1.58, boss ? 0.16 : 0.1],
+      boss ? "#c99762" : cream,
+      [sign * (boss ? 0.76 : 0.48), boss ? 1.9 : 1.58, boss ? 0.205 : 0.1],
       boss ? [0.19, 0.22, 0.05] : [0.12, 0.14, 0.035],
     );
   }
   if (boss) {
-    const faceMesh = mesh(
+    faceMesh = mesh(
       head,
-      new T.CircleGeometry(1, 48),
+      bossFaceGeometry(face),
       bossFaceMaterial(face),
-      [0, 1.86, 0.495],
-      [0.52, 0.43, 1],
+      [0, 1.86, 0.497],
     );
+    faceMesh.name = "official-zuozuo-face";
     faceMesh.castShadow = false;
     addBossFurShell(fixed, [0, 0.8, 0], [0.53, 0.64, 0.38]);
     addBossFurShell(head, [0, 1.9, 0], [0.7, 0.63, 0.48]);
+    for (const side of [-1, 1])
+      addBossFurShell(head, [side * .74, 1.9, 0], [.29, .32, .2], 2);
     addBossCrown(head);
   } else {
+    addColleagueFurShell(head);
     ball(head, cream, [0, 1.55, 0.27], [0.33, 0.27, 0.075]);
     for (const sign of [-1, 1]) {
       ball(head, ink, [sign * 0.13, 1.64, 0.335], [0.035, 0.05, 0.018]);
@@ -204,18 +214,19 @@ export function createCharacter(person, face) {
     const pivot = new T.Group();
     pivot.position.set(sign * (boss ? 0.5 : 0.29), boss ? 1.13 : 1.1, 0);
     body.add(pivot);
-    ball(
+    plushBall(
       pivot,
       boss ? furMat : color,
       [sign * 0.06, -0.24, 0],
       boss ? [0.19, 0.4, 0.19] : [0.12, 0.28, 0.12],
     );
-    ball(
+    plushBall(
       pivot,
       furMat,
       [sign * 0.07, -0.48, 0.015],
       boss ? [0.17, 0.2, 0.16] : [0.105, 0.12, 0.1],
     );
+    if (boss) addBossFurShell(pivot, [sign * .06, -.24, 0], [.19, .4, .19], 2);
     arms.push(pivot);
   }
   const legs = [];
@@ -223,13 +234,13 @@ export function createCharacter(person, face) {
     const pivot = new T.Group();
     pivot.position.set(sign * (boss ? 0.25 : 0.16), 0.45, 0);
     body.add(pivot);
-    ball(
+    plushBall(
       pivot,
       boss ? furMat : "#555d50",
       [0, -0.19, 0],
       boss ? [0.22, 0.28, 0.23] : [0.12, 0.24, 0.12],
     );
-    ball(
+    plushBall(
       pivot,
       boss ? furMat : person.color,
       [0, -0.36, 0.08],
@@ -240,7 +251,7 @@ export function createCharacter(person, face) {
   if (!boss)
     tube(
       fixed,
-      brown,
+      furMat,
       [
         [0, 0.6, -0.17],
         [0.15, 0.5, -0.42],
@@ -320,7 +331,13 @@ export function createCharacter(person, face) {
     legs,
     prop,
   });
+  // Preserve a separate head for eye-level POV, with the actor's own hands visible.
+  head.removeFromParent();
+  faceMesh?.removeFromParent();
+  bake(head);
+  if (faceMesh) head.add(faceMesh);
   bake(fixed);
+  fixed.add(head);
   bake(prop);
   Object.values(activityProps).forEach(bake);
   const attached = [prop, ...Object.values(activityProps)];
@@ -345,6 +362,9 @@ export function createCharacter(person, face) {
     roleAccessories,
     root,
     body,
+    head,
+    faceMesh,
+    eyeHeight: boss ? 1.91 : 1.64,
     arms,
     legs,
     prop,
@@ -362,59 +382,82 @@ export function createCharacter(person, face) {
   };
 }
 export function makeBossProps(boss) {
-  const sets = [];
-  for (let i = 0; i < 3; i++) {
-    const g = new T.Group();
-    boss.body.add(g);
-    sets.push(g);
-  }
+  const sets = Array.from({ length: 3 }, () => {
+    const group = new T.Group(); boss.body.add(group); return group;
+  });
   const cigarette = sets[0];
-  cylinder(
-    cigarette,
-    "#f0e6ca",
-    [0.62, 1.35, 0.46],
-    [0.027, 0.3, 0.027],
-  ).rotation.x = Math.PI / 2;
-  ball(cigarette, "#d18b55", [0.62, 1.35, 0.62], [0.028, 0.028, 0.028]);
-  box(sets[1], "#4d625a", [0, 1.03, 0.52], [0.64, 0.16, 0.27]);
-  for (const x of [-0.21, 0.21])
-    ball(sets[1], "#c9b77c", [x, 1.13, 0.55], [0.05, 0.025, 0.05]);
+  cylinder(cigarette, "#efe7d8", [.66, 1.36, .47], [.028, .36, .028]).rotation.x = Math.PI / 2;
+  cylinder(cigarette, "#b78951", [.66, 1.36, .325], [.029, .08, .029]).rotation.x = Math.PI / 2;
+  const emberMaterial = new T.MeshStandardMaterial({ color: "#bb3417", emissive: "#ff5b16", emissiveIntensity: 2.5, roughness: 1 });
+  ball(cigarette, emberMaterial, [.66, 1.36, .66], [.027, .027, .027]);
+  const handheld = sets[1];
+  box(handheld, "#263530", [0, 1.08, .57], [.88, .24, .19]);
   for (const side of [-1, 1]) {
-    const page = box(
-      sets[2],
-      "#e9e0bd",
-      [side * 0.28, 1.18, 0.57],
-      [0.56, 0.64, 0.025],
-    );
-    page.rotation.y = side * 0.14;
-    for (let j = 0; j < 5; j++)
-      box(
-        sets[2],
-        "#8b8c72",
-        [side * 0.28, 1.35 - j * 0.08, 0.61],
-        [0.41, 0.015, 0.01],
-      );
+    ball(handheld, "#34463c", [side * .36, 1.02, .57], [.17, .16, .12]);
+    ball(handheld, "#b4ab82", [side * .31, 1.19, .58], [.044, .018, .044]);
   }
-  box(sets[2], "#61745c", [0, 1.45, 0.61], [1, 0.06, 0.01]);
-  sets.forEach(bake);
-  const cigaretteTip = new T.Object3D();
-  cigaretteTip.position.set(0.62, 1.35, 0.62);
-  cigarette.add(cigaretteTip);
-  const smoke = [];
-  for (let i = 0; i < 8; i++) {
-    const m = ball(
-      boss.root,
-      new T.MeshBasicMaterial({
-        color: "#e9e6d9",
-        transparent: true,
-        opacity: 0.25,
-        depthWrite: false,
-      }),
-      [0, 0, 0],
-      [0.08, 0.08, 0.08],
-    );
-    m.castShadow = false;
-    smoke.push(m);
+  const screen = document.createElement("canvas"); screen.width = 256; screen.height = 128;
+  const screenCtx = screen.getContext("2d");
+  screenCtx.fillStyle = "#132f3f"; screenCtx.fillRect(0, 0, 256, 128);
+  screenCtx.fillStyle = "#5ab1a0"; screenCtx.fillRect(0, 90, 256, 38);
+  screenCtx.fillStyle = "#e2b75c"; screenCtx.fillRect(65, 54, 30, 36);
+  screenCtx.fillStyle = "#8fd8e3"; screenCtx.fillRect(140, 74, 48, 8);
+  screenCtx.fillStyle = "#f3edc5"; screenCtx.font = "bold 15px monospace"; screenCtx.fillText("ZUO QUEST", 10, 22);
+  const screenTexture = new T.CanvasTexture(screen); screenTexture.colorSpace = T.SRGBColorSpace;
+  const display = new T.Mesh(new T.PlaneGeometry(.48, .18), new T.MeshStandardMaterial({ map: screenTexture, emissiveMap: screenTexture, emissive: "#ffffff", emissiveIntensity: 1.4, roughness: .25 }));
+  display.position.set(0, 1.08, .672); handheld.add(display);
+  const newspaperTexture = makeNewspaperTexture();
+  const paperMaterial = new T.MeshStandardMaterial({ map: newspaperTexture, color: "#fff7e6", roughness: 1, side: T.DoubleSide });
+  const newspaper = sets[2];
+  const leftPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 4, 1), paperMaterial);
+  leftPage.position.set(-.27, 1.04, .64); leftPage.rotation.y = -.14; newspaper.add(leftPage);
+  const pageTurn = new T.Group(); pageTurn.position.set(0, 1.04, .65); newspaper.add(pageTurn);
+  const rightPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 6, 1), paperMaterial);
+  rightPage.position.x = .27; pageTurn.add(rightPage);
+  const positions = rightPage.geometry.attributes.position;
+  for (let i = 0; i < positions.count; i++) {
+    const x = positions.getX(i) + .27;
+    positions.setZ(i, Math.sin(x / .54 * Math.PI) * .035);
   }
-  return { sets, smoke, cigaretteTip };
+  rightPage.geometry.computeVertexNormals();
+  // Keep the turning leaf articulated, while all fixed prop meshes are batched.
+  pageTurn.removeFromParent(); sets.forEach(bake); newspaper.add(pageTurn);
+  const cigaretteTip = new T.Object3D(); cigaretteTip.position.set(.66, 1.36, .66); cigarette.add(cigaretteTip);
+  const smokeTexture = makeSmokeTexture(), smoke = [];
+  for (let i = 0; i < 12; i++) {
+    const sprite = new T.Sprite(new T.SpriteMaterial({ map: smokeTexture, color: "#e2ded4", transparent: true, opacity: .4, depthWrite: false, toneMapped: false }));
+    boss.root.add(sprite); smoke.push(sprite);
+  }
+  const update = (time, phase) => {
+    const turn = (time % 7) / 7;
+    // Lift a page, arc it over the spine, then settle back onto the open spread.
+    pageTurn.rotation.y = phase === 2 && turn > .68
+      ? .14 + Math.sin((turn - .68) / .32 * Math.PI) * 2.7 : .14;
+    handheld.rotation.z = phase === 1 ? Math.sin(time * 2) * .035 : 0;
+    emberMaterial.emissiveIntensity = 2 + Math.pow(Math.max(0, Math.sin(time * .8)), 8) * 2;
+  };
+  return { sets, smoke, cigaretteTip, pageTurn, update };
+}
+function makeSmokeTexture() {
+  const canvas = document.createElement("canvas"); canvas.width = canvas.height = 64;
+  const ctx = canvas.getContext("2d"), gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gradient.addColorStop(0, "rgba(255,255,255,.7)"); gradient.addColorStop(.4, "rgba(255,255,255,.4)"); gradient.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = gradient; ctx.fillRect(0, 0, 64, 64);
+  return new T.CanvasTexture(canvas);
+}
+function makeNewspaperTexture() {
+  const canvas = document.createElement("canvas"); canvas.width = 512; canvas.height = 640;
+  const ctx = canvas.getContext("2d"); ctx.fillStyle = "#e9dfc9"; ctx.fillRect(0, 0, 512, 640);
+  ctx.fillStyle = "#2e332c"; ctx.font = "bold 64px serif"; ctx.fillText("左左日報", 22, 82);
+  ctx.fillRect(22, 100, 468, 4); ctx.font = "22px sans-serif"; ctx.fillText("THE OFFICE DAILY · 好點子發生中", 22, 132);
+  ctx.fillStyle = "#5f7564"; ctx.fillRect(24, 160, 220, 180);
+  ctx.fillStyle = "#b3c1a0"; ctx.fillRect(48, 200, 50, 115); ctx.fillRect(113, 180, 55, 135); ctx.fillRect(178, 224, 40, 91);
+  ctx.fillStyle = "#40473c";
+  for (let col = 0; col < 2; col++) for (let row = 0; row < 29; row++) {
+    if (col === 0 && row < 11) continue;
+    const width = 145 + ((row * 19 + col * 37) % 64);
+    ctx.fillRect(24 + col * 240, 164 + row * 15, width, row % 7 === 0 ? 5 : 3);
+  }
+  const texture = new T.CanvasTexture(canvas); texture.colorSpace = T.SRGBColorSpace; texture.anisotropy = 4;
+  return texture;
 }

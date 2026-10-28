@@ -46,10 +46,15 @@ export function dressOffice(root, solid) {
       );
     }
   // Raised executive platform and shallow front steps.
-  box(root, "#667b67", [0, 0.14, -8.35], [6.7, 0.28, 4]);
-  box(root, "#a4b28c", [0, 0.29, -8.35], [6.6, 0.035, 3.95]);
-  box(root, "#c3cbb0", [0, 0.06, -6.15], [5.3, 0.12, 0.4]);
-  box(root, "#b0be9b", [0, 0.17, -6.4], [5.7, 0.22, 0.3]);
+  box(root, "#667b67", [0, 0.4, -8.5], [6.7, 0.8, 3.7]);
+  box(root, "#a4b28c", [0, 0.81, -8.5], [6.6, 0.035, 3.65]);
+  for (let i = 0; i < 4; i++) {
+    const z = -5.95 - i * 0.23, height = (i + 1) * 0.2;
+    box(root, "#b0be9b", [0, height / 2, z], [5.5 + i * 0.25, height, 0.24]);
+    box(root, "#d6b566", [0, height + 0.006, z + 0.11], [5.5 + i * 0.25, 0.012, 0.025]);
+  }
+  // The raised stage is a deliberate furniture boundary; bot aisles skirt it.
+  solid(0, -8.1, 6.7, 4.9);
   // Reception sits beside the entrance; the center route remains unobstructed.
   box(root, "#c0a17a", [-3.6, 0.65, 9.25], [2.8, 1.3, 0.95]);
   box(root, "#eee3c8", [-3.6, 1.33, 9.25], [3, 0.12, 1.05]);

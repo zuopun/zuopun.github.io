@@ -1,0 +1,99 @@
+/* Camera controls occupy the footer; none of the labels cover the 3D viewport. */
+:root { --office-footer: 186px; }
+#camera-panel {
+  position: absolute; inset: auto 16px 70px; height: 107px; z-index: 3;
+  display: flex; flex-direction: column; gap: 7px; min-width: 0;
+  color: #344d40; font-size: 11px;
+}
+.camera-topline, .camera-statusline { display: flex; align-items: center; gap: 10px; min-width: 0; }
+#camera-modes { display: flex; gap: 4px; padding: 3px; background: #e3e6da; border-radius: 12px; flex-shrink: 0; }
+#camera-panel button, #camera-panel select { font: inherit; border: 1px solid #d0d5c5; border-radius: 8px; min-height: 32px; color: #344d40; background: #faf8f0; }
+#camera-panel button { padding: 5px 12px; white-space: nowrap; }
+#camera-modes button { border: 0; background: transparent; min-height: 30px; }
+#camera-modes button[aria-pressed="true"], #camera-tour[aria-pressed="true"] { background: #344d40; color: #fff6db; }
+#camera-settings { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap; justify-content: end; }
+#camera-settings:empty { display: none; }
+#camera-settings label { display: flex; align-items: center; gap: 4px; }
+#camera-settings select { max-width: 96px; }
+.camera-person-label { display: flex; align-items: center; gap: 7px; min-width: 0; flex: 0 1 310px; font-size: 10px; white-space: nowrap; }
+#camera-character { min-width: 0; max-width: 100%; width: 235px; padding: 6px; text-overflow: ellipsis; }
+#camera-hud { display: flex; min-width: 0; align-items: center; gap: 10px; flex: 1; font-size: 10px; }
+#camera-hud > * { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#camera-who { flex-shrink: 0; }
+#camera-activity { max-width: 260px; }
+#camera-next { color: #6b765f; }
+#camera-help { margin: 0; font-size: 9px; line-height: 1.4; color: #6b765f; letter-spacing: 0.2px; }
+.bottom { display: none; }
+#roster { height: 65px; bottom: 3px; }
+#roster button { min-height: 57px; border-radius: 12px; display: flex; flex-direction: column; align-items: start; padding: 5px 11px; max-width: 155px; gap: 1px; }
+#roster button span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.roster-name { font-weight: 750; font-size: 11px; }
+.roster-role { font-size: 8px; opacity: .76; }
+.roster-activity { font-size: 8px; opacity: .8; }
+body.immersive-camera #card { display: none; }
+body.immersive-camera #scene { right: 0; bottom: var(--office-footer); }
+#camera-flight { display: flex; align-items: center; gap: 4px; }
+#camera-flight[hidden] { display: none; }
+#camera-flight button { width: 36px; min-height: 36px; padding: 0; font-size: 18px; }
+#camera-joystick { width: 52px; height: 52px; border-radius: 50%; background: #dce2d1; border: 1px solid #bac8ae; position: relative; touch-action: none; user-select: none; flex-shrink: 0; }
+#camera-joystick i { width: 22px; height: 22px; border-radius: 50%; background: #47664a; position: absolute; left: 14px; top: 14px; box-shadow: 0 2px 3px #28472a33; pointer-events: none; }
+.joystick-mark { position: absolute; inset: 0; display: grid; place-items: center; font-size: 45px; font-weight: 100; color: #a3b398; pointer-events: none; }
+@media (min-width: 701px) { body[data-camera="free"] .camera-statusline { min-height: 45px; } body[data-camera="free"] #camera-panel { height: 116px; } }
+@media (max-width: 900px) { #camera-hud { flex-wrap: wrap; gap: 2px 6px; line-height: 1.4; } #camera-hud #camera-next { flex-basis: 100%; } #camera-settings label { font-size: 9px; } }
+@media (max-width: 700px) {
+  :root { --office-footer: calc(218px + env(safe-area-inset-bottom, 0px)); }
+  #camera-panel { left: 9px; right: 9px; bottom: calc(70px + env(safe-area-inset-bottom, 0px)); height: 139px; gap: 5px; }
+  .camera-topline { flex-wrap: wrap; gap: 4px; }
+  #camera-modes { flex: 1; gap: 1px; padding: 2px; border-radius: 9px; }
+  #camera-modes button { flex: 1; font-size: 10px; min-height: 32px; padding: 4px 5px; }
+  #camera-panel #camera-tour { padding: 5px 8px; font-size: 10px; }
+  #camera-settings { margin: 0; flex: 1 0 100%; min-height: 30px; justify-content: start; gap: 6px; }
+  #camera-settings:empty { display: none; }
+  #camera-settings button, #camera-settings select { min-height: 29px; font-size: 10px; padding: 4px 6px; }
+  #camera-settings select { max-width: 82px; }
+  .camera-statusline { align-items: center; gap: 7px; min-height: 45px; }
+  .camera-person-label { flex: 0 1 145px; flex-direction: column; align-items: start; gap: 2px; font-size: 8px; }
+  #camera-character { width: 145px; min-height: 32px; font-size: 10px; }
+  #camera-hud { font-size: 9px; gap: 2px; align-content: center; }
+  #camera-hud > * { flex-basis: 100%; }
+  #camera-help { font-size: 8px; line-height: 1.4; }
+  #roster { bottom: calc(3px + env(safe-area-inset-bottom, 0px)); height: 64px; }
+  #roster button { padding: 5px 10px; min-height: 56px; max-width: 138px; }
+  body.immersive-camera { --office-footer: calc(158px + env(safe-area-inset-bottom, 0px)); }
+  body.immersive-camera #roster { display: none; }
+  body.immersive-camera #camera-panel { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+  body[data-camera="free"] .camera-person-label { flex-basis: 97px; }
+  body[data-camera="free"] #camera-character { width: 97px; }
+  body[data-camera="free"] #camera-hud { max-width: calc(100% - 222px); }
+  #camera-flight { margin-left: auto; }
+  #camera-flight button { width: 29px; min-height: 36px; }
+  #camera-joystick { width: 48px; height: 48px; }
+  #camera-joystick i { top: 12px; left: 12px; }
+}
+@media (max-height: 600px) and (orientation: portrait) {
+  :root { --office-sheet: 130px; }
+  body.has-selection:not(.immersive-camera) #card { height: var(--office-sheet); }
+}
+@media (max-height: 540px) and (orientation: landscape) {
+  :root { --office-footer: 126px; }
+  body.immersive-camera { --office-footer: 90px; }
+  #roster { height: 47px; bottom: 1px; }
+  #roster button { min-height: 42px; padding: 3px 9px; }
+  .roster-activity { display: none; }
+  #camera-panel { height: 73px; bottom: 48px; left: 12px; right: 12px; gap: 3px; }
+  .camera-topline { flex-wrap: nowrap; }
+  #camera-modes button { min-height: 27px; padding: 3px 8px; }
+  #camera-settings { flex: initial; margin-left: auto; }
+  #camera-panel button, #camera-panel select { min-height: 27px; }
+  .camera-person-label { flex-direction: row; flex-basis: 245px; }
+  #camera-character { width: 185px; }
+  .camera-statusline { min-height: 29px; }
+  #camera-hud { flex-wrap: nowrap; font-size: 9px; }
+  #camera-hud > * { flex-basis: auto; }
+  #camera-help { display: none; }
+  body.immersive-camera #camera-panel { bottom: 7px; height: 77px; }
+  body.immersive-camera #roster { display: none; }
+  body[data-camera="free"] #camera-panel { height: 80px; }
+  #camera-joystick { width: 40px; height: 40px; }
+  #camera-joystick i { left: 9px; top: 9px; }
+}

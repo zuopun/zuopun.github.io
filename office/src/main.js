@@ -1,3 +1,7 @@
+import { createCameraSystem } from "./camera-system.js";
+import { createMotionController, resetLegPlacement, poseLocomotion, polishActivity } from "./motion.js";
+import { createActivityEffects } from "./activity-effects.js";
+let motionController, activityEffects;
 import * as T from "three";
 import { OrbitControls } from "../assets/vendor/OrbitControls.js";
 import { PEOPLE, normalizeStatus } from "./state.js";
@@ -5,8 +9,16 @@ import { buildWorld } from "./world.js";
 import { createCharacter, loadFace, makeBossProps } from "./characters.js";
 import { optimizeScene, prepareStaticShadows } from "./performance.js";
 import { createNavigator } from "./navigation.js";
+import { applyMaterials } from "./materials.js";
+import { setupLighting } from "./lighting.js";
+import { createQualitySystem } from "./quality.js";
+import { createLoadingUI } from "./loading.js";
+import { loadCrownAsset } from "./mesh-assets.js";
+import { setBossCrownTemplate } from "./boss-details.js";
+let cameraSystem, quality;
 const $ = (id) => document.getElementById(id),
   scene = new T.Scene();
+const loading = createLoadingUI($("loading"));
 scene.background = new T.Color("#eee9df");
 scene.fog = new T.Fog("#eee9df", 95, 170);
 const mobile = matchMedia("(max-width:700px)").matches;
@@ -49,12 +61,12 @@ controls.touches.ONE = T.TOUCH.ROTATE;
 controls.touches.TWO = T.TOUCH.DOLLY_PAN;
 controls.target.set(0, 0, 1);
 function reset() {
-  camera.position.set(mobile ? 17 : 19, mobile ? 25 : 25, mobile ? 29 : 34);
-  controls.target.set(0, 0, mobile ? 1.5 : -1.5);
+  camera.position.set(mobile ? 17 : 14, mobile ? 25 : 22, mobile ? 29 : 32);
+  controls.target.set(0, 1, mobile ? 1.5 : -1.5);
   controls.update();
 }
 reset();
-$("reset").onclick = reset;
+$("reset").onclick = () => cameraSystem ? cameraSystem.resetOverview() : reset();
 scene.add(new T.HemisphereLight("#fff9df", "#a4b3a0", 1.8));
 const sun = new T.DirectionalLight("#fff2d0", 2.5);
 sun.position.set(-15, 28, 14);
@@ -71,10 +83,19 @@ Object.assign(sun.shadow.camera, {
 sun.shadow.normalBias = 0.04;
 sun.shadow.bias = -0.0001;
 scene.add(sun);
+// A dedicated soft key and rim establish the crowned host as the focal point.
+const hero = new T.SpotLight("#fff0ce", 12, 18, 0.65, 0.85, 1.5);
+hero.position.set(-3, 7, -4);
+hero.target.position.set(0, 2.6, -8.65);
+scene.add(hero, hero.target);
+const heroRim = new T.PointLight("#ffd28c", 6, 7, 2);
+heroRim.position.set(1.5, 4.2, -10);
+scene.add(heroRim);
 const floor = new T.Mesh(
   new T.PlaneGeometry(200, 200),
   new T.MeshStandardMaterial({ color: "#eee9df", roughness: 1 }),
 );
+floor.material.userData.preserveMaterial = true;
 floor.rotation.x = -Math.PI / 2;
 floor.position.y = -0.86;
 floor.receiveShadow = true;
@@ -111,13 +132,19 @@ const activities = [
   { x: 10.5, z: 4, angle: Math.PI, action: "lift", label: "在健身房舉啞鈴" },
   { x: -9, z: -6.5, angle: Math.PI, action: "wash", label: "在洗手間洗手" },
   { x: -11, z: -6.5, angle: Math.PI, action: "shower", label: "在淋浴間沖澡" },
+  { x: -8.3, z: 4, angle: 0, action: "chat", label: "在休息室聊聊近況" },
+  { x: -8.3, z: 5.4, angle: Math.PI, action: "chat", label: "在休息室聊聊近況" },
+  { x: 0, z: 9, angle: Math.PI / 2, action: "chat", label: "在接待區交流想法" },
+  { x: 1.5, z: 9, angle: -Math.PI / 2, action: "chat", label: "在接待區交流想法" },
 ];
 let characters = [],
   selected = null,
   frame = 0,
   elapsed = 0,
   bossProps,
-  performanceManager;
+  performanceManager,
+  materials,
+  lighting;
 const stateLabels = {
   working: "⚙ 工作中",
   idle: "自由活動",
@@ -218,7 +245,9 @@ async function poll() {
   updateCard();
 }
 try {
-  const face = await loadFace();
+  const [face, crown] = await Promise.all([loadFace(), loadCrownAsset()]);
+  setBossCrownTemplate(crown);
+  loading.update("reference");
   for (const [i, person] of PEOPLE.entries()) {
     const c = createCharacter(person, face);
     c.desk = world.desks[i];
@@ -236,7 +265,8 @@ try {
     },
     face,
   );
-  boss.root.position.set(0, 0.45, -8.65);
+  boss.root.position.set(0, 1.03, -8.65);
+  boss.root.scale.setScalar(1.25);
   scene.add(boss.root);
   characters.push(boss);
   bossProps = makeBossProps(boss);
@@ -253,32 +283,37 @@ try {
   dd.root.position.set(6, 0, 8);
   scene.add(dd.root);
   characters.push(dd);
+  motionController = createMotionController({ characters, navigate });
+  activityEffects = createActivityEffects(scene, characters);
   for (const c of characters) {
     const b = document.createElement("button");
     b.textContent = c.person.name;
     b.dataset.id = c.person.id;
     b.setAttribute("aria-pressed", "false");
-    b.onclick = () => {
-      showCard(c);
-      controls.target.copy(c.root.position).add(new T.Vector3(0, 1, 0));
-      const offset = new T.Vector3(3, 3.2, 7).applyAxisAngle(
-        new T.Vector3(0, 1, 0),
-        c.root.rotation.y,
-      );
-      camera.position.copy(controls.target).add(offset);
-    };
+    b.onclick = () => cameraSystem.select(c, { focus: true, inspect: true });
     $("roster").appendChild(b);
   }
   performanceManager = optimizeScene(scene, characters, world.chairs, {
     lodDistance: 68,
   });
+  materials = await applyMaterials(scene, { renderer, characters, onProgress: loading.asset });
+  lighting = await setupLighting(renderer, scene, sun, { world, onProgress: loading.asset });
+  cameraSystem = createCameraSystem({
+    camera, controls, renderer, characters,
+    collisionRoots: [world.root],
+    onSelect: (c, { inspect }) => { if (inspect || selected) showCard(c); },
+  });
   prepareStaticShadows(scene, characters, world.chairs);
   renderer.shadowMap.autoUpdate = false;
   renderer.shadowMap.needsUpdate = true;
+  quality = createQualitySystem({ renderer, scene, camera, performanceManager,
+    materials, lighting, worldRoot: world.root });
+  await quality.ready;
+  quality.mount($("camera-settings"));
   characters.slice(0, 13).forEach(nextActivity);
   await poll();
   setInterval(poll, 60000);
-  $("loading").hidden = true;
+  loading.finish();
 } catch (error) {
   console.error(error);
   $("loading").hidden = true;
@@ -313,10 +348,7 @@ renderer.domElement.addEventListener("pointerup", (e) => {
     characters.map((c) => c.hit),
     false,
   )[0];
-  if (hit)
-    showCard(
-      characters.find((c) => c.person.id === hit.object.userData.character),
-    );
+  if (hit) cameraSystem.select(hit.object.userData.character, { focus: false, inspect: true });
 });
 renderer.domElement.addEventListener("pointercancel", (e) => {
   activePointers.delete(e.pointerId);
@@ -324,13 +356,13 @@ renderer.domElement.addEventListener("pointercancel", (e) => {
   if (!activePointers.size) multiTouch = false;
 });
 const clock = new T.Clock();
-let avg = 16,
-  perfSamples = 0;
+let avg = 16;
 const smokeOrigin = new T.Vector3();
 // Simulation is independent of drawing so behavior can be tested at fixed time steps.
 export function stepSimulation(dt) {
   elapsed += dt;
   frame++;
+  motionController.beginFrame();
   for (const c of characters) {
     const t = elapsed + c.phase,
       boss = c.person.id === "zuozuo",
@@ -340,6 +372,7 @@ export function stepSimulation(dt) {
     c.body.scale.y = 1;
     for (const a of c.arms) a.rotation.set(0, 0, 0);
     for (const l of c.legs) l.rotation.set(0, 0, 0);
+    resetLegPlacement(c);
     for (const p of Object.values(c.activityProps)) p.visible = false;
     c.prop.visible = true;
     if (boss) {
@@ -348,6 +381,7 @@ export function stepSimulation(dt) {
         phase
       ];
       bossProps.sets.forEach((g, i) => (g.visible = i === phase));
+      bossProps.update(elapsed, phase);
       c.body.position.y = Math.sin(t * 1.4) * 0.015;
       c.legs.forEach((l) => (l.rotation.x = -1.2));
       c.arms[0].rotation.x = phase === 0 ? -0.2 : -1.3;
@@ -359,15 +393,15 @@ export function stepSimulation(dt) {
       bossProps.cigaretteTip.getWorldPosition(smokeOrigin);
       c.root.worldToLocal(smokeOrigin);
       bossProps.smoke.forEach((p, i) => {
-        const k = (elapsed * 0.22 + i / 8) % 1;
+        const k = (elapsed * 0.22 + i / bossProps.smoke.length) % 1;
         p.visible = phase === 0;
         p.position.set(
-          smokeOrigin.x + k * 0.85,
-          smokeOrigin.y + k * 1.2,
-          smokeOrigin.z + k * 0.25,
+          smokeOrigin.x + k * 0.95,
+          smokeOrigin.y + k * 1.6,
+          smokeOrigin.z + k * 0.3,
         );
-        p.scale.setScalar(0.025 + k * 0.1);
-        p.material.opacity = (1 - k) * 0.22;
+        p.scale.setScalar(0.07 + k * 0.25);
+        p.material.opacity = (1 - k) * 0.48;
       });
       continue;
     }
@@ -402,39 +436,15 @@ export function stepSimulation(dt) {
       c.desk.chair.position.z = c.desk.chairZ + (1 - c.seatBlend) * 0.35;
 
     if (moving) {
-      const target = c.path[0],
-        dx = target.x - c.root.position.x,
-        dz = target.z - c.root.position.z,
-        d = Math.hypot(dx, dz),
-        speed = c.state === "working" ? 3 : manager ? 1.2 : 1.1;
-      if (d <= Math.max(speed * dt, 0.000001)) {
-        c.root.position.x = target.x;
-        c.root.position.z = target.z;
-        c.path.shift();
-        if (!c.path.length) {
-          c.arrived = true;
-          c.dwell = manager ? 4 : 10 + Math.random() * 10;
-          c.action = c.destination.action || "";
-          c.activityLabel = c.destination.label || stateLabels[c.state];
-          c.root.rotation.y = c.destination.angle ?? Math.PI;
-        }
-      } else {
-        c.root.position.x += (dx / d) * speed * dt;
-        c.root.position.z += (dz / d) * speed * dt;
-        const angle = Math.atan2(dx, dz);
-        c.root.rotation.y +=
-          Math.atan2(
-            Math.sin(angle - c.root.rotation.y),
-            Math.cos(angle - c.root.rotation.y),
-          ) * Math.min(1, dt * 12);
+      const result = motionController.advance(c, dt, c.state === "working" ? 3 : manager ? 1.2 : 1.1);
+      poseLocomotion(c, result.distance, dt);
+      if (result.arrived) {
+        c.arrived = true;
+        c.dwell = manager ? 4 : 10 + Math.random() * 10;
+        c.action = c.destination.action || "";
+        c.activityLabel = c.destination.label || stateLabels[c.state];
+        c.root.rotation.y = c.destination.angle ?? Math.PI;
       }
-      c.walkPhase = (c.walkPhase || 0) + dt * (c.state === "working" ? 14 : 8);
-      const stride = Math.sin(c.walkPhase);
-      c.legs[0].rotation.x = stride * 0.6;
-      c.legs[1].rotation.x = -stride * 0.6;
-      c.arms[0].rotation.x = -stride * 0.4;
-      c.arms[1].rotation.x = stride * 0.4;
-      c.body.position.y = Math.abs(stride) * 0.045;
     } else if (c.arrived && (c.state === "working" || c.state === "waiting")) {
       c.root.rotation.y = Math.PI;
       c.body.position.y = 0.17 * (c.seatBlend || 0);
@@ -495,6 +505,7 @@ export function stepSimulation(dt) {
               -(a === "shower" ? 2 : 0.8) + Math.sin(t * 4 + i) * 0.15),
         );
     }
+    polishActivity(c, elapsed, dt, characters);
     if (manager) c.arms[1].rotation.x = -0.7;
     if (c.action === "shower" && !moving) {
       c.body.position.y = -0.12;
@@ -518,6 +529,7 @@ export function stepSimulation(dt) {
     12,
     dt,
   );
+  activityEffects.update(elapsed);
   if (frame % 20 === 0) updateCard();
 }
 function animate() {
@@ -528,31 +540,21 @@ function animate() {
   }
   const raw = clock.getDelta(),
     dt = Math.min(raw, 0.05);
-  controls.update();
   stepSimulation(dt);
+  cameraSystem.update(Math.min(raw, 0.1), performance.now() / 1000);
   performanceManager.update(camera);
   renderer.info.autoReset = false;
   renderer.info.reset();
-  renderer.render(scene, camera);
-  // Reduce resolution first, then shadows, when sustained rendering exceeds a mobile frame budget.
+  quality.render(dt, { mode: cameraSystem.debug().mode,
+    focusDistance: camera.position.distanceTo(controls.target) });
   avg = avg * 0.98 + Math.min(raw * 1000, 100) * 0.02;
-  if (++perfSamples > 180 && avg > 30 && renderer.getPixelRatio() > 0.85) {
-    renderer.setPixelRatio(Math.max(0.85, renderer.getPixelRatio() - 0.2));
-    perfSamples = 0;
-  } else if (perfSamples > 360 && avg > 33 && renderer.shadowMap.enabled) {
-    renderer.shadowMap.enabled = false;
-    scene.traverse((o) => {
-      if (o.material) o.material.needsUpdate = true;
-    });
-    perfSamples = 0;
-  }
 }
 animate();
 function resizeScene() {
   const r = $("scene").getBoundingClientRect();
   camera.aspect = r.width / r.height;
   camera.updateProjectionMatrix();
-  renderer.setSize(r.width, r.height);
+  quality.resize(r.width, r.height);
 }
 new ResizeObserver(resizeScene).observe($("scene"));
 addEventListener("resize", resizeScene);
@@ -588,15 +590,25 @@ Object.defineProperty(window, "officeDebug", {
     showerDoorOpen: world.showerDoor.position.x / 1.65,
     target: controls.target.toArray(),
     faceMaterial: (() => {
-      let m;
-      characters
-        .find((c) => c.person.id === "zuozuo")
-        .root.traverse((o) => {
-          if (o.material?.map?.name === "official-zuozuo-flat-ink-face")
-            m = o.material;
-        });
-      return { type: m?.type, toneMapped: m?.toneMapped };
+      const face = characters.find((c) => c.person.id === "zuozuo").faceMesh;
+      const m = face.material, rect = $("scene").getBoundingClientRect();
+      face.updateWorldMatrix(true, false);
+      const project = (x, y) => {
+        const p = face.localToWorld(new T.Vector3((x - 616) / 505, (687 - y) / 505, 0)).project(camera);
+        return { x: rect.left + (p.x + 1) * rect.width / 2,
+          y: rect.top + (1 - p.y) * rect.height / 2, depth: p.z };
+      };
+      let visible = true;
+      for (let o = face; o; o = o.parent) visible &&= o.visible;
+      return { type: m.type, toneMapped: m.toneMapped,
+        source: m.map.image.src, officialSource: m.map.userData.officialSource,
+        visible, samples: [[616,510],[460,745],[750,810],[490,575],[725,625]].map(([x,y]) => ({sourcePixel:{x,y},screen:project(x,y)})),
+        outline: [[357,473],[875,473],[875,900],[357,900]].map(([x,y]) => project(x,y)) };
     })(),
+    cameraSystem: cameraSystem.debug(),
+    quality: quality.stats(),
+    materials: materials.stats(),
+    lighting: lighting.stats(),
     performance: performanceManager.stats(),
     camera: camera.position.toArray(),
     distance: camera.position.distanceTo(controls.target),

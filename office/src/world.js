@@ -2,6 +2,7 @@ import * as T from "three";
 import { box, ball, cylinder, label, tube, bake } from "./shapes.js";
 import { dressOffice } from "./architecture.js";
 import { addDeskDetails } from "./desk-details.js";
+import { prepareFoliage, addSetDressing } from "./set-dressing.js";
 export function buildWorld(scene, people) {
   const root = new T.Group();
   scene.add(root);
@@ -27,7 +28,7 @@ export function buildWorld(scene, people) {
   function plant(x, z, big = false) {
     const s = big ? 1 : 0.65;
     const planting = new T.Group();
-    planting.position.y = Math.abs(x) < 3.35 && z < -6.35 ? 0.3 : 0;
+    planting.position.y = Math.abs(x) < 3.35 && z < -6.35 ? 0.82 : 0;
     root.add(planting);
     cylinder(
       planting,
@@ -77,15 +78,15 @@ export function buildWorld(scene, people) {
   const chairs = [];
   function chair(x, z, color = "#7d9480", large = false) {
     const g = new T.Group();
-    g.position.set(x, large ? 0.3 : 0, z);
+    g.position.set(x, large ? 0.82 : 0, z);
     scene.add(g);
-    const sc = large ? 1.35 : 1;
+    const sc = large ? 1.7 : 1;
     box(g, color, [0, 0.59, 0], [0.76 * sc, 0.17, 0.7 * sc]);
     box(
       g,
       color,
-      [0, large ? 1.25 : 1.04, large ? -0.36 : 0.36],
-      [0.78 * sc, large ? 1.35 : 0.8, 0.15],
+      [0, large ? 1.4 : 1.04, large ? -0.46 : 0.36],
+      [0.78 * sc, large ? 1.65 : 0.8, 0.15],
     );
     cylinder(g, "#67766c", [0, 0.28, 0], [0.055, 0.48, 0.055]);
     for (const side of [-1, 1]) {
@@ -168,29 +169,29 @@ export function buildWorld(scene, people) {
   });
   // The boss's larger head seat anchors the entire office.
   const bossZone = new T.Group();
-  bossZone.position.y = 0.3;
+  bossZone.position.y = 0.82;
   root.add(bossZone);
   box(bossZone, "#af8664", [0, 1.05, -7.5], [4.2, 0.22, 1.4]);
   solid(0, -7.5, 4.2, 1.4);
   for (const x of [-1.7, 1.7])
     box(bossZone, "#c9ab7d", [x, 0.5, -7.5], [0.4, 1, 0.85]);
-  chair(0, -8.65, "#798b67", true);
+  chair(0, -8.65, "#3c322e", true);
   label(bossZone, "左左 · THE BOSS", [0, 1.14, -6.77], 1.9, 0.29);
   box(bossZone, "#f1e9cf", [1.35, 1.2, -7.4], [0.6, 0.08, 0.4]);
   plant(-2.7, -8.5);
   plant(2.7, -8.5);
   label(bossZone, "ZUO OFFICE", [0, 2.1, -10.3], 4, 0.65, "#e5ddc9", "#52634b");
-  box(bossZone, "#4b5e52", [1.05, 1.57, -7.65], [1.3, 0.75, 0.08]);
+  box(bossZone, "#4b5e52", [1.55, 1.38, -7.65], [1.05, 0.48, 0.08]);
   label(
     bossZone,
     "PLAY / PAUSE",
-    [1.05, 1.57, -7.7],
-    1.16,
-    0.58,
+    [1.55, 1.38, -7.7],
+    0.95,
+    0.38,
     "#253f39",
     "#dfd4a5",
   ).rotation.y = Math.PI;
-  box(bossZone, "#4b5e52", [1.05, 1.2, -7.65], [0.08, 0.35, 0.08]);
+  box(bossZone, "#4b5e52", [1.55, 1.19, -7.65], [0.08, 0.13, 0.08]);
   box(bossZone, "#495c51", [1.7, 1.22, -7.5], [0.28, 0.24, 0.5]);
   cylinder(bossZone, "#7c8a73", [-1.4, 1.2, -7.3], [0.19, 0.05, 0.19]);
   const cig = cylinder(
@@ -374,6 +375,8 @@ export function buildWorld(scene, people) {
   const { showerDoor } = dressOffice(root, solid);
   showerDoor.removeFromParent();
   scene.add(showerDoor);
+  prepareFoliage(root);
   bake(root);
-  return { root, obstacles, desks, chairs, showerDoor };
+  const dressing = addSetDressing(root, desks);
+  return { root, obstacles, desks, chairs, showerDoor, dressing };
 }
