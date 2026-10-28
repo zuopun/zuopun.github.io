@@ -13,6 +13,7 @@
     "lena": { "state": "idle", "note": "尋找下一個鏡頭" },
     "wild": { "state": "idle", "note": "活動筋骨" },
     "bob": { "state": "working", "note": "照顧社群夥伴" },
-    "lan": { "state": "idle", "note": "補充一些靈感" }
+    "lan": { "state": "idle", "note": "補充一些靈感" },
+    "wf": { "state": "idle", "note": "整理情境研究筆記" }
   }
 }

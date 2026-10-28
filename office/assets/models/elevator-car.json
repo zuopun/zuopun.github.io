@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "localBounds": {
+    "minX": -1.65,
+    "maxX": 1.65,
+    "minZ": -1.85,
+    "maxZ": 1.78
+  },
+  "floorY": 0,
+  "height": 4.4,
+  "opening": {
+    "z": -1.95,
+    "width": 3.3,
+    "height": 4.1
+  },
+  "controlPanel": {
+    "x": 1.665,
+    "y": 1.9,
+    "z": -0.95
+  },
+  "asset": "elevator-car",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "glbBytes": 42224,
+  "sourceGLBBytes": 284208,
+  "triangles": 1198,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/94c9a768bb4bf81c2b05573c.ktx2",
+      "bytes": 96021,
+      "linear": false,
+      "sourceSHA256": "cf4e496a3c1594e170ccf1f68c02b677238c9acc56ad3a5a1580280c8df6d743"
+    }
+  ],
+  "generatedAt": "2026-10-28T08:50:01.885Z"
+}

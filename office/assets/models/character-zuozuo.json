@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "person": {
+    "id": "zuozuo",
+    "name": "左左",
+    "role": "公司老闆 · 永遠的主位",
+    "color": "#835736"
+  },
+  "roleAccessories": [],
+  "eyeHeight": 1.91,
+  "root": "actor-zuozuo",
+  "activityProps": {
+    "drink": "activity-drink",
+    "pool": "activity-pool",
+    "darts": "activity-darts",
+    "lift": "activity-lift"
+  },
+  "face": "official-zuozuo-face",
+  "bones": 66,
+  "skinnedMeshes": 27,
+  "detailedSkinnedMeshes": 27,
+  "distanceLOD": null,
+  "clips": [
+    {
+      "name": "idle",
+      "duration": 4
+    },
+    {
+      "name": "walk",
+      "duration": 0.72
+    },
+    {
+      "name": "run",
+      "duration": 0.5
+    },
+    {
+      "name": "sit",
+      "duration": 0.8
+    },
+    {
+      "name": "stand",
+      "duration": 0.72
+    },
+    {
+      "name": "type",
+      "duration": 2
+    },
+    {
+      "name": "phone",
+      "duration": 4
+    },
+    {
+      "name": "coffee",
+      "duration": 4.2
+    },
+    {
+      "name": "eat",
+      "duration": 3.6
+    },
+    {
+      "name": "smoke",
+      "duration": 12
+    },
+    {
+      "name": "newspaper",
+      "duration": 7
+    },
+    {
+      "name": "game",
+      "duration": 3
+    },
+    {
+      "name": "talk",
+      "duration": 4.2
+    },
+    {
+      "name": "stretch",
+      "duration": 4.8
+    },
+    {
+      "name": "relax",
+      "duration": 6
+    },
+    {
+      "name": "elevator",
+      "duration": 4
+    },
+    {
+      "name": "waiting",
+      "duration": 2
+    },
+    {
+      "name": "pool",
+      "duration": 3
+    },
+    {
+      "name": "darts",
+      "duration": 2
+    },
+    {
+      "name": "lift",
+      "duration": 3
+    },
+    {
+      "name": "wash",
+      "duration": 3
+    },
+    {
+      "name": "shower",
+      "duration": 4
+    },
+    {
+      "name": "inspect",
+      "duration": 4
+    },
+    {
+      "name": "record",
+      "duration": 3
+    },
+    {
+      "name": "nap",
+      "duration": 6
+    }
+  ],
+  "sourceFace": "refs/zuozuo_face.png",
+  "asset": "character-zuozuo",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "contentSHA256": "142aaf4489a84a7d0df293418808630ced08342f621f12492f78a2b2403da7dc",
+  "glbBytes": 2361592,
+  "sourceGLBBytes": 30632088,
+  "triangles": 115706,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/76e39deaf8c8a2551fbcc0d9.ktx2",
+      "bytes": 5695,
+      "linear": false,
+      "sourceSHA256": "4363d41ef1a441cfe703790f748ba3572b97e6cc3b1c2004b59943514a0b7dfb"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/6487f6aa8b83cce745678dd8.ktx2",
+      "bytes": 26324,
+      "linear": false,
+      "sourceSHA256": "3a6c838c18f239c9f0c0147050002e2e8c0fb46ff0a24df16dd39c1fe6bc9da8"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/462b8198a4f860785204e5ed.ktx2",
+      "bytes": 813658,
+      "linear": false,
+      "sourceSHA256": "bc082f61872e80a5901638af2c39f516c55ca76ad85333dbcbf7f04504c04168"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/dff89ce9509608d2dd00f575.ktx2",
+      "bytes": 989134,
+      "linear": false,
+      "sourceSHA256": "ab83b2f72032f562580b142a731d1a052a667b53cf642068d068cb602aa6c853"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/2e63658863f2ec8ea43d2ad0.ktx2",
+      "bytes": 1343163,
+      "linear": true,
+      "sourceSHA256": "0eb79fffbdfb74f2f2614d1a669ac59a9ccb011bb2cb92bfe1653a5bfbf903e7"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/d66b2c8253b6d469761b061c.ktx2",
+      "bytes": 1203147,
+      "linear": false,
+      "sourceSHA256": "242563d7ad2d3ade220efac9de05185af5c815676e4713bdbe52ffe83b03dd17"
+    }
+  ],
+  "generatedAt": "2026-10-28T09:22:57.764Z"
+}

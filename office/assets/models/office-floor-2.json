@@ -16,7 +16,8 @@
     "office-chair-10",
     "office-chair-11",
     "office-chair-12",
-    "office-chair-13"
+    "office-chair-13",
+    "office-chair-14"
   ],
   "showerDoor": "office-shower-door",
   "desks": [
@@ -110,6 +111,13 @@
       "angle": 3.141592653589793,
       "chairName": "office-chair-12",
       "chairZ": -5.47
+    },
+    {
+      "x": -4.7,
+      "z": -5.47,
+      "angle": 3.141592653589793,
+      "chairName": "office-chair-13",
+      "chairZ": -5.47
     }
   ],
   "obstacles": [
@@ -187,6 +195,12 @@
     },
     {
       "x": 4.7,
+      "z": -6.6,
+      "w": 2.5,
+      "d": 1.15
+    },
+    {
+      "x": -4.7,
       "z": -6.6,
       "w": 2.5,
       "d": 1.15
@@ -414,23 +428,23 @@
   "format": "GLB 2.0",
   "compression": "EXT_meshopt_compression; lossless float attributes",
   "textureFormat": "KTX2 / Basis UASTC",
-  "glbBytes": 866312,
-  "sourceGLBBytes": 5359244,
-  "triangles": 35288,
+  "glbBytes": 897536,
+  "sourceGLBBytes": 5511900,
+  "triangles": 36178,
   "textures": [
     {
       "name": "",
-      "uri": "../textures/generated/af5f049221386afca4c92503.ktx2",
-      "bytes": 217835,
+      "uri": "../textures/generated/909dfb21bbe5d6e81c1c6ecc.ktx2",
+      "bytes": 226388,
       "linear": false,
-      "sourceSHA256": "15505b9dcf95b18faf957fa47d0dc2caeee20366505096fad5f922e5ca2b7815"
+      "sourceSHA256": "c653d163263424b7422260dcb0073eee8966d20b61610581f64256f43beac6e5"
     },
     {
       "name": "",
-      "uri": "../textures/generated/b39d9a714cc1d8f33254667d.ktx2",
-      "bytes": 278889,
+      "uri": "../textures/generated/e34d8c6b830a50bdbc8c6bb4.ktx2",
+      "bytes": 304703,
       "linear": false,
-      "sourceSHA256": "6fbb977eb0841e572c3b200c8aedc29d07512d4c17afebad90d0cb1af9d2778c"
+      "sourceSHA256": "4ea79029aafa8a0cd79c7d3c63a777c0c7560a449f6e52527f0f88615fb4fb53"
     },
     {
       "name": "",
@@ -440,5 +454,5 @@
       "sourceSHA256": "dc07c10b1e7c8097c4b6af468cb0290025ff2f6344cee9fc04418b07ec9fb474"
     }
   ],
-  "generatedAt": "2026-10-28T08:05:09.948Z"
+  "generatedAt": "2026-10-28T08:49:55.651Z"
 }

@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "person": {
+    "id": "zuno",
+    "name": "ZUNO 工程",
+    "role": "工程師",
+    "color": "#7999a3",
+    "style": "hood"
+  },
+  "roleAccessories": [
+    "hoodie",
+    "terminal badge and energy drink"
+  ],
+  "eyeHeight": 1.64,
+  "root": "actor-zuno",
+  "activityProps": {
+    "drink": "activity-drink",
+    "pool": "activity-pool",
+    "darts": "activity-darts",
+    "lift": "activity-lift",
+    "phone": "activity-phone",
+    "controller": "activity-controller",
+    "eat": "activity-eat",
+    "utensil": "activity-utensil",
+    "newspaper": "activity-newspaper"
+  },
+  "face": null,
+  "bones": 50,
+  "skinnedMeshes": 18,
+  "detailedSkinnedMeshes": 17,
+  "distanceLOD": {
+    "body": "actor-zuno-distant",
+    "skin": "actor-zuno-distance-skin"
+  },
+  "clips": [
+    {
+      "name": "idle",
+      "duration": 4
+    },
+    {
+      "name": "walk",
+      "duration": 0.72
+    },
+    {
+      "name": "run",
+      "duration": 0.5
+    },
+    {
+      "name": "sit",
+      "duration": 0.8
+    },
+    {
+      "name": "stand",
+      "duration": 0.72
+    },
+    {
+      "name": "type",
+      "duration": 2
+    },
+    {
+      "name": "phone",
+      "duration": 4
+    },
+    {
+      "name": "coffee",
+      "duration": 4.2
+    },
+    {
+      "name": "eat",
+      "duration": 3.6
+    },
+    {
+      "name": "smoke",
+      "duration": 12
+    },
+    {
+      "name": "newspaper",
+      "duration": 7
+    },
+    {
+      "name": "game",
+      "duration": 3
+    },
+    {
+      "name": "talk",
+      "duration": 4.2
+    },
+    {
+      "name": "stretch",
+      "duration": 4.8
+    },
+    {
+      "name": "relax",
+      "duration": 6
+    },
+    {
+      "name": "elevator",
+      "duration": 4
+    },
+    {
+      "name": "waiting",
+      "duration": 2
+    },
+    {
+      "name": "pool",
+      "duration": 3
+    },
+    {
+      "name": "darts",
+      "duration": 2
+    },
+    {
+      "name": "lift",
+      "duration": 3
+    },
+    {
+      "name": "wash",
+      "duration": 3
+    },
+    {
+      "name": "shower",
+      "duration": 4
+    },
+    {
+      "name": "inspect",
+      "duration": 4
+    },
+    {
+      "name": "record",
+      "duration": 3
+    },
+    {
+      "name": "nap",
+      "duration": 6
+    }
+  ],
+  "sourceFace": null,
+  "asset": "character-zuno",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "contentSHA256": "397a3662047fa4835af21b0510830517853cfb4ae9543e86b6e8dfaeb9730e5d",
+  "glbBytes": 817480,
+  "sourceGLBBytes": 13610404,
+  "triangles": 19490,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/dff89ce9509608d2dd00f575.ktx2",
+      "bytes": 989134,
+      "linear": false,
+      "sourceSHA256": "ab83b2f72032f562580b142a731d1a052a667b53cf642068d068cb602aa6c853"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/2e63658863f2ec8ea43d2ad0.ktx2",
+      "bytes": 1343163,
+      "linear": true,
+      "sourceSHA256": "0eb79fffbdfb74f2f2614d1a669ac59a9ccb011bb2cb92bfe1653a5bfbf903e7"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/d66b2c8253b6d469761b061c.ktx2",
+      "bytes": 1203147,
+      "linear": false,
+      "sourceSHA256": "242563d7ad2d3ade220efac9de05185af5c815676e4713bdbe52ffe83b03dd17"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/5ce76f5c0018edabf37061c5.ktx2",
+      "bytes": 2711,
+      "linear": true,
+      "sourceSHA256": "466076c8c60883e0a04740dc8f7073a0d92425f2b7ac1087f2a375a209723f32"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/21724b8de2d2f2343eaf6778.ktx2",
+      "bytes": 5087,
+      "linear": false,
+      "sourceSHA256": "156ab779cd738503453de4905107ad61d200378efdd5489867bc35ffe631d71d"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/df521bef0691e54716527a7f.ktx2",
+      "bytes": 2623,
+      "linear": true,
+      "sourceSHA256": "2003f1bdf2aec385f7b9cc4e19d928ff8b5f63d825413dcdc852cbc867fe61c6"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/7fc1ed8859277bfc83b3634b.ktx2",
+      "bytes": 16012,
+      "linear": false,
+      "sourceSHA256": "f9683de86fb9459bcf63ad4ff587bf1410d883a3188b1fe3f808c8c67a3ce0ce"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/8e10accae638ebcbb4013129.ktx2",
+      "bytes": 6980,
+      "linear": false,
+      "sourceSHA256": "1e3e37fe2c8364b172cf7da73ad762e8c790cdffaaf4ec8866fae3ed722719a7"
+    }
+  ],
+  "generatedAt": "2026-10-28T09:23:09.519Z"
+}

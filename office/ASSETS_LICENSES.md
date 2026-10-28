@@ -48,3 +48,38 @@ Library licences are separate from the CC0 asset dedication. The official refere
 | `basisu` npm wrapper 1.16.3 | [HacksawStudios/basisu](https://github.com/HacksawStudios/basisu) | ISC wrapper; packaged Basis Universal encoder is Apache-2.0. Offline only; executable is not included in `dist/`. |
 
 The Vite build disables `.env` loading and copies only the explicit public runtime directories and licence notices. Build dependencies, `.git`, credentials and configuration secrets are never copied into the static release.
+
+## Stage E — original procedural spatial sound, CC0 1.0
+
+All audio in `src/audio/synthesis.js` is generated from deterministic mathematical oscillators, seeded noise, envelopes and additive formants written specifically for this project. No recordings, sampled voices, music, third-party sound libraries or external audio services are incorporated. The generated sound assets are dedicated to **CC0 1.0 Universal** under the same legal code linked above; the supplied character artwork remains separately owned.
+
+| Sound family | Reproducible source | Contents |
+| --- | --- | --- |
+| Character voices | `src/audio/acoustics.js:voiceProfile`, `src/audio/synthesis.js:voice` | Sixteen distinct fictional pitch/formant/cadence profiles, unintelligible syllables, laughter and coughs. These are synthetic toy-character voices, not imitations of real people. |
+| Character Foley | `src/audio/synthesis.js:footstep` and `cue` | Carpet, tile, wood, grass and metal footfalls; typing, clicks, coffee sipping, eating, paper, game buttons/bleeps, lighter, cloth, breathing and gym equipment. |
+| Building/environment | `src/audio/synthesis.js:ambience` and `cue` | Air conditioning, projector, arcade hum, kitchen, dishes, coffee machine, printer, telephone, gate, wind, birds, fountain, city traffic, elevator chimes and doors. |
+| Room impulse responses | `src/audio/synthesis.js:impulse`, `src/audio/acoustics.js:ROOM_ACOUSTICS` | Original stereo early reflections and decaying noise for lobby, office, conference, studio, game, cafe, dining, kitchen, restroom, elevator and garden acoustics. No measured third-party impulse response was used. |
+
+These signals are synthesized into bounded, cached PCM buffers after the user's first interaction. There are no audio files to download or redistribute and no initial-load audio payload; therefore no OGG/MP3 encoder or audio decoder is required. Web Audio is the browser's standard API, not a redistributed third-party audio engine. Every source uses HRTF panning, distance attenuation and wall/floor filtering; room reverberation is generated locally.
+
+## Stage B — original office tower, interiors and city, CC0 1.0
+
+`assets/models/floor-{1,3,4,5}.glb`, `core-{1,2,3,4,5}.glb`, `elevator-car.glb` and `building-shell.glb` are built from the committed procedural generators in `src/floors/` and `src/world/building-shell.js`. All furniture, staircase geometry, curtain walls, street fixtures, plants, cars, city silhouettes, original wall art, fictional displays and architectural lettering layouts were authored for this project and are dedicated to **CC0 1.0 Universal**. The meshes and their Canvas-generated graphics contain no downloaded third-party model, photograph, brand artwork or real financial data. Rasterized glyphs use the separately licensed Noto font family listed above. Rebuild with `npm run assets:building`; matching JSON files preserve collision geometry, floor names, sound anchors and reserved activity/seat metadata.
+
+## Stage C — original rigged characters and animation
+
+| Asset | Reproducible source | Licence / scope |
+| --- | --- | --- |
+| `assets/models/character-*.glb` / `.json` | `src/characters.js`, `src/character-details.js`, `src/characters/rig.js`; `npm run assets:characters` | Original procedural body/outfit/prop geometry, skeletons, normalized skin weights and authored animation clips, CC0 1.0. The supplied 左左 likeness, official face and reference-derived crown retain the reference owner's rights. No third-party character mesh or motion-capture data is incorporated. |
+| Cotton-twill albedo, tangent normal and roughness KTX2 textures | `src/characters/cloth-material.js`; compiled by the asset pipeline | Original deterministic woven material, CC0 1.0. Shared microstructure with individual role colours. |
+| Role garments, seams, WF forecast visor and scenario tablet | `src/characters/garment-details.js`, `src/characters/wf-details.js` | Original meshes and fictional graphics, CC0 1.0. |
+| Phones, controllers, meals and folding newspapers | `src/characters/activity-props.js` | Original geometry and fictional screen/paper art, CC0 1.0. |
+| Skeletal activity clips and two-bone foot/arm IK | `src/characters/animation-clips.js`, `src/characters/animator.js`, `src/characters/boss-prop-controller.js` | Original authored motion; no downloaded animation or motion-capture library. Generated motion data CC0 1.0; source code follows the repository's source licence. |
+
+`src/characters/plush-hydration.js` restores the exact Stage 0 shell cutoff shader on loaded KTX2 materials. It does not generate replacement face artwork, change approved body geometry or obtain any external texture. The Stage 0 source hashes remain recorded in `docs/zuozuo-stage0-lock.json`.
+
+## Stage F — original architectural lighting and water
+
+`src/world/light-bake.js` computes original per-floor ambient-occlusion and diffuse-irradiance maps from the committed collision boxes and practical-light positions. These generated maps, the window-shaft density shader and the animated water normal/ripple functions in `src/world/lighting-system.js` are original work dedicated to **CC0 1.0 Universal**. They do not contain a photographed or downloaded source image. The floor bake is a 2.5D geometric horizon calculation with wall-occluded diffuse lights; it is not a path-traced global-illumination bake.
+
+`assets/vendor/objects/Reflector.js` comes from **Three.js r170**, [mrdoob/three.js](https://github.com/mrdoob/three.js/blob/r170/examples/jsm/objects/Reflector.js), **MIT**, Three.js contributors. The full licence is `assets/vendor/THREE-LICENSE.txt`. The project uses it for a clipped planar reflection of the live scene on polished lobby stone, the gym mirror and the roof pool; the project-specific roughness/ripple shader is original. Glass and the remaining PBR surfaces use the existing original HDR environment maps documented above.

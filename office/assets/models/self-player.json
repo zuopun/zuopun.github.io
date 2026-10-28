@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "purpose": "First-person visitor body, arms and fingers",
+  "originalProcedural": true,
+  "asset": "self-player",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "contentSHA256": "f0d1da3a90eb597a87c6f4084659e16bff4c4edb775009fe063474ba641f09d8",
+  "glbBytes": 110836,
+  "sourceGLBBytes": 206508,
+  "triangles": 3674,
+  "textures": [],
+  "generatedAt": "2026-10-28T09:04:22.646Z"
+}

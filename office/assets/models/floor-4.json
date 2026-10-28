@@ -1,0 +1,1396 @@
+{
+  "version": 1,
+  "id": 4,
+  "obstacles": [
+    {
+      "id": "floor4-obstacle-0",
+      "x": 0,
+      "z": -10.58,
+      "w": 26.6,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor4-obstacle-1",
+      "x": -13.2,
+      "z": 0.4,
+      "w": 0.16,
+      "d": 21.85,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor4-obstacle-2",
+      "x": 0,
+      "z": 11.28,
+      "w": 26.6,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor4-obstacle-3",
+      "x": -12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-4",
+      "x": -12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-5",
+      "x": -4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-6",
+      "x": -4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-7",
+      "x": 4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-8",
+      "x": 4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-9",
+      "x": 12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-10",
+      "x": 12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor4-obstacle-11",
+      "x": -4.4,
+      "z": -9.72,
+      "w": 16.5,
+      "d": 0.98,
+      "kind": "furniture",
+      "height": 1.2,
+      "y": 0.6,
+      "minY": 0,
+      "maxY": 1.2
+    },
+    {
+      "id": "floor4-obstacle-12",
+      "x": 10.2,
+      "z": -9.7,
+      "w": 1.1,
+      "d": 0.95,
+      "kind": "furniture",
+      "height": 2.3,
+      "y": 1.15,
+      "minY": 0,
+      "maxY": 2.3
+    },
+    {
+      "id": "floor4-obstacle-13",
+      "x": 11.7,
+      "z": -9.7,
+      "w": 1.1,
+      "d": 0.95,
+      "kind": "furniture",
+      "height": 2.3,
+      "y": 1.15,
+      "minY": 0,
+      "maxY": 2.3
+    },
+    {
+      "id": "floor4-obstacle-14",
+      "x": -6.5,
+      "z": -6.7,
+      "w": 5.45,
+      "d": 1.05,
+      "kind": "furniture",
+      "height": 1.2,
+      "y": 0.6,
+      "minY": 0,
+      "maxY": 1.2
+    },
+    {
+      "id": "floor4-obstacle-15",
+      "x": 4.9,
+      "z": -6.7,
+      "w": 5.45,
+      "d": 1.05,
+      "kind": "furniture",
+      "height": 1.2,
+      "y": 0.6,
+      "minY": 0,
+      "maxY": 1.2
+    },
+    {
+      "id": "floor4-obstacle-16",
+      "x": -0.7,
+      "z": -3.5,
+      "w": 18.25,
+      "d": 1.02,
+      "kind": "furniture",
+      "height": 1.85,
+      "y": 0.925,
+      "minY": 0,
+      "maxY": 1.85
+    },
+    {
+      "id": "floor4-obstacle-17",
+      "x": 10.5,
+      "z": -3.65,
+      "w": 2.6,
+      "d": 1,
+      "kind": "furniture",
+      "height": 1.05,
+      "y": 0.525,
+      "minY": 0,
+      "maxY": 1.05
+    },
+    {
+      "id": "floor4-obstacle-18",
+      "x": -6.7,
+      "z": 1,
+      "w": 9.25,
+      "d": 1.65,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor4-obstacle-19",
+      "x": -10.1,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-20",
+      "x": -10.1,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-21",
+      "x": -7.8,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-22",
+      "x": -7.8,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-23",
+      "x": -5.5,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-24",
+      "x": -5.5,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-25",
+      "x": -3.2,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-26",
+      "x": -3.2,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-27",
+      "x": -6.7,
+      "z": 7.5,
+      "w": 9.25,
+      "d": 1.65,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor4-obstacle-28",
+      "x": -10.1,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-29",
+      "x": -10.1,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-30",
+      "x": -7.8,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-31",
+      "x": -7.8,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-32",
+      "x": -5.5,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-33",
+      "x": -5.5,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-34",
+      "x": -3.2,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-35",
+      "x": -3.2,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-36",
+      "x": 4.2,
+      "z": 1.6,
+      "w": 2.04,
+      "d": 2.04,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor4-obstacle-37",
+      "x": 2.6,
+      "z": 1.6,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-38",
+      "x": 5.800000000000001,
+      "z": 1.6,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-39",
+      "x": 8.7,
+      "z": 4.7,
+      "w": 2.04,
+      "d": 2.04,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor4-obstacle-40",
+      "x": 7.1,
+      "z": 4.7,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-41",
+      "x": 10.299999999999999,
+      "z": 4.7,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-42",
+      "x": 6.7,
+      "z": 10.55,
+      "w": 10.65,
+      "d": 1,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor4-obstacle-43",
+      "x": 2.5,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-44",
+      "x": 5.2,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-45",
+      "x": 7.9,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-46",
+      "x": 10.6,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65,
+      "kind": "furniture",
+      "height": 1.35,
+      "y": 0.675,
+      "minY": 0,
+      "maxY": 1.35
+    },
+    {
+      "id": "floor4-obstacle-47",
+      "x": 10.4,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72,
+      "kind": "furniture",
+      "height": 1.05,
+      "y": 0.525,
+      "minY": 0,
+      "maxY": 1.05
+    },
+    {
+      "id": "floor4-obstacle-48",
+      "x": 11.5,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72,
+      "kind": "furniture",
+      "height": 1.05,
+      "y": 0.525,
+      "minY": 0,
+      "maxY": 1.05
+    },
+    {
+      "id": "floor4-obstacle-49",
+      "x": 12.6,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72,
+      "kind": "furniture",
+      "height": 1.05,
+      "y": 0.525,
+      "minY": 0,
+      "maxY": 1.05
+    }
+  ],
+  "doors": [],
+  "activities": [
+    {
+      "id": "floor4-buffet",
+      "action": "snack",
+      "x": -0.7,
+      "z": -1.7,
+      "angle": 3.141592653589793,
+      "label": "到自助餐檯挑選午餐",
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-lunch-0",
+      "action": "eat",
+      "x": -10.1,
+      "z": -1.67,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -10.1,
+        "y": 0.52,
+        "z": -0.6200000000000001,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-19"
+      },
+      "seatApproach": {
+        "x": -10.1,
+        "z": -1.67
+      }
+    },
+    {
+      "id": "floor4-lunch-1",
+      "action": "eat",
+      "x": -7.8,
+      "z": -1.67,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -7.8,
+        "y": 0.52,
+        "z": -0.6200000000000001,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-21"
+      },
+      "seatApproach": {
+        "x": -7.8,
+        "z": -1.67
+      }
+    },
+    {
+      "id": "floor4-lunch-2",
+      "action": "eat",
+      "x": -5.5,
+      "z": -1.67,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -5.5,
+        "y": 0.52,
+        "z": -0.6200000000000001,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-23"
+      },
+      "seatApproach": {
+        "x": -5.5,
+        "z": -1.67
+      }
+    },
+    {
+      "id": "floor4-lunch-3",
+      "action": "eat",
+      "x": -3.2,
+      "z": -1.67,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -3.2,
+        "y": 0.52,
+        "z": -0.6200000000000001,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-25"
+      },
+      "seatApproach": {
+        "x": -3.2,
+        "z": -1.67
+      }
+    },
+    {
+      "id": "floor4-lunch-4",
+      "action": "eat",
+      "x": -10.1,
+      "z": 3.67,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -10.1,
+        "y": 0.52,
+        "z": 2.62,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-20"
+      },
+      "seatApproach": {
+        "x": -10.1,
+        "z": 3.67
+      }
+    },
+    {
+      "id": "floor4-lunch-5",
+      "action": "eat",
+      "x": -7.8,
+      "z": 3.67,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -7.8,
+        "y": 0.52,
+        "z": 2.62,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-22"
+      },
+      "seatApproach": {
+        "x": -7.8,
+        "z": 3.67
+      }
+    },
+    {
+      "id": "floor4-lunch-6",
+      "action": "eat",
+      "x": -5.5,
+      "z": 3.67,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -5.5,
+        "y": 0.52,
+        "z": 2.62,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-24"
+      },
+      "seatApproach": {
+        "x": -5.5,
+        "z": 3.67
+      }
+    },
+    {
+      "id": "floor4-lunch-7",
+      "action": "eat",
+      "x": -3.2,
+      "z": 3.67,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -3.2,
+        "y": 0.52,
+        "z": 2.62,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-26"
+      },
+      "seatApproach": {
+        "x": -3.2,
+        "z": 3.67
+      }
+    },
+    {
+      "id": "floor4-lunch-8",
+      "action": "eat",
+      "x": -10.1,
+      "z": 4.83,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -10.1,
+        "y": 0.52,
+        "z": 5.88,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-28"
+      },
+      "seatApproach": {
+        "x": -10.1,
+        "z": 4.83
+      }
+    },
+    {
+      "id": "floor4-lunch-9",
+      "action": "eat",
+      "x": -7.8,
+      "z": 4.83,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -7.8,
+        "y": 0.52,
+        "z": 5.88,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-30"
+      },
+      "seatApproach": {
+        "x": -7.8,
+        "z": 4.83
+      }
+    },
+    {
+      "id": "floor4-lunch-10",
+      "action": "eat",
+      "x": -5.5,
+      "z": 4.83,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -5.5,
+        "y": 0.52,
+        "z": 5.88,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-32"
+      },
+      "seatApproach": {
+        "x": -5.5,
+        "z": 4.83
+      }
+    },
+    {
+      "id": "floor4-lunch-11",
+      "action": "eat",
+      "x": -3.2,
+      "z": 4.83,
+      "angle": 0,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -3.2,
+        "y": 0.52,
+        "z": 5.88,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-34"
+      },
+      "seatApproach": {
+        "x": -3.2,
+        "z": 4.83
+      }
+    },
+    {
+      "id": "floor4-lunch-12",
+      "action": "eat",
+      "x": -10.1,
+      "z": 10.17,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -10.1,
+        "y": 0.52,
+        "z": 9.120000000000001,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-29"
+      },
+      "seatApproach": {
+        "x": -10.1,
+        "z": 10.17
+      }
+    },
+    {
+      "id": "floor4-lunch-13",
+      "action": "eat",
+      "x": -7.8,
+      "z": 10.17,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -7.8,
+        "y": 0.52,
+        "z": 9.120000000000001,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-31"
+      },
+      "seatApproach": {
+        "x": -7.8,
+        "z": 10.17
+      }
+    },
+    {
+      "id": "floor4-lunch-14",
+      "action": "eat",
+      "x": -5.5,
+      "z": 10.17,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -5.5,
+        "y": 0.52,
+        "z": 9.120000000000001,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-33"
+      },
+      "seatApproach": {
+        "x": -5.5,
+        "z": 10.17
+      }
+    },
+    {
+      "id": "floor4-lunch-15",
+      "action": "eat",
+      "x": -3.2,
+      "z": 10.17,
+      "angle": 3.141592653589793,
+      "label": "和夥伴一起吃午餐",
+      "room": "floor4-dining",
+      "seat": {
+        "x": -3.2,
+        "y": 0.52,
+        "z": 9.120000000000001,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor4-obstacle-35"
+      },
+      "seatApproach": {
+        "x": -3.2,
+        "z": 10.17
+      }
+    },
+    {
+      "id": "floor4-buffet--6",
+      "action": "snack",
+      "x": -6,
+      "z": -1.7,
+      "angle": 3.141592653589793,
+      "label": "到自助餐檯挑選午餐",
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-buffet--3",
+      "action": "snack",
+      "x": -3,
+      "z": -1.7,
+      "angle": 3.141592653589793,
+      "label": "到自助餐檯挑選午餐",
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-buffet-2.5",
+      "action": "snack",
+      "x": 2.5,
+      "z": -1.7,
+      "angle": 3.141592653589793,
+      "label": "到自助餐檯挑選午餐",
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-buffet-6",
+      "action": "snack",
+      "x": 6,
+      "z": -1.7,
+      "angle": 3.141592653589793,
+      "label": "到自助餐檯挑選午餐",
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-coffee-2.5",
+      "action": "drink",
+      "x": 2.5,
+      "z": 7.55,
+      "angle": 0,
+      "label": "靠窗喝杯咖啡",
+      "room": "floor4-dining",
+      "seat": {
+        "x": 2.5,
+        "y": 0.87,
+        "z": 8.9,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-43"
+      },
+      "seatApproach": {
+        "x": 2.5,
+        "z": 7.55
+      }
+    },
+    {
+      "id": "floor4-coffee-7.9",
+      "action": "drink",
+      "x": 7.9,
+      "z": 7.55,
+      "angle": 0,
+      "label": "靠窗喝杯咖啡",
+      "room": "floor4-dining",
+      "seat": {
+        "x": 7.9,
+        "y": 0.87,
+        "z": 8.9,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-45"
+      },
+      "seatApproach": {
+        "x": 7.9,
+        "z": 7.55
+      }
+    },
+    {
+      "id": "floor4-coffee-10.6",
+      "action": "drink",
+      "x": 10.6,
+      "z": 7.55,
+      "angle": 0,
+      "label": "靠窗喝杯咖啡",
+      "room": "floor4-dining",
+      "seat": {
+        "x": 10.6,
+        "y": 0.87,
+        "z": 8.9,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-46"
+      },
+      "seatApproach": {
+        "x": 10.6,
+        "z": 7.55
+      }
+    },
+    {
+      "id": "floor4-coffee",
+      "action": "drink",
+      "x": 5.2,
+      "z": 7.55,
+      "angle": 0,
+      "label": "靠窗喝杯咖啡",
+      "room": "floor4-dining",
+      "seat": {
+        "x": 5.2,
+        "y": 0.87,
+        "z": 8.9,
+        "angle": 0,
+        "obstacleId": "floor4-obstacle-44"
+      },
+      "seatApproach": {
+        "x": 5.2,
+        "z": 7.55
+      }
+    },
+    {
+      "id": "floor4-kitchen",
+      "action": "chat",
+      "x": 4.9,
+      "z": -5.15,
+      "angle": 3.141592653589793,
+      "label": "在開放廚房聊料理",
+      "room": "floor4-kitchen"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "floor4-kitchen",
+      "label": "開放式廚房與自助餐檯",
+      "bounds": {
+        "minX": -12.8,
+        "maxX": 12.8,
+        "minZ": -10.3,
+        "maxZ": -2.7
+      },
+      "acousticType": "kitchen",
+      "reverb": 0.95
+    },
+    {
+      "id": "floor4-dining",
+      "label": "一起吃飯的長桌",
+      "bounds": {
+        "minX": -12.8,
+        "maxX": 12.8,
+        "minZ": -2.7,
+        "maxZ": 11.2
+      },
+      "acousticType": "dining",
+      "reverb": 0.72
+    }
+  ],
+  "soundSources": [
+    {
+      "id": "floor4-kitchen",
+      "type": "kitchen",
+      "x": -7.6,
+      "y": 1.3,
+      "z": -9.65,
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-dishes",
+      "type": "kitchen",
+      "x": 10.3,
+      "y": 1,
+      "z": -3.5,
+      "room": "floor4-kitchen"
+    },
+    {
+      "id": "floor4-coffee",
+      "type": "coffee",
+      "x": 3.3,
+      "y": 1.5,
+      "z": 10.55,
+      "room": "floor4-dining"
+    },
+    {
+      "id": "floor4-dining-air",
+      "type": "aircon",
+      "x": 0,
+      "y": 5.8,
+      "z": 4.2,
+      "room": "floor4-dining"
+    }
+  ],
+  "contactAnchors": [
+    {
+      "x": -4.4,
+      "z": -9.72,
+      "w": 16.5,
+      "d": 0.98
+    },
+    {
+      "x": 10.2,
+      "z": -9.7,
+      "w": 1.1,
+      "d": 0.95
+    },
+    {
+      "x": 11.7,
+      "z": -9.7,
+      "w": 1.1,
+      "d": 0.95
+    },
+    {
+      "x": -6.5,
+      "z": -6.7,
+      "w": 5.45,
+      "d": 1.05
+    },
+    {
+      "x": 4.9,
+      "z": -6.7,
+      "w": 5.45,
+      "d": 1.05
+    },
+    {
+      "x": -0.7,
+      "z": -3.5,
+      "w": 18.25,
+      "d": 1.02
+    },
+    {
+      "x": 10.5,
+      "z": -3.65,
+      "w": 2.6,
+      "d": 1
+    },
+    {
+      "x": -6.7,
+      "z": 1,
+      "w": 9.25,
+      "d": 1.65
+    },
+    {
+      "x": -10.1,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -10.1,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -7.8,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -7.8,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -5.5,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -5.5,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -3.2,
+      "z": -0.6200000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -3.2,
+      "z": 2.62,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -6.7,
+      "z": 7.5,
+      "w": 9.25,
+      "d": 1.65
+    },
+    {
+      "x": -10.1,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -10.1,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -7.8,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -7.8,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -5.5,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -5.5,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -3.2,
+      "z": 5.88,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": -3.2,
+      "z": 9.120000000000001,
+      "w": 0.72,
+      "d": 0.74
+    },
+    {
+      "x": 4.2,
+      "z": 1.6,
+      "w": 2.04,
+      "d": 2.04
+    },
+    {
+      "x": 2.6,
+      "z": 1.6,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 5.800000000000001,
+      "z": 1.6,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 8.7,
+      "z": 4.7,
+      "w": 2.04,
+      "d": 2.04
+    },
+    {
+      "x": 7.1,
+      "z": 4.7,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 10.299999999999999,
+      "z": 4.7,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 6.7,
+      "z": 10.55,
+      "w": 10.65,
+      "d": 1
+    },
+    {
+      "x": 2.5,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65
+    },
+    {
+      "x": 5.2,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65
+    },
+    {
+      "x": 7.9,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65
+    },
+    {
+      "x": 10.6,
+      "z": 8.9,
+      "w": 0.65,
+      "d": 0.65
+    },
+    {
+      "x": 10.4,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72
+    },
+    {
+      "x": 11.5,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72
+    },
+    {
+      "x": 12.6,
+      "z": -0.75,
+      "w": 0.76,
+      "d": 0.72
+    }
+  ],
+  "ceilingNames": [
+    "floor-4-ceiling"
+  ],
+  "detailGroups": [
+    "floor-4-detail"
+  ],
+  "asset": "floor-4",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "glbBytes": 2315968,
+  "sourceGLBBytes": 11784876,
+  "triangles": 117210,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/afbda1dd1d7e6d84a8291294.ktx2",
+      "bytes": 422367,
+      "linear": false,
+      "sourceSHA256": "472262f48f56a1c3c5866cd1a4620d09c592c7d0ded2ff8e14b6170c76870d50"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/4c55dfa81c013a7aba005923.ktx2",
+      "bytes": 30568,
+      "linear": false,
+      "sourceSHA256": "0baaec34e44460a9019b09f3991a008476892ff68a457e8eaa3e464a40bf047a"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/3cd2a1f02db16c13cf626985.ktx2",
+      "bytes": 13168,
+      "linear": false,
+      "sourceSHA256": "d8b751e42b55be41fde4e6d18f492bfc454c5f25d00fa693922a2a61306e566d"
+    }
+  ],
+  "generatedAt": "2026-10-28T08:49:58.485Z"
+}

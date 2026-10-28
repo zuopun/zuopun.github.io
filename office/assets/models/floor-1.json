@@ -1,0 +1,606 @@
+{
+  "version": 1,
+  "id": 1,
+  "obstacles": [
+    {
+      "id": "floor1-obstacle-0",
+      "x": 0,
+      "z": -10.58,
+      "w": 26.6,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor1-obstacle-1",
+      "x": -13.2,
+      "z": 0.4,
+      "w": 0.16,
+      "d": 21.85,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor1-obstacle-2",
+      "x": -8,
+      "z": 11.28,
+      "w": 10.4,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor1-obstacle-3",
+      "x": 8,
+      "z": 11.28,
+      "w": 10.4,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor1-obstacle-4",
+      "x": -12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-5",
+      "x": -12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-6",
+      "x": -4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-7",
+      "x": -4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-8",
+      "x": 4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-9",
+      "x": 4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-10",
+      "x": 12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-11",
+      "x": 12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor1-obstacle-12",
+      "x": 0,
+      "z": -2.4,
+      "w": 7.55,
+      "d": 1.83,
+      "kind": "furniture",
+      "height": 1.4,
+      "y": 0.7,
+      "minY": 0,
+      "maxY": 1.4
+    },
+    {
+      "id": "floor1-obstacle-13",
+      "x": 0,
+      "z": -6.25,
+      "w": 8.6,
+      "d": 0.28,
+      "kind": "wall",
+      "height": 4.6,
+      "y": 2.3,
+      "minY": 0,
+      "maxY": 4.6
+    },
+    {
+      "id": "floor1-obstacle-14",
+      "x": -8.5,
+      "z": 8.1,
+      "w": 4.1,
+      "d": 1.2,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor1-obstacle-15",
+      "x": -11.5,
+      "z": 4.7,
+      "w": 1.2,
+      "d": 3.3,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor1-obstacle-16",
+      "x": -5.5,
+      "z": 4.3,
+      "w": 1.2,
+      "d": 1.8,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor1-obstacle-17",
+      "x": -8.6,
+      "z": 4.9,
+      "w": 2.7,
+      "d": 1.25,
+      "kind": "furniture",
+      "height": 0.58,
+      "y": 0.29,
+      "minY": 0,
+      "maxY": 0.58
+    },
+    {
+      "id": "floor1-obstacle-18",
+      "x": -10.9,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64,
+      "kind": "furniture",
+      "height": 1.25,
+      "y": 0.625,
+      "minY": 0,
+      "maxY": 1.25
+    },
+    {
+      "id": "floor1-obstacle-19",
+      "x": -9.3,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64,
+      "kind": "furniture",
+      "height": 1.25,
+      "y": 0.625,
+      "minY": 0,
+      "maxY": 1.25
+    },
+    {
+      "id": "floor1-obstacle-20",
+      "x": -7.7,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64,
+      "kind": "furniture",
+      "height": 1.25,
+      "y": 0.625,
+      "minY": 0,
+      "maxY": 1.25
+    },
+    {
+      "id": "floor1-obstacle-21",
+      "x": -8.8,
+      "z": -8.65,
+      "w": 6.4,
+      "d": 0.96,
+      "kind": "furniture",
+      "height": 1.2,
+      "y": 0.6,
+      "minY": 0,
+      "maxY": 1.2
+    },
+    {
+      "id": "floor1-obstacle-22",
+      "x": 5.6,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65,
+      "kind": "furniture",
+      "height": 1.15,
+      "y": 0.575,
+      "minY": 0,
+      "maxY": 1.15
+    },
+    {
+      "id": "floor1-obstacle-23",
+      "x": 7.9,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65,
+      "kind": "furniture",
+      "height": 1.15,
+      "y": 0.575,
+      "minY": 0,
+      "maxY": 1.15
+    },
+    {
+      "id": "floor1-obstacle-24",
+      "x": 10.2,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65,
+      "kind": "furniture",
+      "height": 1.15,
+      "y": 0.575,
+      "minY": 0,
+      "maxY": 1.15
+    },
+    {
+      "id": "floor1-obstacle-25",
+      "x": 8.1,
+      "z": -4.9,
+      "w": 3.3,
+      "d": 0.4,
+      "kind": "furniture",
+      "height": 2.9,
+      "y": 1.45,
+      "minY": 0,
+      "maxY": 2.9
+    },
+    {
+      "id": "floor1-obstacle-26",
+      "x": 11.8,
+      "z": -5.2,
+      "w": 1.1,
+      "d": 5.1,
+      "kind": "furniture",
+      "height": 0.85,
+      "y": 0.425,
+      "minY": 0,
+      "maxY": 0.85
+    }
+  ],
+  "doors": [
+    {
+      "id": "door-1-entry-left",
+      "hingeName": "door-1-entry-left",
+      "collider": {
+        "x": -1.2,
+        "z": 11.18,
+        "w": 2.4,
+        "d": 0.12,
+        "kind": "door",
+        "height": 4.1,
+        "y": 2.05,
+        "doorId": "door-1-entry-left"
+      },
+      "axis": "y",
+      "closedAngle": 0,
+      "openAngle": 1.5707963267948966,
+      "interactionRadius": 2.1
+    },
+    {
+      "id": "door-1-entry-right",
+      "hingeName": "door-1-entry-right",
+      "collider": {
+        "x": 1.2,
+        "z": 11.18,
+        "w": 2.4,
+        "d": 0.12,
+        "kind": "door",
+        "height": 4.1,
+        "y": 2.05,
+        "doorId": "door-1-entry-right"
+      },
+      "axis": "y",
+      "closedAngle": 3.141592653589793,
+      "openAngle": 1.5707963267948966,
+      "interactionRadius": 2.1
+    }
+  ],
+  "activities": [
+    {
+      "id": "floor1-coffee",
+      "action": "drink",
+      "x": -8.8,
+      "z": -5.6,
+      "angle": 3.141592653589793,
+      "label": "在大廳喝咖啡",
+      "room": "floor1-cafe"
+    },
+    {
+      "id": "floor1-welcome",
+      "action": "chat",
+      "x": 0.1,
+      "z": 1.1,
+      "angle": 3.141592653589793,
+      "label": "在接待大廳交流",
+      "room": "floor1-lobby"
+    },
+    {
+      "id": "floor1-lounge",
+      "action": "chat",
+      "x": -8.5,
+      "z": 6.4,
+      "angle": 0,
+      "label": "在等候區聊天",
+      "room": "floor1-lobby",
+      "seat": {
+        "x": -8.5,
+        "y": 0.52,
+        "z": 7.75,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor1-obstacle-14"
+      },
+      "seatApproach": {
+        "x": -8.5,
+        "z": 6.4
+      }
+    },
+    {
+      "id": "floor1-directory",
+      "action": "read",
+      "x": 8.1,
+      "z": -2.6,
+      "angle": 3.141592653589793,
+      "label": "查看大樓資訊",
+      "room": "floor1-lobby"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "floor1-lobby",
+      "label": "挑高迎賓大廳",
+      "bounds": {
+        "minX": -13.2,
+        "maxX": 13.2,
+        "minZ": -10.5,
+        "maxZ": 11.25
+      },
+      "acousticType": "lobby",
+      "reverb": 1.65
+    },
+    {
+      "id": "floor1-cafe",
+      "label": "大廳咖啡吧",
+      "bounds": {
+        "minX": -12.8,
+        "maxX": -5.2,
+        "minZ": -10.3,
+        "maxZ": -4.3
+      },
+      "acousticType": "cafe",
+      "reverb": 0.8
+    }
+  ],
+  "soundSources": [
+    {
+      "id": "floor1-gate",
+      "type": "gate",
+      "x": 7.9,
+      "y": 1.1,
+      "z": 1.3,
+      "room": "floor1-lobby"
+    },
+    {
+      "id": "floor1-coffee",
+      "type": "coffee",
+      "x": -9.6,
+      "y": 1.4,
+      "z": -8.65,
+      "room": "floor1-cafe"
+    },
+    {
+      "id": "floor1-lobby-air",
+      "type": "aircon",
+      "x": 2,
+      "y": 5.9,
+      "z": 3,
+      "room": "floor1-lobby"
+    }
+  ],
+  "contactAnchors": [
+    {
+      "x": 0,
+      "z": -2.4,
+      "w": 7.55,
+      "d": 1.83
+    },
+    {
+      "x": -8.5,
+      "z": 8.1,
+      "w": 4.1,
+      "d": 1.2
+    },
+    {
+      "x": -11.5,
+      "z": 4.7,
+      "w": 1.2,
+      "d": 3.3
+    },
+    {
+      "x": -5.5,
+      "z": 4.3,
+      "w": 1.2,
+      "d": 1.8
+    },
+    {
+      "x": -8.6,
+      "z": 4.9,
+      "w": 2.7,
+      "d": 1.25
+    },
+    {
+      "x": -10.9,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64
+    },
+    {
+      "x": -9.3,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64
+    },
+    {
+      "x": -7.7,
+      "z": -6.9,
+      "w": 0.64,
+      "d": 0.64
+    },
+    {
+      "x": -8.8,
+      "z": -8.65,
+      "w": 6.4,
+      "d": 0.96
+    },
+    {
+      "x": 5.6,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65
+    },
+    {
+      "x": 7.9,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65
+    },
+    {
+      "x": 10.2,
+      "z": 1.3,
+      "w": 0.5,
+      "d": 1.65
+    },
+    {
+      "x": 8.1,
+      "z": -4.9,
+      "w": 3.3,
+      "d": 0.4
+    },
+    {
+      "x": 11.8,
+      "z": -5.2,
+      "w": 1.1,
+      "d": 5.1
+    }
+  ],
+  "ceilingNames": [
+    "floor-1-ceiling"
+  ],
+  "detailGroups": [
+    "floor-1-detail"
+  ],
+  "asset": "floor-1",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "glbBytes": 1100416,
+  "sourceGLBBytes": 5179936,
+  "triangles": 48676,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/3eac51802af40be2488b24f9.ktx2",
+      "bytes": 303776,
+      "linear": false,
+      "sourceSHA256": "a0487378c16651da7ec52d500fc702e80071577deee2aaa6f46f30ad62ccbd94"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/f7bb70605d8e6e643b748c46.ktx2",
+      "bytes": 27223,
+      "linear": false,
+      "sourceSHA256": "df3165e2c4b3665af4e8ae3e6e343c4d82185823c4b132f66dc2c03909cc4a1b"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/10389497949df149d95ece2c.ktx2",
+      "bytes": 13357,
+      "linear": false,
+      "sourceSHA256": "17cf87ba4262e5394bc37d8ae54362f8bcbf8c0fb4195150ff2f419123341371"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/5afe107054b7ad04340d874b.ktx2",
+      "bytes": 35657,
+      "linear": false,
+      "sourceSHA256": "752bf8421fe29b3199349e819a1b4cb5efbdb7a4bdd8e7383398709bca9d68bc"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/e5482cf6f572145a8b47a8f8.ktx2",
+      "bytes": 13758,
+      "linear": false,
+      "sourceSHA256": "457438a0687e4072de4173628cbf1fcb24a8869b9c5bf7a8b3349cfe29cb07f6"
+    }
+  ],
+  "generatedAt": "2026-10-28T08:49:56.342Z"
+}

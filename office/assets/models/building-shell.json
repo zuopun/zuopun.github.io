@@ -1,0 +1,299 @@
+{
+  "version": 1,
+  "facadeIDs": [
+    {
+      "floorId": 1,
+      "side": "front",
+      "objectName": "building-facade-1-front"
+    },
+    {
+      "floorId": 1,
+      "side": "back",
+      "objectName": "building-facade-1-back"
+    },
+    {
+      "floorId": 1,
+      "side": "left",
+      "objectName": "building-facade-1-left"
+    },
+    {
+      "floorId": 1,
+      "side": "right",
+      "objectName": "building-facade-1-right"
+    },
+    {
+      "floorId": 2,
+      "side": "front",
+      "objectName": "building-facade-2-front"
+    },
+    {
+      "floorId": 2,
+      "side": "back",
+      "objectName": "building-facade-2-back"
+    },
+    {
+      "floorId": 2,
+      "side": "left",
+      "objectName": "building-facade-2-left"
+    },
+    {
+      "floorId": 2,
+      "side": "right",
+      "objectName": "building-facade-2-right"
+    },
+    {
+      "floorId": 3,
+      "side": "front",
+      "objectName": "building-facade-3-front"
+    },
+    {
+      "floorId": 3,
+      "side": "back",
+      "objectName": "building-facade-3-back"
+    },
+    {
+      "floorId": 3,
+      "side": "left",
+      "objectName": "building-facade-3-left"
+    },
+    {
+      "floorId": 3,
+      "side": "right",
+      "objectName": "building-facade-3-right"
+    },
+    {
+      "floorId": 4,
+      "side": "front",
+      "objectName": "building-facade-4-front"
+    },
+    {
+      "floorId": 4,
+      "side": "back",
+      "objectName": "building-facade-4-back"
+    },
+    {
+      "floorId": 4,
+      "side": "left",
+      "objectName": "building-facade-4-left"
+    },
+    {
+      "floorId": 4,
+      "side": "right",
+      "objectName": "building-facade-4-right"
+    }
+  ],
+  "facades": [
+    {
+      "floorId": 1,
+      "side": "front",
+      "objectName": "building-facade-1-front"
+    },
+    {
+      "floorId": 1,
+      "side": "back",
+      "objectName": "building-facade-1-back"
+    },
+    {
+      "floorId": 1,
+      "side": "left",
+      "objectName": "building-facade-1-left"
+    },
+    {
+      "floorId": 1,
+      "side": "right",
+      "objectName": "building-facade-1-right"
+    },
+    {
+      "floorId": 2,
+      "side": "front",
+      "objectName": "building-facade-2-front"
+    },
+    {
+      "floorId": 2,
+      "side": "back",
+      "objectName": "building-facade-2-back"
+    },
+    {
+      "floorId": 2,
+      "side": "left",
+      "objectName": "building-facade-2-left"
+    },
+    {
+      "floorId": 2,
+      "side": "right",
+      "objectName": "building-facade-2-right"
+    },
+    {
+      "floorId": 3,
+      "side": "front",
+      "objectName": "building-facade-3-front"
+    },
+    {
+      "floorId": 3,
+      "side": "back",
+      "objectName": "building-facade-3-back"
+    },
+    {
+      "floorId": 3,
+      "side": "left",
+      "objectName": "building-facade-3-left"
+    },
+    {
+      "floorId": 3,
+      "side": "right",
+      "objectName": "building-facade-3-right"
+    },
+    {
+      "floorId": 4,
+      "side": "front",
+      "objectName": "building-facade-4-front"
+    },
+    {
+      "floorId": 4,
+      "side": "back",
+      "objectName": "building-facade-4-back"
+    },
+    {
+      "floorId": 4,
+      "side": "left",
+      "objectName": "building-facade-4-left"
+    },
+    {
+      "floorId": 4,
+      "side": "right",
+      "objectName": "building-facade-4-right"
+    }
+  ],
+  "ceilingNames": [],
+  "cutawayNames": [
+    "building-facade-1-front",
+    "building-facade-1-right",
+    "building-facade-2-front",
+    "building-facade-2-right",
+    "building-facade-3-front",
+    "building-facade-3-right",
+    "building-facade-4-front",
+    "building-facade-4-right"
+  ],
+  "nightObjects": [
+    {
+      "materialName": "practical-#ffdc9f-0.08"
+    }
+  ],
+  "traffic": [
+    {
+      "objectName": "city-car-0",
+      "axis": "x",
+      "min": -75,
+      "max": 75,
+      "speed": 3.8,
+      "laneZ": 21.6
+    },
+    {
+      "objectName": "city-car-1",
+      "axis": "x",
+      "min": -75,
+      "max": 75,
+      "speed": -3.1,
+      "laneZ": 28.4
+    },
+    {
+      "objectName": "city-car-2",
+      "axis": "x",
+      "min": -75,
+      "max": 75,
+      "speed": -3.1,
+      "laneZ": 28.4
+    },
+    {
+      "objectName": "city-car-3",
+      "axis": "x",
+      "min": -75,
+      "max": 75,
+      "speed": 3.8,
+      "laneZ": 21.6
+    }
+  ],
+  "detailGroups": [
+    "streetscape-detail",
+    "city-window-detail"
+  ],
+  "street": {
+    "groundY": -7.75,
+    "sidewalkY": -7.44,
+    "buildingEntranceY": -7,
+    "bounds": {
+      "minX": -88,
+      "maxX": 88,
+      "minZ": -22,
+      "maxZ": 34
+    }
+  },
+  "entrance": {
+    "steps": [
+      {
+        "x": 0,
+        "z": 11.95,
+        "w": 7.8,
+        "d": 1.05,
+        "topY": -7
+      },
+      {
+        "x": 0,
+        "z": 12.96,
+        "w": 7.8,
+        "d": 0.99,
+        "topY": -7.22
+      }
+    ],
+    "landings": [
+      {
+        "minX": 2.8,
+        "maxX": 7.3,
+        "minZ": 11.425,
+        "maxZ": 12.925,
+        "height": -7
+      },
+      {
+        "minX": 4.6,
+        "maxX": 7.3,
+        "minZ": 18.025,
+        "maxZ": 18.675,
+        "height": -7.44
+      }
+    ],
+    "ramp": {
+      "minX": 4.6,
+      "maxX": 7.3,
+      "minZ": 12.925,
+      "maxZ": 18.205,
+      "nearY": -7,
+      "farY": -7.44
+    }
+  },
+  "asset": "building-shell",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "contentSHA256": "9c72da618d6fcb75338a7975b19b24894508c40b003bdca6bfacd1f40cc2a997",
+  "glbBytes": 2534152,
+  "sourceGLBBytes": 11154180,
+  "triangles": 107242,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/138437fb03d3b84629b23b0a.ktx2",
+      "bytes": 77445,
+      "linear": false,
+      "sourceSHA256": "21bf7b1df56628c2be6a7489c9b4162821f4e03a16146d6db87c498de732b24a"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/10389497949df149d95ece2c.ktx2",
+      "bytes": 13357,
+      "linear": false,
+      "sourceSHA256": "17cf87ba4262e5394bc37d8ae54362f8bcbf8c0fb4195150ff2f419123341371"
+    }
+  ],
+  "generatedAt": "2026-10-28T09:06:31.035Z"
+}

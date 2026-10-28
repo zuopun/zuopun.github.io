@@ -2,10 +2,178 @@
   "pipeline": "Three factory -> GLTFExporter -> exact weld / Meshopt -> shared KTX2",
   "assets": [
     {
-      "asset": "office-floor-2",
-      "triangles": 35288,
-      "glbBytes": 866312,
+      "asset": "building-shell",
+      "triangles": 107242,
+      "glbBytes": 2534152,
+      "textures": 2
+    },
+    {
+      "asset": "character-bob",
+      "triangles": 19330,
+      "glbBytes": 811076,
+      "textures": 8
+    },
+    {
+      "asset": "character-check",
+      "triangles": 19742,
+      "glbBytes": 818240,
+      "textures": 8
+    },
+    {
+      "asset": "character-dd",
+      "triangles": 19402,
+      "glbBytes": 815344,
+      "textures": 8
+    },
+    {
+      "asset": "character-design",
+      "triangles": 19962,
+      "glbBytes": 829628,
+      "textures": 8
+    },
+    {
+      "asset": "character-fo",
+      "triangles": 19786,
+      "glbBytes": 823276,
+      "textures": 8
+    },
+    {
+      "asset": "character-gs",
+      "triangles": 19346,
+      "glbBytes": 811568,
+      "textures": 8
+    },
+    {
+      "asset": "character-lan",
+      "triangles": 19862,
+      "glbBytes": 822300,
+      "textures": 8
+    },
+    {
+      "asset": "character-lena",
+      "triangles": 19630,
+      "glbBytes": 816560,
+      "textures": 8
+    },
+    {
+      "asset": "character-market",
+      "triangles": 19898,
+      "glbBytes": 825088,
+      "textures": 8
+    },
+    {
+      "asset": "character-owl",
+      "triangles": 19406,
+      "glbBytes": 814548,
+      "textures": 8
+    },
+    {
+      "asset": "character-square",
+      "triangles": 19134,
+      "glbBytes": 808352,
+      "textures": 8
+    },
+    {
+      "asset": "character-wf",
+      "triangles": 19942,
+      "glbBytes": 824604,
+      "textures": 8
+    },
+    {
+      "asset": "character-wild",
+      "triangles": 19310,
+      "glbBytes": 811668,
+      "textures": 8
+    },
+    {
+      "asset": "character-zuno",
+      "triangles": 19490,
+      "glbBytes": 817480,
+      "textures": 8
+    },
+    {
+      "asset": "character-zuozuo",
+      "triangles": 115706,
+      "glbBytes": 2361592,
+      "textures": 6
+    },
+    {
+      "asset": "character-zz",
+      "triangles": 19458,
+      "glbBytes": 816240,
+      "textures": 8
+    },
+    {
+      "asset": "core-1",
+      "triangles": 7228,
+      "glbBytes": 184292,
+      "textures": 1
+    },
+    {
+      "asset": "core-2",
+      "triangles": 7240,
+      "glbBytes": 184660,
+      "textures": 1
+    },
+    {
+      "asset": "core-3",
+      "triangles": 7240,
+      "glbBytes": 184664,
+      "textures": 1
+    },
+    {
+      "asset": "core-4",
+      "triangles": 7240,
+      "glbBytes": 184664,
+      "textures": 1
+    },
+    {
+      "asset": "core-5",
+      "triangles": 3764,
+      "glbBytes": 116260,
+      "textures": 1
+    },
+    {
+      "asset": "elevator-car",
+      "triangles": 1198,
+      "glbBytes": 42224,
+      "textures": 1
+    },
+    {
+      "asset": "floor-1",
+      "triangles": 48676,
+      "glbBytes": 1100416,
+      "textures": 5
+    },
+    {
+      "asset": "floor-3",
+      "triangles": 68524,
+      "glbBytes": 1640440,
+      "textures": 8
+    },
+    {
+      "asset": "floor-4",
+      "triangles": 117210,
+      "glbBytes": 2315968,
       "textures": 3
+    },
+    {
+      "asset": "floor-5",
+      "triangles": 128672,
+      "glbBytes": 2389728,
+      "textures": 1
+    },
+    {
+      "asset": "office-floor-2",
+      "triangles": 36178,
+      "glbBytes": 897536,
+      "textures": 3
+    },
+    {
+      "asset": "self-player",
+      "triangles": 3674,
+      "glbBytes": 110836,
+      "textures": 0
     }
   ]
 }

@@ -1,0 +1,1373 @@
+{
+  "version": 1,
+  "id": 3,
+  "obstacles": [
+    {
+      "id": "floor3-obstacle-0",
+      "x": 0,
+      "z": -10.58,
+      "w": 26.6,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-1",
+      "x": -13.2,
+      "z": 0.4,
+      "w": 0.16,
+      "d": 21.85,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-2",
+      "x": 0,
+      "z": 11.28,
+      "w": 26.6,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-3",
+      "x": -12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-4",
+      "x": -12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-5",
+      "x": -4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-6",
+      "x": -4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-7",
+      "x": 4.3,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-8",
+      "x": 4.3,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-9",
+      "x": 12.9,
+      "z": -10.25,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-10",
+      "x": 12.9,
+      "z": 10.95,
+      "w": 0.42,
+      "d": 0.42,
+      "kind": "wall",
+      "height": 6.7,
+      "y": 3.35,
+      "minY": 0,
+      "maxY": 6.7
+    },
+    {
+      "id": "floor3-obstacle-11",
+      "x": -12.8,
+      "z": -5.275,
+      "w": 0.1,
+      "d": 10.05,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-12",
+      "x": -1.15,
+      "z": -5.275,
+      "w": 0.1,
+      "d": 10.05,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-13",
+      "x": -10.65,
+      "z": -0.25,
+      "w": 4.300000000000001,
+      "d": 0.1,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-14",
+      "x": -3.925,
+      "z": -0.25,
+      "w": 5.549999999999999,
+      "d": 0.1,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-15",
+      "x": 1.2,
+      "z": -5.275,
+      "w": 0.1,
+      "d": 10.05,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-16",
+      "x": 12.8,
+      "z": -5.275,
+      "w": 0.1,
+      "d": 10.05,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-17",
+      "x": 3.25,
+      "z": -0.25,
+      "w": 4.1,
+      "d": 0.1,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-18",
+      "x": 9.950000000000001,
+      "z": -0.25,
+      "w": 5.7,
+      "d": 0.1,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-19",
+      "x": -7,
+      "z": -5.35,
+      "w": 3.7,
+      "d": 5.9,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor3-obstacle-20",
+      "x": -9.7,
+      "z": -7.5,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-21",
+      "x": -4.3,
+      "z": -7.5,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-22",
+      "x": -9.7,
+      "z": -5.35,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-23",
+      "x": -4.3,
+      "z": -5.35,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-24",
+      "x": -9.7,
+      "z": -3.2,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-25",
+      "x": -4.3,
+      "z": -3.2,
+      "w": 0.76,
+      "d": 0.76,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-26",
+      "x": -7,
+      "z": -9.25,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-27",
+      "x": 6.5,
+      "z": -5.2,
+      "w": 7.5,
+      "d": 2.5,
+      "kind": "furniture",
+      "height": 1,
+      "y": 0.5,
+      "minY": 0,
+      "maxY": 1
+    },
+    {
+      "id": "floor3-obstacle-28",
+      "x": 4.05,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-29",
+      "x": 6.5,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-30",
+      "x": 8.95,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-31",
+      "x": 11.45,
+      "z": -1.55,
+      "w": 1,
+      "d": 0.85,
+      "kind": "furniture",
+      "height": 2.65,
+      "y": 1.325,
+      "minY": 0,
+      "maxY": 2.65
+    },
+    {
+      "id": "floor3-obstacle-32",
+      "x": -12.72,
+      "z": 6.9,
+      "w": 0.55,
+      "d": 5.2,
+      "kind": "furniture",
+      "height": 3.1,
+      "y": 1.55,
+      "minY": 0,
+      "maxY": 3.1
+    },
+    {
+      "id": "floor3-obstacle-33",
+      "x": -9.4,
+      "z": 10.55,
+      "w": 5.7,
+      "d": 0.55,
+      "kind": "furniture",
+      "height": 2.6,
+      "y": 1.3,
+      "minY": 0,
+      "maxY": 2.6
+    },
+    {
+      "id": "floor3-obstacle-34",
+      "x": -10.1,
+      "z": 6.6,
+      "w": 1.25,
+      "d": 1.75,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor3-obstacle-35",
+      "x": -6.5,
+      "z": 7.6,
+      "w": 1.25,
+      "d": 1.75,
+      "kind": "furniture",
+      "height": 1.3,
+      "y": 0.65,
+      "minY": 0,
+      "maxY": 1.3
+    },
+    {
+      "id": "floor3-obstacle-36",
+      "x": -8.3,
+      "z": 7.1,
+      "w": 1.4,
+      "d": 0.9,
+      "kind": "furniture",
+      "height": 0.6,
+      "y": 0.3,
+      "minY": 0,
+      "maxY": 0.6
+    },
+    {
+      "id": "floor3-obstacle-37",
+      "x": -6,
+      "z": 4.35,
+      "w": 1.1,
+      "d": 0.6,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-38",
+      "x": -4.6,
+      "z": 7.15,
+      "w": 0.12,
+      "d": 7.6,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-39",
+      "x": 3.9,
+      "z": 7.15,
+      "w": 0.12,
+      "d": 7.6,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-40",
+      "x": -3.45,
+      "z": 3.35,
+      "w": 2.3,
+      "d": 0.12,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-41",
+      "x": 2.05,
+      "z": 3.35,
+      "w": 3.7,
+      "d": 0.12,
+      "kind": "glass",
+      "height": 4.3,
+      "y": 2.15,
+      "minY": 0,
+      "maxY": 4.3
+    },
+    {
+      "id": "floor3-obstacle-42",
+      "x": -0.2,
+      "z": 8.75,
+      "w": 3.35,
+      "d": 1.3,
+      "kind": "furniture",
+      "height": 1.05,
+      "y": 0.525,
+      "minY": 0,
+      "maxY": 1.05
+    },
+    {
+      "id": "floor3-obstacle-43",
+      "x": -0.25,
+      "z": 7.25,
+      "w": 0.75,
+      "d": 0.75,
+      "kind": "furniture",
+      "height": 1.5,
+      "y": 0.75,
+      "minY": 0,
+      "maxY": 1.5
+    },
+    {
+      "id": "floor3-obstacle-44",
+      "x": -3,
+      "z": 6.9,
+      "w": 0.52,
+      "d": 0.52,
+      "kind": "furniture",
+      "height": 2.1,
+      "y": 1.05,
+      "minY": 0,
+      "maxY": 2.1
+    },
+    {
+      "id": "floor3-obstacle-45",
+      "x": 2.45,
+      "z": 6.1,
+      "w": 0.9,
+      "d": 0.9,
+      "kind": "furniture",
+      "height": 1.8,
+      "y": 0.9,
+      "minY": 0,
+      "maxY": 1.8
+    },
+    {
+      "id": "floor3-obstacle-46",
+      "x": 6.3,
+      "z": 9.8,
+      "w": 2.7,
+      "d": 1,
+      "kind": "furniture",
+      "height": 1.02,
+      "y": 0.51,
+      "minY": 0,
+      "maxY": 1.02
+    },
+    {
+      "id": "floor3-obstacle-47",
+      "x": 6.3,
+      "z": 8.05,
+      "w": 0.85,
+      "d": 0.9,
+      "kind": "furniture",
+      "height": 1.9,
+      "y": 0.95,
+      "minY": 0,
+      "maxY": 1.9
+    },
+    {
+      "id": "floor3-obstacle-48",
+      "x": 9.55,
+      "z": 9.8,
+      "w": 2.7,
+      "d": 1,
+      "kind": "furniture",
+      "height": 1.02,
+      "y": 0.51,
+      "minY": 0,
+      "maxY": 1.02
+    },
+    {
+      "id": "floor3-obstacle-49",
+      "x": 9.55,
+      "z": 8.05,
+      "w": 0.85,
+      "d": 0.9,
+      "kind": "furniture",
+      "height": 1.9,
+      "y": 0.95,
+      "minY": 0,
+      "maxY": 1.9
+    },
+    {
+      "id": "floor3-obstacle-50",
+      "x": 11.95,
+      "z": 4.95,
+      "w": 0.9,
+      "d": 1.1,
+      "kind": "furniture",
+      "height": 2.5,
+      "y": 1.25,
+      "minY": 0,
+      "maxY": 2.5
+    },
+    {
+      "id": "floor3-obstacle-51",
+      "x": 11.95,
+      "z": 6.55,
+      "w": 0.9,
+      "d": 1.1,
+      "kind": "furniture",
+      "height": 2.5,
+      "y": 1.25,
+      "minY": 0,
+      "maxY": 2.5
+    },
+    {
+      "id": "floor3-obstacle-52",
+      "x": 7.05,
+      "z": 4.7,
+      "w": 3.5,
+      "d": 1.35,
+      "kind": "furniture",
+      "height": 0.9,
+      "y": 0.45,
+      "minY": 0,
+      "maxY": 0.9
+    },
+    {
+      "id": "floor3-obstacle-53",
+      "x": 9.8,
+      "z": 3.85,
+      "w": 1.2,
+      "d": 1.2,
+      "kind": "furniture",
+      "height": 0.75,
+      "y": 0.375,
+      "minY": 0,
+      "maxY": 0.75
+    }
+  ],
+  "doors": [
+    {
+      "id": "door-3-meeting",
+      "hingeName": "door-3-meeting",
+      "collider": {
+        "x": -7.6,
+        "z": -0.25,
+        "w": 1.8,
+        "d": 0.12,
+        "kind": "door",
+        "height": 4.22,
+        "y": 2.11,
+        "doorId": "door-3-meeting"
+      },
+      "axis": "y",
+      "closedAngle": 0,
+      "openAngle": -1.5707963267948966,
+      "interactionRadius": 2.1
+    },
+    {
+      "id": "door-3-warroom",
+      "hingeName": "door-3-warroom",
+      "collider": {
+        "x": 6.2,
+        "z": -0.25,
+        "w": 1.8,
+        "d": 0.12,
+        "kind": "door",
+        "height": 4.22,
+        "y": 2.11,
+        "doorId": "door-3-warroom"
+      },
+      "axis": "y",
+      "closedAngle": 0,
+      "openAngle": -1.5707963267948966,
+      "interactionRadius": 2.1
+    },
+    {
+      "id": "door-3-studio",
+      "hingeName": "door-3-studio",
+      "collider": {
+        "x": -1.0499999999999998,
+        "z": 3.35,
+        "w": 2.5,
+        "d": 0.12,
+        "kind": "door",
+        "height": 4.22,
+        "y": 2.11,
+        "doorId": "door-3-studio"
+      },
+      "axis": "y",
+      "closedAngle": 0,
+      "openAngle": 1.5707963267948966,
+      "interactionRadius": 2.1
+    }
+  ],
+  "activities": [
+    {
+      "id": "floor3-meeting",
+      "action": "meeting",
+      "x": -7.6,
+      "z": -1.2,
+      "angle": 3.141592653589793,
+      "label": "到玻璃會議室討論",
+      "room": "floor3-meeting"
+    },
+    {
+      "id": "floor3-warroom",
+      "action": "meeting",
+      "x": 6.2,
+      "z": -1.15,
+      "angle": 3.141592653589793,
+      "label": "在戰情室交流研究",
+      "room": "floor3-warroom"
+    },
+    {
+      "id": "floor3-reading",
+      "action": "read",
+      "x": -8.4,
+      "z": 5.55,
+      "angle": 0,
+      "label": "在閱讀角看報紙",
+      "room": "floor3-reading",
+      "seat": {
+        "x": -10.05,
+        "y": 0.52,
+        "z": 6.6,
+        "angle": 1.5707963267948966,
+        "obstacleId": "floor3-obstacle-34"
+      },
+      "seatApproach": {
+        "x": -8.4,
+        "z": 5.55
+      }
+    },
+    {
+      "id": "floor3-recording",
+      "action": "record",
+      "x": -3,
+      "z": 5.65,
+      "angle": 0,
+      "label": "錄製新的聲音作品",
+      "room": "floor3-studio"
+    },
+    {
+      "id": "floor3-editing",
+      "action": "type",
+      "x": -0.25,
+      "z": 5.8,
+      "angle": 0,
+      "label": "在工作室剪輯影片",
+      "room": "floor3-studio",
+      "seat": {
+        "x": -0.25,
+        "y": 0.52,
+        "z": 7.25,
+        "angle": 0,
+        "obstacleId": "floor3-obstacle-43"
+      },
+      "seatApproach": {
+        "x": -0.25,
+        "z": 5.8
+      }
+    },
+    {
+      "id": "floor3-gaming",
+      "action": "game",
+      "x": 6.3,
+      "z": 6.65,
+      "angle": 0,
+      "label": "玩一局電動放鬆",
+      "room": "floor3-game",
+      "seat": {
+        "x": 6.3,
+        "y": 0.52,
+        "z": 8.05,
+        "angle": 0,
+        "obstacleId": "floor3-obstacle-47"
+      },
+      "seatApproach": {
+        "x": 6.3,
+        "z": 6.65
+      }
+    },
+    {
+      "id": "floor3-arcade",
+      "action": "arcade",
+      "x": 10.6,
+      "z": 4.95,
+      "angle": 1.5707963267948966,
+      "label": "在街機挑戰新關卡",
+      "room": "floor3-game"
+    },
+    {
+      "id": "floor3-conference-0",
+      "action": "meeting",
+      "x": -10.68,
+      "z": -7.5,
+      "angle": 1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -9.7,
+        "y": 0.52,
+        "z": -7.5,
+        "angle": 1.5707963267948966,
+        "obstacleId": "floor3-obstacle-20"
+      },
+      "seatApproach": {
+        "x": -10.68,
+        "z": -7.5
+      }
+    },
+    {
+      "id": "floor3-conference-1",
+      "action": "meeting",
+      "x": -10.68,
+      "z": -5.35,
+      "angle": 1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -9.7,
+        "y": 0.52,
+        "z": -5.35,
+        "angle": 1.5707963267948966,
+        "obstacleId": "floor3-obstacle-22"
+      },
+      "seatApproach": {
+        "x": -10.68,
+        "z": -5.35
+      }
+    },
+    {
+      "id": "floor3-conference-2",
+      "action": "meeting",
+      "x": -10.68,
+      "z": -3.2,
+      "angle": 1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -9.7,
+        "y": 0.52,
+        "z": -3.2,
+        "angle": 1.5707963267948966,
+        "obstacleId": "floor3-obstacle-24"
+      },
+      "seatApproach": {
+        "x": -10.68,
+        "z": -3.2
+      }
+    },
+    {
+      "id": "floor3-conference-3",
+      "action": "meeting",
+      "x": -3.32,
+      "z": -7.5,
+      "angle": -1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -4.3,
+        "y": 0.52,
+        "z": -7.5,
+        "angle": -1.5707963267948966,
+        "obstacleId": "floor3-obstacle-21"
+      },
+      "seatApproach": {
+        "x": -3.32,
+        "z": -7.5
+      }
+    },
+    {
+      "id": "floor3-conference-4",
+      "action": "meeting",
+      "x": -3.32,
+      "z": -5.35,
+      "angle": -1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -4.3,
+        "y": 0.52,
+        "z": -5.35,
+        "angle": -1.5707963267948966,
+        "obstacleId": "floor3-obstacle-23"
+      },
+      "seatApproach": {
+        "x": -3.32,
+        "z": -5.35
+      }
+    },
+    {
+      "id": "floor3-conference-5",
+      "action": "meeting",
+      "x": -3.32,
+      "z": -3.2,
+      "angle": -1.5707963267948966,
+      "label": "在會議桌分享新的點子",
+      "room": "floor3-meeting",
+      "seat": {
+        "x": -4.3,
+        "y": 0.52,
+        "z": -3.2,
+        "angle": -1.5707963267948966,
+        "obstacleId": "floor3-obstacle-25"
+      },
+      "seatApproach": {
+        "x": -3.32,
+        "z": -3.2
+      }
+    },
+    {
+      "id": "floor3-research-4.05",
+      "action": "meeting",
+      "x": 4.05,
+      "z": -1.9,
+      "angle": 3.141592653589793,
+      "label": "研究戰情室的情境看板",
+      "room": "floor3-warroom",
+      "seat": {
+        "x": 4.05,
+        "y": 0.52,
+        "z": -3.18,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor3-obstacle-28"
+      },
+      "seatApproach": {
+        "x": 4.05,
+        "z": -1.9
+      }
+    },
+    {
+      "id": "floor3-research-6.5",
+      "action": "meeting",
+      "x": 6.5,
+      "z": -1.9,
+      "angle": 3.141592653589793,
+      "label": "研究戰情室的情境看板",
+      "room": "floor3-warroom",
+      "seat": {
+        "x": 6.5,
+        "y": 0.52,
+        "z": -3.18,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor3-obstacle-29"
+      },
+      "seatApproach": {
+        "x": 6.5,
+        "z": -1.9
+      }
+    },
+    {
+      "id": "floor3-research-8.95",
+      "action": "meeting",
+      "x": 8.95,
+      "z": -1.9,
+      "angle": 3.141592653589793,
+      "label": "研究戰情室的情境看板",
+      "room": "floor3-warroom",
+      "seat": {
+        "x": 8.95,
+        "y": 0.52,
+        "z": -3.18,
+        "angle": 3.141592653589793,
+        "obstacleId": "floor3-obstacle-30"
+      },
+      "seatApproach": {
+        "x": 8.95,
+        "z": -1.9
+      }
+    },
+    {
+      "id": "floor3-gaming-two",
+      "action": "game",
+      "x": 9.55,
+      "z": 6.65,
+      "angle": 0,
+      "label": "和夥伴一起玩電動",
+      "room": "floor3-game",
+      "seat": {
+        "x": 9.55,
+        "y": 0.52,
+        "z": 8.05,
+        "angle": 0,
+        "obstacleId": "floor3-obstacle-49"
+      },
+      "seatApproach": {
+        "x": 9.55,
+        "z": 6.65
+      }
+    },
+    {
+      "id": "floor3-arcade-two",
+      "action": "arcade",
+      "x": 10.6,
+      "z": 6.55,
+      "angle": 1.5707963267948966,
+      "label": "在街機挑戰新關卡",
+      "room": "floor3-game"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "floor3-meeting",
+      "label": "玻璃會議室",
+      "bounds": {
+        "minX": -12.8,
+        "maxX": -1.15,
+        "minZ": -10.3,
+        "maxZ": -0.25
+      },
+      "acousticType": "conference",
+      "reverb": 0.7
+    },
+    {
+      "id": "floor3-warroom",
+      "label": "交易戰情室",
+      "bounds": {
+        "minX": 1.2,
+        "maxX": 12.8,
+        "minZ": -10.3,
+        "maxZ": -0.25
+      },
+      "acousticType": "office",
+      "reverb": 0.42
+    },
+    {
+      "id": "floor3-reading",
+      "label": "閱讀與報紙角",
+      "bounds": {
+        "minX": -12.8,
+        "maxX": -5.1,
+        "minZ": 3.35,
+        "maxZ": 10.95
+      },
+      "acousticType": "office",
+      "reverb": 0.4
+    },
+    {
+      "id": "floor3-studio",
+      "label": "錄音與影片工作室",
+      "bounds": {
+        "minX": -4.6,
+        "maxX": 3.9,
+        "minZ": 3.35,
+        "maxZ": 10.95
+      },
+      "acousticType": "studio",
+      "reverb": 0.17
+    },
+    {
+      "id": "floor3-game",
+      "label": "遊戲與創作交流",
+      "bounds": {
+        "minX": 4.4,
+        "maxX": 12.8,
+        "minZ": 3.35,
+        "maxZ": 10.95
+      },
+      "acousticType": "game",
+      "reverb": 0.45
+    }
+  ],
+  "soundSources": [
+    {
+      "id": "floor3-meeting",
+      "type": "conversation",
+      "x": -7,
+      "y": 1.6,
+      "z": -5.3,
+      "room": "floor3-meeting"
+    },
+    {
+      "id": "floor3-projector",
+      "type": "projector",
+      "x": -7,
+      "y": 4.75,
+      "z": -1.6,
+      "room": "floor3-meeting"
+    },
+    {
+      "id": "floor3-game",
+      "type": "arcade",
+      "x": 11.95,
+      "y": 1.7,
+      "z": 4.95,
+      "room": "floor3-game"
+    },
+    {
+      "id": "floor3-studio",
+      "type": "music",
+      "x": -0.2,
+      "y": 1.4,
+      "z": 8.9,
+      "room": "floor3-studio"
+    }
+  ],
+  "contactAnchors": [
+    {
+      "x": -7,
+      "z": -5.35,
+      "w": 3.7,
+      "d": 5.9
+    },
+    {
+      "x": -9.7,
+      "z": -7.5,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -4.3,
+      "z": -7.5,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -9.7,
+      "z": -5.35,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -4.3,
+      "z": -5.35,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -9.7,
+      "z": -3.2,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -4.3,
+      "z": -3.2,
+      "w": 0.76,
+      "d": 0.76
+    },
+    {
+      "x": -7,
+      "z": -9.25,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 6.5,
+      "z": -5.2,
+      "w": 7.5,
+      "d": 2.5
+    },
+    {
+      "x": 4.05,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 6.5,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 8.95,
+      "z": -3.18,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": 11.45,
+      "z": -1.55,
+      "w": 1,
+      "d": 0.85
+    },
+    {
+      "x": -12.72,
+      "z": 6.9,
+      "w": 0.55,
+      "d": 5.2
+    },
+    {
+      "x": -9.4,
+      "z": 10.55,
+      "w": 5.7,
+      "d": 0.55
+    },
+    {
+      "x": -10.1,
+      "z": 6.6,
+      "w": 1.25,
+      "d": 1.75
+    },
+    {
+      "x": -6.5,
+      "z": 7.6,
+      "w": 1.25,
+      "d": 1.75
+    },
+    {
+      "x": -8.3,
+      "z": 7.1,
+      "w": 1.4,
+      "d": 0.9
+    },
+    {
+      "x": -6,
+      "z": 4.35,
+      "w": 1.1,
+      "d": 0.6
+    },
+    {
+      "x": -0.2,
+      "z": 8.75,
+      "w": 3.35,
+      "d": 1.3
+    },
+    {
+      "x": -0.25,
+      "z": 7.25,
+      "w": 0.75,
+      "d": 0.75
+    },
+    {
+      "x": -3,
+      "z": 6.9,
+      "w": 0.52,
+      "d": 0.52
+    },
+    {
+      "x": 2.45,
+      "z": 6.1,
+      "w": 0.9,
+      "d": 0.9
+    },
+    {
+      "x": 6.3,
+      "z": 9.8,
+      "w": 2.7,
+      "d": 1
+    },
+    {
+      "x": 6.3,
+      "z": 8.05,
+      "w": 0.85,
+      "d": 0.9
+    },
+    {
+      "x": 9.55,
+      "z": 9.8,
+      "w": 2.7,
+      "d": 1
+    },
+    {
+      "x": 9.55,
+      "z": 8.05,
+      "w": 0.85,
+      "d": 0.9
+    },
+    {
+      "x": 11.95,
+      "z": 4.95,
+      "w": 0.9,
+      "d": 1.1
+    },
+    {
+      "x": 11.95,
+      "z": 6.55,
+      "w": 0.9,
+      "d": 1.1
+    },
+    {
+      "x": 7.05,
+      "z": 4.7,
+      "w": 3.5,
+      "d": 1.35
+    },
+    {
+      "x": 9.8,
+      "z": 3.85,
+      "w": 1.2,
+      "d": 1.2
+    }
+  ],
+  "ceilingNames": [
+    "floor-3-ceiling"
+  ],
+  "detailGroups": [
+    "floor-3-detail"
+  ],
+  "asset": "floor-3",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "glbBytes": 1640440,
+  "sourceGLBBytes": 7209436,
+  "triangles": 68524,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/19db95bc7156da0f1208eeb1.ktx2",
+      "bytes": 389433,
+      "linear": false,
+      "sourceSHA256": "f70bd17db1a365032379a8f20115e5bf796628bf3da377e934fb001d06e21d94"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/284c245d3d24d580cc2c231c.ktx2",
+      "bytes": 19978,
+      "linear": false,
+      "sourceSHA256": "b9bcc010810128ad9bb4c8068dde0ddcc81e61b77ca1f4425776836171a74164"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/f3b0812daf4e891e66ccdf84.ktx2",
+      "bytes": 29589,
+      "linear": false,
+      "sourceSHA256": "7be0124a0eb31e35614a1dedf7c267fd1a4b0e0b2fb3574cc90222951caf8a7b"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/acd369a914b45f0e6677f83a.ktx2",
+      "bytes": 20152,
+      "linear": false,
+      "sourceSHA256": "821382e3427af341dfe7d1e807114d4b0211b090955237d7c2e82b3551025dcd"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/698b59b612535c9080c0f6d0.ktx2",
+      "bytes": 42715,
+      "linear": false,
+      "sourceSHA256": "cb57fbf5b71db4391221147ad331f08b849b8f9d9d823f860593c073c4807abe"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/a5714465bb3f0e239a258752.ktx2",
+      "bytes": 21672,
+      "linear": false,
+      "sourceSHA256": "43a5055f759e85073f47cca97350b2216f091fe54d992627dae7ad550a51398a"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/3266e89dd390256e1ee9253a.ktx2",
+      "bytes": 14951,
+      "linear": false,
+      "sourceSHA256": "e3aff56020e557172cd9e6f3288c1276ca46cfb7103a790e6a5c893b74e71a98"
+    },
+    {
+      "name": "",
+      "uri": "../textures/generated/3cd2a1f02db16c13cf626985.ktx2",
+      "bytes": 13168,
+      "linear": false,
+      "sourceSHA256": "d8b751e42b55be41fde4e6d18f492bfc454c5f25d00fa693922a2a61306e566d"
+    }
+  ],
+  "generatedAt": "2026-10-28T08:49:57.195Z"
+}

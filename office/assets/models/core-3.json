@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "id": 3,
+  "obstacles": [
+    {
+      "id": "floor3-obstacle-0",
+      "x": 18.97,
+      "z": 0.4,
+      "w": 0.15,
+      "d": 21.8,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-1",
+      "x": 16.1,
+      "z": -10.52,
+      "w": 5.8,
+      "d": 0.15,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-2",
+      "x": 16.1,
+      "z": 11.3,
+      "w": 5.8,
+      "d": 0.15,
+      "kind": "wall",
+      "height": 6.8,
+      "y": 3.4,
+      "minY": 0,
+      "maxY": 6.8
+    },
+    {
+      "id": "floor3-obstacle-3",
+      "x": 14.48,
+      "z": 8.45,
+      "w": 0.19,
+      "d": 4.1,
+      "kind": "wall",
+      "height": 5,
+      "y": 2.5,
+      "minY": 0,
+      "maxY": 5
+    },
+    {
+      "id": "floor3-obstacle-4",
+      "x": 18.32,
+      "z": 8.45,
+      "w": 0.19,
+      "d": 4.1,
+      "kind": "wall",
+      "height": 5,
+      "y": 2.5,
+      "minY": 0,
+      "maxY": 5
+    },
+    {
+      "id": "floor3-obstacle-5",
+      "x": 16.4,
+      "z": 10.44,
+      "w": 3.95,
+      "d": 0.16,
+      "kind": "wall",
+      "height": 5,
+      "y": 2.5,
+      "minY": 0,
+      "maxY": 5
+    }
+  ],
+  "doors": [],
+  "activities": [],
+  "rooms": [
+    {
+      "id": "floor3-core",
+      "label": "電梯與樓梯",
+      "bounds": {
+        "minX": 13.2,
+        "maxX": 19,
+        "minZ": -10.5,
+        "maxZ": 11.3
+      },
+      "acousticType": "lobby",
+      "reverb": 0.85
+    }
+  ],
+  "soundSources": [
+    {
+      "id": "floor3-elevator",
+      "type": "elevator",
+      "x": 16.4,
+      "y": 2,
+      "z": 6.45,
+      "room": "floor3-core"
+    }
+  ],
+  "contactAnchors": [],
+  "ceilingNames": [
+    "core-3-ceiling"
+  ],
+  "detailGroups": [
+    "core-3-detail"
+  ],
+  "stairs": {
+    "lowerX": 15.1,
+    "upperX": 17.35,
+    "minX": 14.05,
+    "maxX": 18.4,
+    "startZ": 1,
+    "turnZ": -5.3,
+    "landingZ": -7,
+    "width": 1.65,
+    "steps": 20,
+    "from": 3,
+    "to": 4,
+    "rise": 7,
+    "halfRise": 3.5,
+    "run": 6.3,
+    "riser": 0.175,
+    "tread": 0.315,
+    "lowerFlightBounds": {
+      "minX": 14.275,
+      "maxX": 15.924999999999999,
+      "minZ": -5.3,
+      "maxZ": 1
+    },
+    "upperFlightBounds": {
+      "minX": 16.525000000000002,
+      "maxX": 18.175,
+      "minZ": -5.3,
+      "maxZ": 1
+    },
+    "midLandingBounds": {
+      "minX": 13.975,
+      "maxX": 18.425,
+      "minZ": -7.345,
+      "maxZ": -5.295
+    }
+  },
+  "elevator": {
+    "x": 16.4,
+    "z": 8.4,
+    "width": 3.5,
+    "depth": 3.8,
+    "doorZ": 6.45,
+    "shaftBounds": {
+      "minX": 14.48,
+      "maxX": 18.32,
+      "minZ": 6.35,
+      "maxZ": 10.6
+    },
+    "doorNames": [
+      "lift-door-3-left",
+      "lift-door-3-right"
+    ],
+    "closedX": [
+      15.56,
+      17.24
+    ],
+    "openX": [
+      13.98,
+      18.82
+    ],
+    "callPoint": {
+      "x": 18.58,
+      "y": 1.5,
+      "z": 6.25
+    },
+    "lobbyPoint": {
+      "x": 16.4,
+      "z": 4.9
+    },
+    "cabinPoint": {
+      "x": 16.4,
+      "z": 8.4
+    }
+  },
+  "asset": "core-3",
+  "format": "GLB 2.0",
+  "compression": "EXT_meshopt_compression; lossless float attributes",
+  "textureFormat": "KTX2 / Basis UASTC",
+  "glbBytes": 184664,
+  "sourceGLBBytes": 1205964,
+  "triangles": 7240,
+  "textures": [
+    {
+      "name": "",
+      "uri": "../textures/generated/df38363e6e90762d13eeba53.ktx2",
+      "bytes": 508332,
+      "linear": false,
+      "sourceSHA256": "8d51453f8e164b2eefaab73c7cbf957846614f66e1737cd05f0818c4c0dee459"
+    }
+  ],
+  "generatedAt": "2026-10-28T08:50:00.358Z"
+}
