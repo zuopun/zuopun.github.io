@@ -33,3 +33,18 @@ Generate editable source maps and HDRs with `python3 scripts/generate-assets.py`
 - No externally sourced glTF model or photographic texture is used. All complex geometry is built by committed procedural source code.
 
 Library licences are separate from the CC0 asset dedication. The official reference images are separate from both.
+
+
+## Stage A — compressed scene assets and build tools
+
+| Asset / tool | Source | Licence / scope |
+| --- | --- | --- |
+| `assets/models/office-floor-2.glb` and matching `.json` | `src/world.js`, `src/architecture.js`, `src/desk-details.js`, `src/set-dressing.js`; rebuilt by `npm run assets:office` | Original procedural geometry and fictional office artwork, CC0 1.0. Exact vertex attributes are retained; Meshopt compresses delivery without changing model proportions. |
+| `assets/textures/generated/*.ktx2` | Canvas artwork from the same generators; deterministic SHA-256 file names; source image hashes in each model's JSON metadata | Original generated graphics, CC0 1.0, except any explicitly identified user-provided reference derivatives. Shared Basis UASTC textures are reused between models. |
+| Offline atlas lettering | [Noto CJK](https://github.com/notofonts/noto-cjk), [Noto fonts](https://github.com/notofonts/noto-fonts) | SIL Open Font License 1.1; permits commercial use and rasterized lettering. The exporter explicitly selects Noto Sans/Serif CJK TC and Noto Sans Mono; no font binaries are redistributed. |
+| Vite 7.2.2 | [vitejs/vite](https://github.com/vitejs/vite) | MIT; build tool only, not a runtime server. |
+| Three.js GLTFExporter r170 | [mrdoob/three.js](https://github.com/mrdoob/three.js) | MIT, same version as the vendored runtime; offline exporter only. |
+| glTF Transform 4.2.1 | [donmccurdy/glTF-Transform](https://github.com/donmccurdy/glTF-Transform) | MIT; offline exact welding, reordering and GLB serialization. |
+| `basisu` npm wrapper 1.16.3 | [HacksawStudios/basisu](https://github.com/HacksawStudios/basisu) | ISC wrapper; packaged Basis Universal encoder is Apache-2.0. Offline only; executable is not included in `dist/`. |
+
+The Vite build disables `.env` loading and copies only the explicit public runtime directories and licence notices. Build dependencies, `.git`, credentials and configuration secrets are never copied into the static release.

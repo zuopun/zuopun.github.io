@@ -1,0 +1,11 @@
+{
+  "pipeline": "Three factory -> GLTFExporter -> exact weld / Meshopt -> shared KTX2",
+  "assets": [
+    {
+      "asset": "office-floor-2",
+      "triangles": 35288,
+      "glbBytes": 866312,
+      "textures": 3
+    }
+  ]
+}
