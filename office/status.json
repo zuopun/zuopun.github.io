@@ -1,0 +1,18 @@
+{
+  "updated": "sample",
+  "bots": {
+    "zz": { "state": "working", "note": "準備新的社群故事" },
+    "owl": { "state": "working", "note": "整理推廣靈感" },
+    "design": { "state": "waiting", "note": "角色草稿等待左左確認" },
+    "check": { "state": "working", "note": "交叉核對來源" },
+    "market": { "state": "idle", "note": "休息一下" },
+    "square": { "state": "working", "note": "編輯廣場內容" },
+    "zuno": { "state": "working", "note": "讓點子變成作品" },
+    "fo": { "state": "waiting", "note": "公告等待確認" },
+    "gs": { "state": "idle", "note": "聽聽新的聲音" },
+    "lena": { "state": "idle", "note": "尋找下一個鏡頭" },
+    "wild": { "state": "idle", "note": "活動筋骨" },
+    "bob": { "state": "working", "note": "照顧社群夥伴" },
+    "lan": { "state": "idle", "note": "補充一些靈感" }
+  }
+}

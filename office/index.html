@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#eee9df" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23344d40%27/%3E%3Ctext x=%2732%27 y=%2745%27 text-anchor=%27middle%27 font-size=%2740%27 fill=%27%23f5efdf%27%3E左%3C/text%3E%3C/svg%3E"
+    />
+    <title>左左公司 · A little world at work</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="src/polish.css" />
+    <script type="importmap">
+      { "imports": { "three": "./assets/vendor/three.module.js" } }
+    </script>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="./"
+        ><span class="brand-icon">左</span
+        ><span>左左公司<small>A LITTLE WORLD AT WORK</small></span></a
+      >
+      <div class="live"><i></i><span id="sync">正在走進辦公室</span></div>
+      <button id="reset" aria-label="重設視角">↗ <span>重設視角</span></button>
+    </header>
+    <main>
+      <div id="scene" aria-label="可旋轉縮放的猴子公司立體辦公室"></div>
+      <div class="intro">
+        <span class="eyebrow">THE OFFICE, ALIVE</span>
+        <h1>各自忙碌，<br />一起好好生活。</h1>
+        <p>
+          一間小小公司，一群大有個性的夥伴。<br />點點他們，看看今天在忙些什麼。
+        </p>
+      </div>
+      <aside id="card" hidden aria-live="polite">
+        <button id="close" aria-label="關閉角色資訊">×</button
+        ><span class="eyebrow" id="card-id"></span>
+        <h2 id="card-name"></h2>
+        <p id="card-role"></p>
+        <div id="card-state"></div>
+        <p id="card-note"></p>
+      </aside>
+      <div id="error" hidden role="alert"></div>
+      <div class="bottom">
+        <div class="legend">
+          <span><i class="work"></i>工作中</span
+          ><span><i class="idle"></i>自由活動</span
+          ><span><i class="wait"></i>等待確認</span>
+        </div>
+        <p>拖曳旋轉 · 滾輪／雙指縮放 · 點選夥伴</p>
+      </div>
+      <nav id="roster" aria-label="選擇公司夥伴"></nav>
+      <div class="loading" id="loading">正在打開公司的門…</div>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
