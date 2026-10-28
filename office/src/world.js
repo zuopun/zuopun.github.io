@@ -307,12 +307,13 @@ export function buildWorld(scene, people) {
   solid(10, -3.5, 2.9, 1.7);
   const dart = cylinder(root, "#596f59", [11.3, 1.6, -9.5], [0.55, 0.08, 0.55]);
   dart.rotation.x = Math.PI / 2;
-  for (const [r, c] of [
+  // Each inset disk has its own front plane; coplanar caps flicker in POV.
+  for (const [layer, [r, c]] of [
     [0.4, "#d0b98c"],
     [0.24, "#77997f"],
     [0.09, "#ba785c"],
-  ]) {
-    const d = cylinder(root, c, [11.3, 1.6, -9.44], [r, 0.02, r]);
+  ].entries()) {
+    const d = cylinder(root, c, [11.3, 1.6, -9.44 + layer * 0.008], [r, 0.02, r]);
     d.rotation.x = Math.PI / 2;
   }
   // Gym treadmill and free weights.

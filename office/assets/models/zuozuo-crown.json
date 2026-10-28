@@ -1,13 +1,13 @@
 {
   "source": "src/boss-details.js:addBossCrown",
-  "sourceSHA256": "fa12da1fb6492316d41d9583a37adce668e31cb829ca839d3d9fa07780c08ba2",
+  "sourceSHA256": "e796fa86c2daf2675c520c489f42a0fc551b5be8152120927742c7cfa80aa15e",
   "compression": "EXT_meshopt_compression / meshoptimizer 0.24",
   "triangles": 23648,
-  "vertices": 19078,
+  "vertices": 19098,
   "materialPrimitives": 3,
-  "glbBytes": 281164,
-  "decodedBufferBytes": 665336,
-  "compressedBufferBytes": 277044,
+  "glbBytes": 281208,
+  "decodedBufferBytes": 665736,
+  "compressedBufferBytes": 277080,
   "positionQuantization": 0.000001,
   "normalStorage": "normalized signed byte",
   "roundTripVerified": true

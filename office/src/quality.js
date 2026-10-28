@@ -123,7 +123,7 @@ export function createQualitySystem({renderer,scene,camera,performanceManager,ma
     if(o.userData.qualityDetail||o.userData.detailTier) {
       let taggedParent=false;
       for(let parent=o.parent;parent;parent=parent.parent)if(parent.userData.qualityDetail||parent.userData.detailTier)taggedParent=true;
-      if(!taggedParent)detailProps.push(o);
+      if(!taggedParent)detailProps.push({object:o,bounds:new T.Box3().setFromObject(o)});
     }
   });
   const point=new T.Vector3();
@@ -198,7 +198,7 @@ export function createQualitySystem({renderer,scene,camera,performanceManager,ma
     // Shadow maps are texture allocations, too; include their actual current size.
     let shadowBytes=0;scene.traverse(o=>{if(o.isLight&&o.shadow?.map){const rt=o.shadow.map;shadowBytes+=rt.width*rt.height*8;}});
     const total=textures.bytes+p.renderTargetBytes+shadowBytes;
-    return {preset:name,ready:!loading&&!dayLoading,loading:loading||dayLoading,error:loadError,automatic:!manual,pixelRatio:renderer.getPixelRatio(),staticChunks:chunks,sceneTextureCount:textures.count,sceneTextureMiB:+(textures.bytes/1048576).toFixed(2),renderTargetMiB:+(p.renderTargetBytes/1048576).toFixed(2),shadowMiB:+(shadowBytes/1048576).toFixed(2),textureMiB:+(total/1048576).toFixed(2),textureMemoryEstimate:true,fur:furGeometry.stats(),occlusion:occlusion.stats(),post:p,lodDistance:QUALITY_PRESETS[name].lodDistance};
+    return {preset:name,ready:!loading&&!dayLoading,loading:loading||dayLoading,error:loadError,automatic:!manual,pixelRatio:renderer.getPixelRatio(),staticChunks:chunks,detailGroups:{total:detailProps.length,visible:detailProps.filter(p=>p.object.visible).length},sceneTextureCount:textures.count,sceneTextureMiB:+(textures.bytes/1048576).toFixed(2),renderTargetMiB:+(p.renderTargetBytes/1048576).toFixed(2),shadowMiB:+(shadowBytes/1048576).toFixed(2),textureMiB:+(total/1048576).toFixed(2),textureMemoryEstimate:true,fur:furGeometry.stats(),occlusion:occlusion.stats(),post:p,lodDistance:QUALITY_PRESETS[name].lodDistance};
   }
   function mount(container){
     panel=document.createElement('div');panel.className='render-settings';
@@ -223,7 +223,7 @@ export function createQualitySystem({renderer,scene,camera,performanceManager,ma
     get ready(){return ready;},
     render(dt,view){
       camera.getWorldPosition(point);
-      for(const prop of detailProps){const distance=prop.getWorldPosition(new T.Vector3()).distanceTo(point);prop.visible=distance<(name==='low'?12:QUALITY_PRESETS[name].propDistance);}
+      for(const {object,bounds} of detailProps){object.visible=bounds.distanceToPoint(point)<(name==='low'?12:QUALITY_PRESETS[name].propDistance);}
       occlusion.update();
       post.render(dt,view);
     },

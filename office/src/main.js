@@ -14,7 +14,7 @@ import { setupLighting } from "./lighting.js";
 import { createQualitySystem } from "./quality.js";
 import { createLoadingUI } from "./loading.js";
 import { loadCrownAsset } from "./mesh-assets.js";
-import { setBossCrownTemplate } from "./boss-details.js";
+import { setBossCrownTemplate, bossFacePoint } from "./boss-details.js";
 let cameraSystem, quality;
 const $ = (id) => document.getElementById(id),
   scene = new T.Scene();
@@ -381,7 +381,6 @@ export function stepSimulation(dt) {
         phase
       ];
       bossProps.sets.forEach((g, i) => (g.visible = i === phase));
-      bossProps.update(elapsed, phase);
       c.body.position.y = Math.sin(t * 1.4) * 0.015;
       c.legs.forEach((l) => (l.rotation.x = -1.2));
       c.arms[0].rotation.x = phase === 0 ? -0.2 : -1.3;
@@ -390,15 +389,22 @@ export function stepSimulation(dt) {
       c.arms[1].rotation.z = phase === 0 ? -0.05 : -0.35;
       if (phase === 1)
         c.arms.forEach((a, i) => (a.rotation.x += Math.sin(t * 7 + i) * 0.045));
+      bossProps.update(elapsed, phase);
       bossProps.cigaretteTip.getWorldPosition(smokeOrigin);
       c.root.worldToLocal(smokeOrigin);
       bossProps.smoke.forEach((p, i) => {
-        const k = (elapsed * 0.22 + i / bossProps.smoke.length) % 1;
+        const age = elapsed * 0.22 + i / bossProps.smoke.length;
+        const cycle = Math.floor(age), k = age - cycle;
+        if (p.userData.smokeCycle !== cycle) {
+          p.userData.smokeCycle = cycle;
+          p.userData.birthOrigin = smokeOrigin.clone();
+        }
+        const origin = p.userData.birthOrigin;
         p.visible = phase === 0;
         p.position.set(
-          smokeOrigin.x + k * 0.95,
-          smokeOrigin.y + k * 1.6,
-          smokeOrigin.z + k * 0.3,
+          origin.x + k * 0.95,
+          origin.y + k * 1.6,
+          origin.z + k * 0.3,
         );
         p.scale.setScalar(0.07 + k * 0.25);
         p.material.opacity = (1 - k) * 0.48;
@@ -594,14 +600,14 @@ Object.defineProperty(window, "officeDebug", {
       const m = face.material, rect = $("scene").getBoundingClientRect();
       face.updateWorldMatrix(true, false);
       const project = (x, y) => {
-        const p = face.localToWorld(new T.Vector3((x - 616) / 505, (687 - y) / 505, 0)).project(camera);
+        const p = face.localToWorld(bossFacePoint(x, y)).project(camera);
         return { x: rect.left + (p.x + 1) * rect.width / 2,
           y: rect.top + (1 - p.y) * rect.height / 2, depth: p.z };
       };
       let visible = true;
       for (let o = face; o; o = o.parent) visible &&= o.visible;
       return { type: m.type, toneMapped: m.toneMapped,
-        source: m.map.image.src, officialSource: m.map.userData.officialSource,
+        source: m.map.image.src, officialSource: m.map.userData.officialSource, skinSRGB: m.map.userData.skinSRGB,
         visible, samples: [[616,510],[460,745],[750,810],[490,575],[725,625]].map(([x,y]) => ({sourcePixel:{x,y},screen:project(x,y)})),
         outline: [[357,473],[875,473],[875,900],[357,900]].map(([x,y]) => project(x,y)) };
     })(),

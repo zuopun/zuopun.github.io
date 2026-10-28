@@ -103,7 +103,8 @@ export async function applyMaterials(scene, { renderer, characters = [], onProgr
   let activeTier = "low", activePreset = "medium", request = 0;
   async function loadTier(tier) {
     if (cache.has(tier)) return cache.get(tier);
-    const pending = Promise.all(["albedo", "normal", "orm"].map(async (channel, i) => {
+    let loaded = 0;
+    const pending = Promise.all(["albedo", "normal", "orm"].map(async (channel) => {
       const base = new URL(`../assets/textures/office-${channel}-${tier}`, import.meta.url).href;
       let texture;
       try { texture = await loader.loadAsync(`${base}.ktx2`); }
@@ -117,7 +118,7 @@ export async function applyMaterials(scene, { renderer, characters = [], onProgr
       texture.flipY = false;
       texture.userData.officeAtlas = true;
       resident.add(texture);
-      onProgress({ phase: "materials", loaded: i + 1, total: 3, tier });
+      onProgress({ phase: "materials", loaded: ++loaded, total: 3, tier });
       return texture;
     })).then(([albedo, normal, orm]) => ({ albedo, normal, orm }));
     cache.set(tier, pending);

@@ -14,13 +14,14 @@ The following assets were created specifically for this project from mathematica
 | Runtime art / paper atlas | `src/set-dressing.js` | Original 1024×1024 canvas paintings, planning notes and desk papers. |
 | Runtime contact-shadow texture | `src/lighting.js` | Original radial soft-contact falloff generated on canvas. |
 | `models/zuozuo-crown.glb` | `scripts/build-models.mjs`, using `src/boss-details.js`; encoded with Meshopt | Original procedural gold/filigree/ruby mesh compiled into GLB. No third-party model was incorporated. The supplied character reference remains separately owned. |
+| Runtime plush albedo / normal / fibre-density maps | `src/characters/plush-surface.js` | Original deterministic curved fibres, chestnut root occlusion and tangent normals; no sourced photographs or fur scans. |
 | Procedural office geometry and furnishings | `src/world.js`, `src/architecture.js`, `src/set-dressing.js`, `src/desk-details.js` | Original meshes, office props and fictional role-screen graphics. |
 
 Generate editable source maps and HDRs with `python3 scripts/generate-assets.py` (Python 3, NumPy and Pillow). To regenerate the committed compressed copies, add `--basisu /path/to/basisu`. The encoder is a development tool only; it is not required to run the static site. Basis Universal is Apache-2.0 licensed; the encoder binary is not redistributed by this project.
 
 ## User-provided 左左 references
 
-`refs/zuozuo_face.png` and `refs/zuozuo_turnaround.png` were supplied with the project as the official character references. Their original rights remain with their respective owner; they are **not** included in the CC0 dedication above. The face uses the original image directly, and its original pixels are not recoloured or repainted.
+`refs/zuozuo_face.png` and `refs/zuozuo_turnaround.png` were supplied with the project as the official character references. Their original rights remain with their respective owner; they are **not** included in the CC0 dedication above. The reference files are retained unchanged. The face material derives the original black ink coverage from the supplied face image and renders it on uniform warm-beige skin, removing the photograph’s orange edge lighting as requested in Stage 0. This derivative use retains the original reference owner’s rights.
 
 ## Runtime libraries and decoders
 

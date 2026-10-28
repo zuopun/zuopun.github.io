@@ -85,13 +85,13 @@ function isVisible(object) {
   return true;
 }
 
-/** A face-only final draw restores the exact unlit source pixels after all
+/** A face-only final draw restores the unlit reference ink and uniform warm-beige skin after all
  * photographic effects. It compares the ORIGINAL scene depth per fragment,
  * so the face cannot show through the head, crown, walls or other characters. */
 function createReferenceOverlay(scene,depthTexture,resolution) {
   const overlayScene=new T.Scene(), entries=[];
   scene.traverse(object=>{
-    if(!object.isMesh || object.material?.map?.name!=='official-zuozuo-flat-ink-face')return;
+    if(!object.isMesh || object.name !== 'official-zuozuo-face')return;
     const material=object.material.clone();
     material.toneMapped=false;
     material.depthTest=false;
@@ -105,9 +105,12 @@ function createReferenceOverlay(scene,depthTexture,resolution) {
       shader.fragmentShader=`uniform sampler2D officeSceneDepth;uniform vec2 officeResolution;\n`+shader.fragmentShader;
       shader.fragmentShader=shader.fragmentShader.replace('void main() {',`void main() {
         float officeOccluder=texture2D(officeSceneDepth,gl_FragCoord.xy/officeResolution).r;
-        if(gl_FragCoord.z>officeOccluder+0.000002)discard;`);
+        // The HDR depth is single-sampled; the default framebuffer is MSAA.
+        // Curved skin needs a one-pixel depth-slope allowance at sample edges.
+        float officeDepthTolerance=max(0.000002,fwidth(gl_FragCoord.z)*1.25);
+        if(gl_FragCoord.z>officeOccluder+officeDepthTolerance)discard;`);
     };
-    material.customProgramCacheKey=()=> 'office-reference-face-depth-overlay-v1';
+    material.customProgramCacheKey=()=> 'office-reference-face-depth-overlay-v2';
     const copy=new T.Mesh(object.geometry,material);
     copy.matrixAutoUpdate=false;
     copy.frustumCulled=true;

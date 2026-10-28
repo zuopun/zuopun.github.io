@@ -1,30 +1,53 @@
 import * as T from "three";
+import { createPlushSurface } from "./characters/plush-surface.js";
+const plushSurface = createPlushSurface(T);
 
 let crownTemplate = null;
 export function setBossCrownTemplate(template) { crownTemplate = template; }
 
-// The official PNG is sampled directly. UVs select the original skin silhouette;
-// neither the colour nor a single ink pixel is repainted or thresholded.
+// The official ink stays pixel-for-pixel aligned with the supplied reference.
+// Its photographed orange rim lighting is removed, not baked into the toy's skin.
+export const BOSS_SKIN_SRGB = [231, 197, 158];
+export const BOSS_FACE_CENTER_Y = 1.83;
+const BOSS_FACE_SCALE = .93;
 export async function loadBossFace() {
-  const texture = await new T.TextureLoader().loadAsync(
-    new URL("../refs/zuozuo_face.png", import.meta.url).href,
-  );
-  texture.colorSpace = T.SRGBColorSpace;
-  texture.anisotropy = 8;
-  texture.name = "official-zuozuo-flat-ink-face";
+  const source = await new T.TextureLoader().loadAsync(new URL("../refs/zuozuo_face.png", import.meta.url).href);
+  const canvas = document.createElement("canvas");
+  canvas.width = source.image.width; canvas.height = source.image.height;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(source.image, 0, 0);
+  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  // Original black line coverage is recoverable from max RGB: every skin pixel
+  // inside the face contour is much brighter than the ink. Preserve edge AA.
+  for (let i = 0; i < pixels.data.length; i += 4) {
+    const maximum = Math.max(pixels.data[i], pixels.data[i + 1], pixels.data[i + 2]);
+    const coverage = 1 - T.MathUtils.smoothstep(maximum, 28, 122);
+    for (let c = 0; c < 3; c++) pixels.data[i + c] = Math.round(BOSS_SKIN_SRGB[c] * (1 - coverage) + (c === 2 ? 3 : 1) * coverage);
+  }
+  ctx.putImageData(pixels, 0, 0);
+  // Remove only the photographic fur seam at the skin boundary. None of the
+  // brows, cheek strokes, mouth or chin reaches this twelve-pixel margin.
+  const edge = faceOutline().getPoints(40);
+  ctx.strokeStyle = `rgb(${BOSS_SKIN_SRGB.join(",")})`; ctx.lineWidth = 24; ctx.lineJoin = "round";
+  ctx.beginPath(); edge.forEach((p, i) => i ? ctx.lineTo(p.x, p.y) : ctx.moveTo(p.x, p.y)); ctx.closePath(); ctx.stroke();
+  const texture = new T.CanvasTexture(canvas);
+  texture.colorSpace = T.SRGBColorSpace; texture.anisotropy = 8;
+  texture.name = "official-zuozuo-ink-on-unlit-warm-beige";
   texture.userData.officialSource = "refs/zuozuo_face.png";
+  texture.userData.inkDerivedFromOriginal = true;
+  texture.userData.skinSRGB = BOSS_SKIN_SRGB.slice();
+  source.dispose();
   return texture;
 }
 
 export function bossFaceMaterial(texture) {
   const material = new T.MeshBasicMaterial({ map: texture, toneMapped: false, fog: false });
-  material.name = "official-face-unlit-unmodified";
+  material.name = "official-ink-unlit-uniform-beige";
+  material.userData.preserveMaterial = true;
   return material;
 }
 
-export function bossFaceGeometry(texture) {
-  // Pixel-space contour follows the reference's broad cheeks and rounded chin.
-  // This retains more of the eyebrows and cheek slashes than an ellipse crop.
+function faceOutline() {
   const outline = new T.Shape();
   outline.moveTo(562, 473);
   outline.bezierCurveTo(619, 465, 697, 473, 747, 490);
@@ -34,182 +57,173 @@ export function bossFaceGeometry(texture) {
   outline.bezierCurveTo(409, 842, 358, 779, 357, 693);
   outline.bezierCurveTo(352, 605, 389, 527, 470, 491);
   outline.bezierCurveTo(503, 478, 534, 474, 562, 473);
-  const geometry = new T.ShapeGeometry(outline, 14);
-  const position = geometry.attributes.position;
-  const uv = geometry.attributes.uv;
-  for (let i = 0; i < position.count; i++) {
-    const x = position.getX(i), y = position.getY(i);
-    uv.setXY(i, x / texture.image.width, 1 - y / texture.image.height);
-    position.setXYZ(i, (x - 616) / 505, (687 - y) / 505, 0);
+  return outline;
+}
+
+// A continuous sculpted head surface starts at the exact face outline and
+// wraps around the cheeks, temples and back. Its front is an actual aperture,
+// so there cannot be a second ellipsoid protruding through the curved skin.
+export function bossHeadGeometry(segments = 96, rings = 12) {
+  const outline = faceOutline().getSpacedPoints(segments); outline.pop();
+  const columns = outline.length, rows = rings * 2 + 1, positions = [], normals = [], uvs = [], indices = [];
+  for (let i = 0; i <= columns; i++) {
+    const pixel = outline[i % columns], x = (pixel.x - 616) / 505 * BOSS_FACE_SCALE / .7, y = ((687 - pixel.y) / 505 * BOSS_FACE_SCALE + BOSS_FACE_CENTER_Y - 1.9) / .63;
+    const angle = Math.atan2(y, x), edgeRadius = Math.hypot(x, y);
+    for (let j = 0; j < rows; j++) {
+      let r, z;
+      if (j <= rings) { r = T.MathUtils.lerp(edgeRadius, 1, j / rings); z = Math.sqrt(Math.max(0, 1 - r * r)); }
+      else { const phi = (j - rings) / rings * Math.PI / 2; r = Math.cos(phi); z = -Math.sin(phi); }
+      const px = Math.cos(angle) * r, py = Math.sin(angle) * r;
+      positions.push(px, py, z); normals.push(px, py, z);
+      uvs.push(.5 + Math.atan2(z, px) / (Math.PI * 2), .5 + Math.asin(py) / Math.PI);
+      if (i < columns && j < rows - 1) { const a = i * rows + j, b = (i + 1) * rows + j; indices.push(a, b, a + 1, a + 1, b, b + 1); }
+    }
   }
-  // The original contour uses image coordinates, so reversing Y reverses winding.
-  const indices = geometry.index;
-  for (let i = 0; i < indices.count; i += 3) {
-    const a = indices.getX(i + 1);
-    indices.setX(i + 1, indices.getX(i + 2));
-    indices.setX(i + 2, a);
-  }
-  geometry.computeVertexNormals();
-  geometry.computeBoundingSphere();
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute("position", new T.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("normal", new T.Float32BufferAttribute(normals, 3));
+  geometry.setAttribute("uv", new T.Float32BufferAttribute(uvs, 2)); geometry.setIndex(indices);
+  geometry.computeBoundingSphere(); geometry.userData.openFaceAperture = true;
   return geometry;
 }
 
-let furMaterial, shellMaterial, finMaterial;
-function seeded(seed) {
-  return () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296;
-}
-function canvasTexture(canvas, repeats = 1) {
-  const texture = new T.CanvasTexture(canvas);
-  texture.colorSpace = T.SRGBColorSpace;
-  texture.wrapS = texture.wrapT = T.RepeatWrapping;
-  texture.repeat.set(repeats, repeats);
-  texture.anisotropy = 4;
-  return texture;
-}
-export function getBossFurMaterial() {
-  if (furMaterial) return furMaterial;
-  const canvas = document.createElement("canvas");
-  canvas.width = canvas.height = 512;
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#58351e";
-  ctx.fillRect(0, 0, 512, 512);
-  const random = seeded(422);
-  for (let i = 0; i < 28000; i++) {
-    const x = random() * 512, y = random() * 512;
-    const shade = 78 + random() * 54;
-    ctx.strokeStyle = `rgb(${shade},${shade * .61},${shade * .31})`;
-    ctx.lineWidth = .55 + random() * .65;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.bezierCurveTo(x + 3, y - 2, x - 3, y - 5, x + (random() - .5) * 8, y - 7 - random() * 8);
-    ctx.stroke();
-  }
-  const texture = canvasTexture(canvas, 3);
-  texture.name = "original-procedural-brown-plush-albedo";
-  furMaterial = new T.MeshPhysicalMaterial({
-    map: texture, bumpMap: texture, bumpScale: .018,
-    roughness: 1, sheen: .26, sheenColor: new T.Color("#c7985e"), sheenRoughness: 1,
-  });
-  furMaterial.name = "fixed-brown-plush";
-  return furMaterial;
+export function bossFacePoint(pixelX, pixelY) {
+  const x = (pixelX - 616) / 505 * BOSS_FACE_SCALE, y = (687 - pixelY) / 505 * BOSS_FACE_SCALE, headY = y + BOSS_FACE_CENTER_Y - 1.9;
+  const z = .48 * Math.sqrt(Math.max(.02, 1 - (x / .7) ** 2 - (headY / .63) ** 2));
+  const normal = new T.Vector3(x / (.7 * .7), headY / (.63 * .63), z / (.48 * .48)).normalize();
+  return new T.Vector3(x, y, z).addScaledVector(normal, .0018);
 }
 
-function getShellMaterial() {
-  if (shellMaterial) return shellMaterial;
-  const canvas = document.createElement("canvas");
-  canvas.width = canvas.height = 256;
-  const ctx = canvas.getContext("2d"), random = seeded(813);
-  for (let i = 0; i < 7600; i++) {
-    const x = random() * 256, y = random() * 256;
-    const shade = 80 + random() * 53;
-    ctx.strokeStyle = `rgba(${shade},${shade * .62},${shade * .33},${.35 + random() * .65})`;
-    ctx.lineWidth = .4 + random() * .8;
-    ctx.beginPath(); ctx.moveTo(x, y);
-    ctx.quadraticCurveTo(x + 2, y - 2, x + (random() - .5) * 5, y - 3 - random() * 5);
-    ctx.stroke();
+// This patch IS the head's front surface. There is no extra disc, rim extrusion,
+// cheek sphere, or physical muzzle; the nose remains the original drawn ink.
+export function bossFaceGeometry(texture) {
+  const source = new T.ShapeGeometry(faceOutline(), 12);
+  const input = source.attributes.position, vertices = [], uvs = [];
+  function vertex(pixel) {
+    const point = bossFacePoint(pixel.x, pixel.y);
+    vertices.push(point.x, point.y, point.z);
+    uvs.push(pixel.x / texture.image.width, 1 - pixel.y / texture.image.height);
   }
-  const texture = canvasTexture(canvas, 5);
-  texture.name = "original-procedural-fur-shell-alpha";
-  shellMaterial = new T.MeshPhysicalMaterial({
-    map: texture, alphaTest: .3, roughness: 1, sheen: .3,
-    sheenColor: new T.Color("#d1a367"), sheenRoughness: 1,
-  });
-  shellMaterial.name = "plush-silhouette-shell";
-  const maxFurLayer = { value: 1 };
-  shellMaterial.userData.furQuality = { maxLayer: maxFurLayer };
-  shellMaterial.userData.setFurQuality = preset => {
-    maxFurLayer.value = { low: .34, medium: .67, high: 1, ultra: 1 }[String(preset).toLowerCase()] ?? 1;
-  };
-  shellMaterial.onBeforeCompile = shader => {
-    shader.uniforms.maxFurLayer = maxFurLayer;
-    shader.vertexShader = shader.vertexShader.replace("#include <common>", "#include <common>\nattribute float furLayer; varying float vFurLayer;");
-    shader.vertexShader = shader.vertexShader.replace("#include <begin_vertex>", "#include <begin_vertex>\nvFurLayer = furLayer;");
-    shader.fragmentShader = shader.fragmentShader.replace("#include <common>", "#include <common>\nvarying float vFurLayer; uniform float maxFurLayer;");
-    shader.fragmentShader = shader.fragmentShader.replace("#include <alphatest_fragment>", "if(vFurLayer > maxFurLayer || diffuseColor.a < .18 + vFurLayer * .66) discard; diffuseColor.a = 1.0;");
-  };
-  shellMaterial.customProgramCacheKey = () => "zuozuo-layered-fur-v3";
-  return shellMaterial;
+  function subdivide(a, b, c, depth) {
+    if (!depth) { vertex(a); vertex(c); vertex(b); return; }
+    const ab = a.clone().add(b).multiplyScalar(.5), bc = b.clone().add(c).multiplyScalar(.5), ca = c.clone().add(a).multiplyScalar(.5);
+    subdivide(a, ab, ca, depth - 1); subdivide(ab, b, bc, depth - 1);
+    subdivide(ca, bc, c, depth - 1); subdivide(ab, bc, ca, depth - 1);
+  }
+  for (let i = 0; i < source.index.count; i += 3) {
+    const p = [0, 1, 2].map(j => new T.Vector2().fromBufferAttribute(input, source.index.getX(i + j)));
+    subdivide(...p, 3);
+  }
+  source.dispose();
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute("position", new T.Float32BufferAttribute(vertices, 3));
+  geometry.setAttribute("uv", new T.Float32BufferAttribute(uvs, 2));
+  geometry.computeVertexNormals(); geometry.computeBoundingSphere();
+  geometry.userData.integratedHeadSurface = true;
+  return geometry;
 }
 
-// Shell layers share a single material and bake into one draw per articulated part.
-// Short crossed cards give the silhouette a soft halo even in a grazing close-up.
-export function addBossFurShell(parent, center, scale, layers = 4) {
-  const group = new T.Group();
-  group.name = "permanent-plush-shells-and-fins";
-  parent.add(group);
-  const isHead = center[1] > 1.8 && scale[0] > .6;
+export function getBossFurMaterial() { return plushSurface.getPlushMaterial(); }
+function getShellMaterial() { return plushSurface.getPlushShellMaterial(); }
+
+export function bossPlushGeometry(kind = "round", width = 32, height = 24) {
+  const geometry = new T.SphereGeometry(1, width, height);
+  if (kind === "body") {
+    const p = geometry.attributes.position;
+    for (let i = 0; i < p.count; i++) {
+      const y = p.getY(i), bulge = 1 - .04 * y - .025 * y * y;
+      p.setX(i, p.getX(i) * bulge); p.setZ(i, p.getZ(i) * bulge);
+    }
+    geometry.computeVertexNormals();
+  }
+  return geometry;
+}
+
+// Dense short curved fibres are represented by nested alpha surfaces. No radial
+// quills or polygon cards protrude from the silhouette.
+export function addBossFurShell(parent, center, scale, layers = 5) {
+  const group = new T.Group(); group.name = "permanent-soft-plush-shells"; parent.add(group);
+  const isHead = center[1] > 1.8 && scale[0] > .6, isBody = center[1] === .8 && scale[0] > .4;
   for (let layer = 0; layer < layers; layer++) {
-    const geometry = new T.SphereGeometry(1, 20, 12);
-    if (isHead) {
-      const positions = geometry.attributes.position, indices = [];
-      const inFace = index => positions.getZ(index) > .5 && Math.abs(positions.getX(index)) < .83 && positions.getY(index) > -.82 && positions.getY(index) < .7;
-      for (let i = 0; i < geometry.index.count; i += 3) {
-        const triangle = [geometry.index.getX(i), geometry.index.getX(i + 1), geometry.index.getX(i + 2)];
-        if (!triangle.some(inFace)) indices.push(...triangle);
-      }
-      geometry.setIndex(indices);
-    }
-    geometry.setAttribute("furLayer", new T.Float32BufferAttribute(
-      new Float32Array(geometry.attributes.position.count).fill(layer / Math.max(1, layers - 1)), 1,
-    ));
-    const shell = new T.Mesh(geometry, getShellMaterial());
-    shell.position.set(...center);
-    shell.scale.set(...scale.map(value => value + .009 + layer * .009));
-    shell.castShadow = false;
-    shell.receiveShadow = true;
-    shell.userData.bossFurShell = true;
-    group.add(shell);
-  }
-  if (!finMaterial) {
-    const c = document.createElement("canvas"); c.width = c.height = 128;
-    const ctx = c.getContext("2d"), random = seeded(190);
-    for (let i = 0; i < 100; i++) {
-      const x = 12 + random() * 104;
-      ctx.strokeStyle = `rgba(${90 + random() * 30},${52 + random() * 20},29,${.4 + random() * .6})`;
-      ctx.lineWidth = .7 + random() * .65;
-      ctx.beginPath(); ctx.moveTo(x, 128);
-      ctx.bezierCurveTo(x + 5, 90, x - 7, 40, x + (random() - .5) * 20, 5 + random() * 50);
-      ctx.stroke();
-    }
-    finMaterial = new T.MeshStandardMaterial({ map: canvasTexture(c), alphaTest: .3, side: T.DoubleSide, roughness: 1 });
-    finMaterial.name = "plush-fiber-fins";
-  }
-  const random = seeded(Math.round(scale[0] * 1000) + 73);
-  const count = scale[0] > .4 ? 180 : 45;
-  for (let i = 0; i < count; i++) {
-    const y = 1 - (i + .5) * 2 / count;
-    const radius = Math.sqrt(1 - y * y), angle = i * 2.399963;
-    const normal = new T.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
-    if (isHead && normal.z > .5 && Math.abs(normal.x) < .83 && y > -.82 && y < .7) continue;
-    const fin = new T.Mesh(new T.PlaneGeometry(.017 + random() * .01, .03 + random() * .025), finMaterial);
-    const offset = new T.Vector3(normal.x * scale[0], normal.y * scale[1], normal.z * scale[2]);
-    fin.position.set(...center).add(offset).addScaledVector(normal, .02);
-    // Plane Y runs out from the surface; local Z is a tangent facing sideways.
-    const tangent = new T.Vector3().crossVectors(normal, new T.Vector3(.1, 1, .2)).normalize();
-    const bitangent = new T.Vector3().crossVectors(tangent, normal).normalize();
-    fin.quaternion.setFromRotationMatrix(new T.Matrix4().makeBasis(tangent, normal, bitangent));
-    fin.castShadow = false; group.add(fin);
+    const geometry = isHead ? bossHeadGeometry(64, 10) : bossPlushGeometry(isBody ? "body" : "round", 28, 20);
+    geometry.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(geometry.attributes.position.count).fill(layer / Math.max(1, layers - 1)), 1));
+    const shell = new T.Mesh(geometry, getShellMaterial()); shell.position.set(...center);
+    shell.scale.set(...scale.map(value => value + .004 + layer * .005));
+    shell.castShadow = false; shell.receiveShadow = true; shell.userData.bossFurShell = true; group.add(shell);
   }
   return group;
 }
 
-// A single inexpensive shell keeps every colleague tactile without multiplying
-// layers across the 14 smaller actors. The face aperture remains unobstructed.
+export function addBossArm(parent, side) {
+  // One softly stuffed limb continues into the paw: no intersecting hand sphere,
+  // glove cuff or rigid wrist band. The prop grip remains at its existing socket.
+  const profile = [[0, -.67], [.085, -.655], [.158, -.59], [.19, -.43], [.195, -.24], [.18, -.055], [.13, .075], [0, .135]];
+  const curve = new T.CatmullRomCurve3(profile.map(([r, y]) => new T.Vector3(r, y, 0)));
+  const points = curve.getPoints(32).map(p => new T.Vector2(Math.max(0, p.x), p.y));
+  const geometry = new T.LatheGeometry(points, 32); geometry.scale(1, 1, .95); geometry.translate(side * .06, 0, .012);
+  const arm = new T.Mesh(geometry, getBossFurMaterial()); arm.name = "continuous-soft-plush-arm-and-paw"; arm.castShadow = true; arm.receiveShadow = true; parent.add(arm);
+  for (let layer = 0; layer < 3; layer++) {
+    const g = geometry.clone(), p = g.attributes.position, n = g.attributes.normal;
+    for (let i = 0; i < p.count; i++) { p.setXYZ(i, p.getX(i) + n.getX(i) * (.004 + layer * .007), p.getY(i) + n.getY(i) * (.004 + layer * .007), p.getZ(i) + n.getZ(i) * (.004 + layer * .007)); }
+    g.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(p.count).fill(layer / 2), 1));
+    const shell = new T.Mesh(g, getShellMaterial()); shell.castShadow = false; shell.receiveShadow = true; parent.add(shell);
+  }
+  return arm;
+}
+
+export function addBossFacePile(parent) {
+  const points = faceOutline().getPoints(48), positions = [], uvs = [], indices = [];
+  points.forEach((pixel, i) => {
+    for (const factor of [.994, 1.026]) {
+      const px = 616 + (pixel.x - 616) * factor, py = 687 + (pixel.y - 687) * factor;
+      const p = bossFacePoint(px, py); p.y += BOSS_FACE_CENTER_Y;
+      const n = new T.Vector3(p.x / .49, (p.y - 1.9) / .3969, p.z / .2304).normalize();
+      p.addScaledVector(n, .003);
+      positions.push(p.x, p.y, p.z); uvs.push(i / points.length * 3, factor === .994 ? .12 : .32);
+    }
+    if (i) { const a = i * 2; indices.push(a - 2, a, a - 1, a - 1, a, a + 1); }
+  });
+  const geometry = new T.BufferGeometry();
+  geometry.setAttribute("position", new T.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("uv", new T.Float32BufferAttribute(uvs, 2));
+  geometry.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(positions.length / 3).fill(.15), 1));
+  geometry.setIndex(indices); geometry.computeVertexNormals();
+  const edge = new T.Mesh(geometry, getShellMaterial()); edge.name = "soft-fur-skin-seam"; edge.castShadow = false; parent.add(edge);
+  return edge;
+}
+
+export function addBossEar(parent, side) {
+  const ear = new T.Group(); ear.name = side < 0 ? "left-thick-plush-ear" : "right-thick-plush-ear";
+  ear.position.set(side * .765, 1.91, -.035); ear.rotation.y = side * .14; parent.add(ear);
+  // Rounded outer capsule continues into a thick fur rim, leaving a real hollow.
+  const profile = [[0, -.2], [.14, -.2], [.255, -.13], [.301, -.015], [.293, .095], [.254, .172], [.205, .198], [.16, .181], [.144, .15]];
+  const curve = new T.CatmullRomCurve3(profile.map(([r, z]) => new T.Vector3(r, z, 0)));
+  const points = curve.getPoints(30).map(p => new T.Vector2(Math.max(0, p.x), p.y));
+  const geometry = new T.LatheGeometry(points, 40); geometry.rotateX(Math.PI / 2); geometry.scale(1, 1.065, 1);
+  const rim = new T.Mesh(geometry, getBossFurMaterial()); rim.castShadow = true; rim.receiveShadow = true; ear.add(rim);
+  const bowlPoints = [];
+  for (let i = 0; i <= 20; i++) { const r = i / 20; bowlPoints.push(new T.Vector2(r * .145, .085 + .066 * r * r)); }
+  const bowlGeometry = new T.LatheGeometry(bowlPoints, 40); bowlGeometry.rotateX(Math.PI / 2); bowlGeometry.scale(1, 1.065, 1);
+  const inner = new T.Mesh(bowlGeometry, new T.MeshPhysicalMaterial({ color: "#b88c66", normalMap: plushSurface.getMaps().normal, normalScale: new T.Vector2(.15, .15), roughness: .98, sheen: .18, sheenColor: new T.Color("#c4a37d"), side: T.DoubleSide }));
+  inner.name = "recessed-soft-ear-interior"; ear.add(inner);
+  // A short alpha skin follows the same curved rim rather than a flat ellipse.
+  for (let layer = 0; layer < 2; layer++) {
+    const g = geometry.clone(); g.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(g.attributes.position.count).fill(layer * .67), 1));
+    const shell = new T.Mesh(g, getShellMaterial()); shell.scale.setScalar(1.009 + layer * .012); shell.castShadow = false; ear.add(shell);
+  }
+  return ear;
+}
+
 export function addColleagueFurShell(head) {
-  const geometry = new T.SphereGeometry(1, 12, 8);
-  const positions = geometry.attributes.position, indices = [];
+  const geometry = new T.SphereGeometry(1, 12, 8), positions = geometry.attributes.position, indices = [];
   const inFace = index => positions.getZ(index) > .48 && Math.abs(positions.getX(index)) < .86 && positions.getY(index) > -.86 && positions.getY(index) < .62;
   for (let i = 0; i < geometry.index.count; i += 3) {
     const triangle = [geometry.index.getX(i), geometry.index.getX(i + 1), geometry.index.getX(i + 2)];
     if (!triangle.some(inFace)) indices.push(...triangle);
   }
-  geometry.setIndex(indices);
-  geometry.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(positions.count).fill(.67), 1));
-  const shell = new T.Mesh(geometry, getShellMaterial());
-  shell.position.set(0, 1.58, 0); shell.scale.set(.444, .414, .334);
-  shell.castShadow = false; shell.receiveShadow = true;
-  head.add(shell);
-  return shell;
+  geometry.setIndex(indices); geometry.setAttribute("furLayer", new T.Float32BufferAttribute(new Float32Array(positions.count).fill(.67), 1));
+  const shell = new T.Mesh(geometry, getShellMaterial()); shell.position.set(0, 1.58, 0); shell.scale.set(.444, .414, .334);
+  shell.castShadow = false; shell.receiveShadow = true; head.add(shell); return shell;
 }
 
 function add(parent, geometry, material, position = [0, 0, 0], scale = [1, 1, 1]) {
@@ -237,7 +251,7 @@ export function addBossCrown(head) {
     head.add(crown);
     return crown;
   }
-  const crown = new T.Group(); crown.name = "immutable-ornate-ruby-crown"; head.add(crown);
+  const crown = new T.Group(); crown.name = "immutable-ornate-ruby-crown"; crown.scale.set(.95, .85, .95); crown.position.y = .26; head.add(crown);
   const gold = new T.MeshStandardMaterial({ color: "#e8ad32", metalness: .82, roughness: .24 });
   const deepGold = new T.MeshStandardMaterial({ color: "#a96c1b", metalness: .78, roughness: .35 });
   const ruby = new T.MeshPhysicalMaterial({ color: "#a30017", metalness: .05, roughness: .14, clearcoat: 1, clearcoatRoughness: .06 });
@@ -259,7 +273,7 @@ export function addBossCrown(head) {
   // paired ruby scrolls, and inward-curled acanthus leaves as in the turnaround.
   for (let i = 0; i < 4; i++) {
     const angle = i * Math.PI / 2;
-    const crest = new T.Group(); crest.position.set(Math.sin(angle) * .5, 2.62, Math.cos(angle) * .455); crest.rotation.y = angle; crown.add(crest);
+    const crest = new T.Group(); crest.position.set(Math.sin(angle) * .5, 2.62, Math.cos(angle) * .455); crest.rotation.y = angle; crest.scale.y = i === 0 ? 1.06 : .73; crown.add(crest);
     const shape = new T.Shape();
     shape.moveTo(0, .56); shape.bezierCurveTo(-.06, .49, -.155, .43, -.13, .34);
     shape.bezierCurveTo(-.11, .29, -.065, .27, -.045, .22);

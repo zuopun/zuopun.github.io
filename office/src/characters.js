@@ -14,10 +14,17 @@ import {
   loadBossFace,
   bossFaceMaterial,
   bossFaceGeometry,
+  bossFacePoint,
+  BOSS_FACE_CENTER_Y,
   getBossFurMaterial,
   addBossFurShell,
   addColleagueFurShell,
   addBossCrown,
+  bossPlushGeometry,
+  bossHeadGeometry,
+  addBossEar,
+  addBossFacePile,
+  addBossArm,
 } from "./boss-details.js";
 const brown = "#835736",
   cream = "#dfbb89",
@@ -36,7 +43,7 @@ export function createCharacter(person, face) {
   const furMat = getBossFurMaterial();
   // Hero silhouette uses smooth geometry; fur shells provide the fine outline.
   const plushBall = (parent, material, position, scale) => boss
-    ? mesh(parent, new T.SphereGeometry(1, 20, 12), material, position, scale)
+    ? mesh(parent, bossPlushGeometry(position[1] === .8 && scale[0] > .4 ? "body" : "round"), material, position, scale)
     : ball(parent, material, position, scale);
   let faceMesh;
   const color = boss ? furMat : person.color;
@@ -44,45 +51,42 @@ export function createCharacter(person, face) {
     fixed,
     color,
     [0, 0.8, 0],
-    [boss ? 0.53 : 0.32, boss ? 0.64 : 0.42, boss ? 0.38 : 0.24],
+    [boss ? 0.57 : 0.32, boss ? 0.66 : 0.42, boss ? 0.41 : 0.24],
   );
   if (!boss) ball(fixed, "#f2dfb5", [0, 0.86, 0.21], [0.19, 0.24, 0.05]);
   const head = new T.Group();
   fixed.add(head);
   mesh(
     head,
-    new T.SphereGeometry(1, boss ? 24 : 12, boss ? 16 : 8),
+    boss ? bossHeadGeometry() : new T.SphereGeometry(1, 12, 8),
     furMat,
     [0, boss ? 1.9 : 1.58, 0],
     boss ? [0.7, 0.63, 0.48] : [0.43, 0.4, 0.32],
   );
-  for (const sign of [-1, 1]) {
-    plushBall(
-      head,
-      furMat,
-      [sign * (boss ? 0.74 : 0.46), boss ? 1.9 : 1.58, 0],
-      boss ? [0.29, 0.32, 0.2] : [0.19, 0.21, 0.12],
-    );
-    plushBall(
-      head,
-      boss ? "#c99762" : cream,
-      [sign * (boss ? 0.76 : 0.48), boss ? 1.9 : 1.58, boss ? 0.205 : 0.1],
-      boss ? [0.19, 0.22, 0.05] : [0.12, 0.14, 0.035],
-    );
+  if (boss) {
+    addBossEar(head, -1); addBossEar(head, 1);
+  } else {
+    for (const sign of [-1, 1]) {
+      plushBall(head, furMat, [sign * .46, 1.58, 0], [.19, .21, .12]);
+      plushBall(head, cream, [sign * .48, 1.58, .1], [.12, .14, .035]);
+    }
   }
   if (boss) {
     faceMesh = mesh(
       head,
       bossFaceGeometry(face),
       bossFaceMaterial(face),
-      [0, 1.86, 0.497],
+      [0, BOSS_FACE_CENTER_Y, 0],
     );
     faceMesh.name = "official-zuozuo-face";
     faceMesh.castShadow = false;
-    addBossFurShell(fixed, [0, 0.8, 0], [0.53, 0.64, 0.38]);
+    addBossFacePile(head);
+    addBossFurShell(fixed, [0, 0.8, 0], [0.57, 0.66, 0.41]);
+    for (const side of [-1, 1]) {
+      plushBall(fixed, furMat, [side * .385, 1.12, -.015], [.23, .28, .245]);
+      addBossFurShell(fixed, [side * .385, 1.12, -.015], [.23, .28, .245], 3);
+    }
     addBossFurShell(head, [0, 1.9, 0], [0.7, 0.63, 0.48]);
-    for (const side of [-1, 1])
-      addBossFurShell(head, [side * .74, 1.9, 0], [.29, .32, .2], 2);
     addBossCrown(head);
   } else {
     addColleagueFurShell(head);
@@ -214,19 +218,11 @@ export function createCharacter(person, face) {
     const pivot = new T.Group();
     pivot.position.set(sign * (boss ? 0.5 : 0.29), boss ? 1.13 : 1.1, 0);
     body.add(pivot);
-    plushBall(
-      pivot,
-      boss ? furMat : color,
-      [sign * 0.06, -0.24, 0],
-      boss ? [0.19, 0.4, 0.19] : [0.12, 0.28, 0.12],
-    );
-    plushBall(
-      pivot,
-      furMat,
-      [sign * 0.07, -0.48, 0.015],
-      boss ? [0.17, 0.2, 0.16] : [0.105, 0.12, 0.1],
-    );
-    if (boss) addBossFurShell(pivot, [sign * .06, -.24, 0], [.19, .4, .19], 2);
+    if (boss) addBossArm(pivot, sign);
+    else {
+      plushBall(pivot, color, [sign * .06, -.24, 0], [.12, .28, .12]);
+      plushBall(pivot, furMat, [sign * .07, -.48, .015], [.105, .12, .1]);
+    }
     arms.push(pivot);
   }
   const legs = [];
@@ -246,6 +242,12 @@ export function createCharacter(person, face) {
       [0, -0.36, 0.08],
       boss ? [0.23, 0.13, 0.28] : [0.13, 0.09, 0.19],
     );
+    if (boss) {
+      const pad = mesh(pivot, new T.SphereGeometry(1, 24, 16), new T.MeshPhysicalMaterial({ color: "#b58d69", roughness: .95, sheen: .35 }), [0, -.465, .095], [.135, .02, .175]);
+      pad.name = "soft-suede-paw-pad";
+      addBossFurShell(pivot, [0, -.19, 0], [.22, .28, .23], 2);
+      addBossFurShell(pivot, [0, -.36, .08], [.23, .13, .28], 2);
+    }
     legs.push(pivot);
   }
   if (!boss)
@@ -382,37 +384,92 @@ export function createCharacter(person, face) {
   };
 }
 export function makeBossProps(boss) {
-  const sets = Array.from({ length: 3 }, () => {
-    const group = new T.Group(); boss.body.add(group); return group;
-  });
-  const cigarette = sets[0];
-  cylinder(cigarette, "#efe7d8", [.66, 1.36, .47], [.028, .36, .028]).rotation.x = Math.PI / 2;
-  cylinder(cigarette, "#b78951", [.66, 1.36, .325], [.029, .08, .029]).rotation.x = Math.PI / 2;
-  const emberMaterial = new T.MeshStandardMaterial({ color: "#bb3417", emissive: "#ff5b16", emissiveIntensity: 2.5, roughness: 1 });
-  ball(cigarette, emberMaterial, [.66, 1.36, .66], [.027, .027, .027]);
-  const handheld = sets[1];
-  box(handheld, "#263530", [0, 1.08, .57], [.88, .24, .19]);
-  for (const side of [-1, 1]) {
-    ball(handheld, "#34463c", [side * .36, 1.02, .57], [.17, .16, .12]);
-    ball(handheld, "#b4ab82", [side * .31, 1.19, .58], [.044, .018, .044]);
+  // Both grips belong to the arms: no activity object is positioned beside a
+  // hand in world space. The same sockets will attach to wrist bones later.
+  const fingerMaterial = getBossFurMaterial();
+  const fingerContacts = [], grips = [];
+  const smoothFinger = (parent, points, radius = .031) => {
+    const curve = new T.CatmullRomCurve3(points.map(p => new T.Vector3(...p)));
+    const finger = new T.Mesh(new T.TubeGeometry(curve, 12, radius, 7, false), fingerMaterial);
+    finger.castShadow = true; finger.name = "plush-articulated-finger";
+    parent.add(finger); fingerContacts.push(finger); return finger;
+  };
+  for (let side = 0; side < 2; side++) {
+    const sign = side ? 1 : -1, grip = new T.Group();
+    grip.name = side ? "right-hand-grip" : "left-hand-grip";
+    grip.position.set(sign * .07, -.60, .065);
+    boss.arms[side].add(grip); grips.push(grip);
+    // Index and middle fingers cradle the cigarette from opposite sides; a
+    // separate thumb closes beneath it. Every digit is a round curved volume.
+    smoothFinger(grip, [[-.075, .095, -.025], [-.055, .04, -.014], [-.028, .018, .014], [-.018, .012, .053]], .030);
+    smoothFinger(grip, [[.07, .085, -.02], [.048, .033, -.008], [.028, .006, .013], [.022, .003, .052]], .031);
+    smoothFinger(grip, [[.074, -.05, -.04], [.045, -.033, -.011], [.01, -.029, .025], [-.025, -.014, .034]], .035);
+    smoothFinger(grip, [[.093, .025, -.05], [.074, -.005, -.029], [.053, -.025, .006]], .027);
   }
+  // Attach the lip marker to the actual reference patch, so face proportions
+  // and future head articulation cannot leave a stale body-space mouth point.
+  const mouthAnchor = new T.Object3D(); mouthAnchor.name = "boss-drawn-mouth-contact";
+  mouthAnchor.position.copy(bossFacePoint(616, 793));
+  mouthAnchor.userData.sourcePixel = [616, 793]; boss.faceMesh.add(mouthAnchor);
+  const mouth = boss.body.worldToLocal(mouthAnchor.getWorldPosition(new T.Vector3()));
+  const peakGrip = new T.Vector3(.18, 1.58, .50).sub(boss.arms[1].position).normalize()
+    .multiplyScalar(grips[1].position.length()).add(boss.arms[1].position);
+  const filterLength = peakGrip.distanceTo(mouth) - .005;
+  const sets = Array.from({ length: 3 }, () => new T.Group());
+  const smokingGrip = grips[1], cigarette = sets[0];
+  cigarette.name = "cigarette-held-between-index-and-middle";
+  smokingGrip.add(cigarette); boss.body.add(sets[1], sets[2]);
+  const stick = (material, z, radius, length) => {
+    const object = new T.Mesh(new T.CylinderGeometry(radius, radius, length, 12), typeof material === "string" ? mat(material) : material);
+    object.position.z = z; object.rotation.x = Math.PI / 2; object.castShadow = true; cigarette.add(object); return object;
+  };
+  stick("#eee4d6", .055, .018, .31);
+  stick("#b98a57", -(filterLength + .1) / 2, .019, filterLength - .1);
+  // Narrow paper/filter seam and a porous, ashed tip give the tiny object a
+  // recognizable construction without increasing its silhouette unnaturally.
+  stick("#d0bc99", -.099, .0195, .008);
+  stick("#716961", .208, .019, .025);
+  const emberMaterial = new T.MeshStandardMaterial({ color: "#9e351d", emissive: "#ff651e", emissiveIntensity: 2.6, roughness: .9 });
+  stick(emberMaterial, .224, .016, .008);
+  const cigaretteTip = new T.Object3D(); cigaretteTip.name = "cigarette-emitter-at-ember";
+  cigaretteTip.position.z = .231; cigarette.add(cigaretteTip);
+  const cigaretteFilter = new T.Object3D(); cigaretteFilter.name = "cigarette-filter-lip-contact";
+  cigaretteFilter.position.z = -filterLength; cigarette.add(cigaretteFilter);
+
+  const handheld = sets[1]; handheld.name = "held-handheld-console";
+  handheld.position.set(0, 1.055, .60);
+  box(handheld, "#263530", [0, 0, 0], [.84, .14, .28]);
+  for (const side of [-1, 1]) {
+    const handle = new T.Mesh(new T.SphereGeometry(1, 16, 10), mat(side < 0 ? "#31586a" : "#9d4f48"));
+    handle.position.set(side * .345, -.01, .012); handle.scale.set(.14, .105, .18); handheld.add(handle);
+    cylinder(handheld, "#c4b994", [side * .31, .1, -.035], [.036, .02, .036]);
+    for (const [x, z] of [[0, .025], [.025, 0], [0, -.025], [-.025, 0]])
+      cylinder(handheld, "#e0c87f", [side * .335 + x, .101, .065 + z], [.01, .012, .01]);
+  }
+  box(handheld, "#101d24", [0, .076, 0], [.53, .012, .25]);
   const screen = document.createElement("canvas"); screen.width = 256; screen.height = 128;
   const screenCtx = screen.getContext("2d");
-  screenCtx.fillStyle = "#132f3f"; screenCtx.fillRect(0, 0, 256, 128);
-  screenCtx.fillStyle = "#5ab1a0"; screenCtx.fillRect(0, 90, 256, 38);
-  screenCtx.fillStyle = "#e2b75c"; screenCtx.fillRect(65, 54, 30, 36);
-  screenCtx.fillStyle = "#8fd8e3"; screenCtx.fillRect(140, 74, 48, 8);
-  screenCtx.fillStyle = "#f3edc5"; screenCtx.font = "bold 15px monospace"; screenCtx.fillText("ZUO QUEST", 10, 22);
   const screenTexture = new T.CanvasTexture(screen); screenTexture.colorSpace = T.SRGBColorSpace;
-  const display = new T.Mesh(new T.PlaneGeometry(.48, .18), new T.MeshStandardMaterial({ map: screenTexture, emissiveMap: screenTexture, emissive: "#ffffff", emissiveIntensity: 1.4, roughness: .25 }));
-  display.position.set(0, 1.08, .672); handheld.add(display);
+  const display = new T.Mesh(new T.PlaneGeometry(.48, .22), new T.MeshStandardMaterial({ map: screenTexture, emissiveMap: screenTexture, emissive: "#ffffff", emissiveIntensity: 1.1, roughness: .23 }));
+  display.rotation.x = -Math.PI / 2; display.position.y = .085; handheld.add(display);
+  function drawGame(time) {
+    screenCtx.fillStyle = "#11283c"; screenCtx.fillRect(0, 0, 256, 128);
+    screenCtx.fillStyle = "#4c8b95";
+    for (let i = 0; i < 5; i++) screenCtx.fillRect((i * 67 - time * 14) % 330 - 25, 36 + i % 2 * 15, 34, 63);
+    screenCtx.fillStyle = "#69bda5"; screenCtx.fillRect(0, 96, 256, 32);
+    screenCtx.fillStyle = "#e1b358"; screenCtx.fillRect(72, 65 - Math.max(0, Math.sin(time * 3)) * 20, 24, 31);
+    screenCtx.fillStyle = "#c8e9ed"; screenCtx.fillRect(160, 82, 48, 7);
+    screenCtx.fillStyle = "#f3edc5"; screenCtx.font = "bold 15px monospace"; screenCtx.fillText("ZUO QUEST", 10, 22);
+    screenTexture.needsUpdate = true;
+  }
+  drawGame(0);
   const newspaperTexture = makeNewspaperTexture();
   const paperMaterial = new T.MeshStandardMaterial({ map: newspaperTexture, color: "#fff7e6", roughness: 1, side: T.DoubleSide });
-  const newspaper = sets[2];
-  const leftPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 4, 1), paperMaterial);
+  const newspaper = sets[2]; newspaper.name = "held-newspaper-with-turning-leaf";
+  const leftPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 8, 3), paperMaterial);
   leftPage.position.set(-.27, 1.04, .64); leftPage.rotation.y = -.14; newspaper.add(leftPage);
   const pageTurn = new T.Group(); pageTurn.position.set(0, 1.04, .65); newspaper.add(pageTurn);
-  const rightPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 6, 1), paperMaterial);
+  const rightPage = new T.Mesh(new T.PlaneGeometry(.54, .61, 12, 3), paperMaterial);
   rightPage.position.x = .27; pageTurn.add(rightPage);
   const positions = rightPage.geometry.attributes.position;
   for (let i = 0; i < positions.count; i++) {
@@ -420,23 +477,63 @@ export function makeBossProps(boss) {
     positions.setZ(i, Math.sin(x / .54 * Math.PI) * .035);
   }
   rightPage.geometry.computeVertexNormals();
-  // Keep the turning leaf articulated, while all fixed prop meshes are batched.
-  pageTurn.removeFromParent(); sets.forEach(bake); newspaper.add(pageTurn);
-  const cigaretteTip = new T.Object3D(); cigaretteTip.position.set(.66, 1.36, .66); cigarette.add(cigaretteTip);
+  // Batch the fixed components without baking the moving grips or page hinge.
+  bake(cigarette); bake(handheld);
   const smokeTexture = makeSmokeTexture(), smoke = [];
-  for (let i = 0; i < 12; i++) {
-    const sprite = new T.Sprite(new T.SpriteMaterial({ map: smokeTexture, color: "#e2ded4", transparent: true, opacity: .4, depthWrite: false, toneMapped: false }));
+  for (let i = 0; i < 16; i++) {
+    const sprite = new T.Sprite(new T.SpriteMaterial({ map: smokeTexture, color: "#afb4b3", transparent: true, opacity: .4, depthWrite: false, toneMapped: false }));
     boss.root.add(sprite); smoke.push(sprite);
   }
-  const update = (time, phase) => {
-    const turn = (time % 7) / 7;
-    // Lift a page, arc it over the spine, then settle back onto the open spread.
-    pageTurn.rotation.y = phase === 2 && turn > .68
-      ? .14 + Math.sin((turn - .68) / .32 * Math.PI) * 2.7 : .14;
-    handheld.rotation.z = phase === 1 ? Math.sin(time * 2) * .035 : 0;
-    emberMaterial.emissiveIntensity = 2 + Math.pow(Math.max(0, Math.sin(time * .8)), 8) * 2;
+  const savedRotations = boss.arms.map(a => a.quaternion.clone());
+  const previousTime = { value: null }, vector = new T.Vector3(), target = new T.Vector3(), axis = new T.Vector3();
+  const orient = new T.Quaternion(), desired = new T.Quaternion();
+  const gripBody = new T.Vector3(), zAxis = new T.Vector3(0, 0, 1);
+  const poseHand = (index, position, delta) => {
+    const arm = boss.arms[index];
+    vector.copy(grips[index].position).normalize();
+    target.copy(position).sub(arm.position).normalize();
+    desired.setFromUnitVectors(vector, target);
+    savedRotations[index].slerp(desired, 1 - Math.exp(-delta * 12));
+    arm.quaternion.copy(savedRotations[index]);
   };
-  return { sets, smoke, cigaretteTip, pageTurn, update };
+  let lastGameFrame = -1;
+  const update = (time, phase) => {
+    const delta = previousTime.value === null ? .1 : Math.min(.1, Math.max(.001, time - previousTime.value));
+    previousTime.value = time;
+    boss.body.worldToLocal(mouthAnchor.getWorldPosition(mouth));
+    const breath = Math.sin(time * 1.5) * .008;
+    const wave = (Math.sin(time * Math.PI / 3 - Math.PI / 2) + 1) / 2;
+    const lift = T.MathUtils.smoothstep(wave, .16, .8);
+    if (phase === 0) {
+      poseHand(0, new T.Vector3(-.58, .69, .32), delta);
+      poseHand(1, target.set(.64, .88, .44).lerp(new T.Vector3(.18, 1.58, .50), lift), delta);
+    } else if (phase === 1) {
+      poseHand(0, new T.Vector3(-.365, 1.055 + breath, .63), delta);
+      poseHand(1, new T.Vector3(.365, 1.055 + breath, .63), delta);
+    } else {
+      poseHand(0, new T.Vector3(-.47, .96 + breath, .65), delta);
+      poseHand(1, new T.Vector3(.47, .96 + breath, .65), delta);
+    }
+    for (let i = 0; i < 2; i++) {
+      const arm = boss.arms[i], grip = grips[i];
+      gripBody.copy(grip.position).applyQuaternion(arm.quaternion).add(arm.position);
+      if (i === 1 && phase === 0) {
+        axis.copy(gripBody).sub(mouth).normalize();
+        axis.lerp(new T.Vector3(.45, .10, .89), 1 - lift).normalize();
+      } else axis.set(0, 0, 1);
+      orient.setFromUnitVectors(zAxis, axis);
+      grip.quaternion.copy(arm.quaternion).invert().multiply(orient);
+    }
+    const turn = (time % 7) / 7;
+    pageTurn.rotation.y = phase === 2 && turn > .68 ? .14 + Math.sin((turn - .68) / .32 * Math.PI) * 2.7 : .14;
+    handheld.rotation.z = phase === 1 ? Math.sin(time * 2) * .025 : 0;
+    handheld.position.y = 1.055 + breath;
+    fingerContacts.forEach((finger, i) => { finger.rotation.x = phase === 1 ? Math.sin(time * 8 + i * .7) * .075 : 0; });
+    emberMaterial.emissiveIntensity = 1.8 + lift * 3;
+    const frame = Math.floor(time * 12);
+    if (phase === 1 && frame !== lastGameFrame) { drawGame(time); lastGameFrame = frame; }
+  };
+  return { sets, smoke, cigaretteTip, cigaretteFilter, mouthAnchor, pageTurn, update, smokingGrip, grips, fingerContacts, cigarette };
 }
 function makeSmokeTexture() {
   const canvas = document.createElement("canvas"); canvas.width = canvas.height = 64;
