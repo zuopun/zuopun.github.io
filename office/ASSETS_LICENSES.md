@@ -21,7 +21,7 @@ Generate editable source maps and HDRs with `python3 scripts/generate-assets.py`
 
 ## User-provided 左左 references
 
-`refs/zuozuo_face.png` and `refs/zuozuo_turnaround.png` were supplied with the project as the official character references. Their original rights remain with their respective owner; they are **not** included in the CC0 dedication above. The reference files are retained unchanged. The face material derives the original black ink coverage from the supplied face image and renders it on uniform warm-beige skin, removing the photograph’s orange edge lighting as requested in Stage 0. This derivative use retains the original reference owner’s rights.
+`refs/zuozuo_face.png` and `refs/zuozuo_turnaround.png` were supplied with the project as the official character references. Their original rights remain with their respective owner; they are **not** included in the CC0 dedication above. The reference files are retained unchanged. The face material derives the original black ink coverage from the supplied face image and renders it on uniform warm-beige skin, removing the photograph’s orange edge lighting as requested in Stage 0. The 2026-10-29 correction in `src/characters/face-reference.js` preserves the original stroke positions and black cores while recovering their antialiased edges; it removes photographic fur outside the facial features and does not redraw the expression. This derivative use retains the original reference owner’s rights.
 
 ## Runtime libraries and decoders
 

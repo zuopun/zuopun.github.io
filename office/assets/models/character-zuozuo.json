@@ -127,9 +127,9 @@
   "format": "GLB 2.0",
   "compression": "EXT_meshopt_compression; lossless float attributes",
   "textureFormat": "KTX2 / Basis UASTC",
-  "contentSHA256": "142aaf4489a84a7d0df293418808630ced08342f621f12492f78a2b2403da7dc",
+  "contentSHA256": "264dd2a59e9163f929f3007b2ddf74da8d87e5905dd63556cdf17b04651b4525",
   "glbBytes": 2361592,
-  "sourceGLBBytes": 30632088,
+  "sourceGLBBytes": 29264184,
   "triangles": 115706,
   "textures": [
     {
@@ -148,10 +148,10 @@
     },
     {
       "name": "",
-      "uri": "../textures/generated/462b8198a4f860785204e5ed.ktx2",
-      "bytes": 813658,
+      "uri": "../textures/generated/3588dcdd8687d24e9f5cccc5.ktx2",
+      "bytes": 33112,
       "linear": false,
-      "sourceSHA256": "bc082f61872e80a5901638af2c39f516c55ca76ad85333dbcbf7f04504c04168"
+      "sourceSHA256": "317086461cf01410a3e786c4fdc7c1170cf2adb1d9b00030208f42ea4257ea90"
     },
     {
       "name": "",
@@ -175,5 +175,5 @@
       "sourceSHA256": "242563d7ad2d3ade220efac9de05185af5c815676e4713bdbe52ffe83b03dd17"
     }
   ],
-  "generatedAt": "2026-10-28T09:22:57.764Z"
+  "generatedAt": "2026-10-29T01:16:59.572Z"
 }
