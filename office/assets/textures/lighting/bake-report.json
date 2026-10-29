@@ -1,0 +1,87 @@
+{
+  "technique": "2.5D geometric horizon AO and wall-occluded diffuse irradiance",
+  "licence": "CC0-1.0",
+  "size": [
+    160,
+    132
+  ],
+  "format": "KTX2 / Basis UASTC",
+  "floors": [
+    {
+      "id": 1,
+      "obstacleSHA256": "c9c4d47057579395253a3af4b9507e9fc02ec23d472ab352aad15de3b3438770",
+      "occludedTexels": 9337,
+      "files": [
+        {
+          "file": "floor-1-ao.ktx2",
+          "bytes": 8437
+        },
+        {
+          "file": "floor-1-diffuse.ktx2",
+          "bytes": 3849
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "obstacleSHA256": "424a39f044189834a0ca1ad154223af65f22e9cd8c4e6ed447f7e36fb75a0d54",
+      "occludedTexels": 15282,
+      "files": [
+        {
+          "file": "floor-2-ao.ktx2",
+          "bytes": 12035
+        },
+        {
+          "file": "floor-2-diffuse.ktx2",
+          "bytes": 3966
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "obstacleSHA256": "6a63814f569c103f0b69808aaaa83f7abcf434fab2f9a781d50893419366d9c2",
+      "occludedTexels": 16931,
+      "files": [
+        {
+          "file": "floor-3-ao.ktx2",
+          "bytes": 11465
+        },
+        {
+          "file": "floor-3-diffuse.ktx2",
+          "bytes": 3926
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "obstacleSHA256": "1152b0dc75127ff81b60a87632f11f9f51a70126ffbfe483e41e0b2768459a39",
+      "occludedTexels": 14714,
+      "files": [
+        {
+          "file": "floor-4-ao.ktx2",
+          "bytes": 10176
+        },
+        {
+          "file": "floor-4-diffuse.ktx2",
+          "bytes": 3825
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "obstacleSHA256": "235a8d3c080e40f68b1850badd0e7580bb815d280f0b80069da0077110e26757",
+      "occludedTexels": 11544,
+      "files": [
+        {
+          "file": "floor-5-ao.ktx2",
+          "bytes": 8529
+        },
+        {
+          "file": "floor-5-diffuse.ktx2",
+          "bytes": 3746
+        }
+      ]
+    }
+  ],
+  "totalBytes": 69954
+}
